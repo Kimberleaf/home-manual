@@ -1,0 +1,337 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="An interactive room-by-room household task review and reassignment workbook.">
+  <meta name="theme-color" content="#173a3d">
+  <title>House Manual Review</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23173a3d'/%3E%3Cpath d='M15 31 32 17l17 14v20H37V39H27v12H15Z' fill='%23f7f4eb'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body data-auth="out">
+  <main class="login-screen" id="loginScreen" aria-labelledby="loginTitle">
+    <form class="login-card" id="loginForm" autocomplete="on">
+      <div class="brand-mark" aria-hidden="true">HM</div>
+      <p class="eyebrow">House Manual</p>
+      <h1 id="loginTitle">Sign in</h1>
+      <label><span class="field-label">Username</span><input class="text-input" name="username" autocomplete="username" autocapitalize="none" spellcheck="false" required></label>
+      <label><span class="field-label">Password</span><input class="text-input" name="password" type="password" autocomplete="current-password" required></label>
+      <p class="login-error" id="loginError" role="alert" hidden></p>
+      <button class="button button-solid" type="submit">Sign in</button>
+      <p class="login-help">Forgot your password? Ask Michael or Kim.</p>
+      <p class="login-help login-setup" id="loginSetup" hidden>Default sign-ins aren't set up on this computer: copy <code>dist/local-config.example.js</code> to <code>dist/local-config.js</code> and fill it in. Anyone whose password an admin has set can still sign in.</p>
+    </form>
+  </main>
+  <header class="topbar">
+    <div class="brand-mark" aria-hidden="true">HM</div>
+    <div>
+      <p class="eyebrow">House Manual</p>
+      <h1>House Manual</h1>
+    </div>
+    <div class="topbar-actions">
+      <span class="save-status" id="saveStatus">Autosaved in this browser</span>
+      <details class="menu" id="actionsMenu" data-admin-only>
+        <summary class="button button-secondary menu-button">Actions <span class="menu-caret" aria-hidden="true"></span></summary>
+        <div class="menu-panel">
+          <button class="menu-item" id="saveFileButton" type="button">Save file<small>Download a backup of everything</small></button>
+          <button class="menu-item" id="restoreFileButton" type="button">Restore file…<small>Load a backup into this browser</small></button>
+          <button class="menu-item" id="printButton" type="button">Export PDF<small>Print the room-by-room review</small></button>
+        </div>
+      </details>
+      <input id="restoreFileInput" type="file" accept="application/json,.json" hidden>
+      <div class="user-box">
+        <span class="user-name" id="userName"></span>
+        <details class="menu" id="settingsMenu" data-admin-only>
+          <summary class="icon-button" aria-label="Settings" title="Settings">
+            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 1 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 1 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 1 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 1 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+          </summary>
+          <div class="menu-panel">
+            <p class="menu-label">Simulate a user</p>
+            <p class="menu-note">See the app exactly as they do.</p>
+            <div id="simulateList"></div>
+          </div>
+        </details>
+        <button class="button button-secondary" id="logoutButton" type="button">Log out</button>
+      </div>
+    </div>
+  </header>
+  <div class="sim-banner" id="simBanner" role="status" hidden>
+    <span>Viewing as <strong id="simName"></strong>, exactly as they see it. Changes are switched off.</span>
+    <button class="button button-primary button-small" id="simExit" type="button">Return to admin view</button>
+  </div>
+  <nav class="feature-tabs" aria-label="Features">
+    <button type="button" data-view="home" aria-current="page">Home</button>
+    <button type="button" data-view="review" data-admin-only>Room-by-room review</button>
+    <button type="button" data-view="owners" id="ownersTab">Tasks by owner</button>
+    <button type="button" data-view="assign" data-admin-only>Assignments</button>
+    <button type="button" data-view="calendar">Calendar</button>
+    <button type="button" data-view="skills">Soft skills</button>
+    <button type="button" data-view="awards">Awards</button>
+    <button type="button" data-view="maturity">Maturity Marks</button>
+    <button type="button" data-view="users" data-admin-only>Users</button>
+  </nav>
+  <section id="homeView" class="feature-view">
+    <p class="eyebrow">Home dashboard</p>
+    <h2>100-Acre Wood</h2>
+    <section class="allocation-widget" aria-labelledby="allocationTitle" data-admin-only>
+      <h3 id="allocationTitle">Task allocation</h3>
+      <p id="allocationSummary"></p>
+      <div class="allocation-layout">
+        <div id="allocationPie" class="allocation-pie" role="img" aria-label="Task allocation by owner; exact counts in the adjacent table"></div>
+        <div class="allocation-table-wrap"><table class="allocation-table"><thead><tr><th scope="col">Owner</th><th scope="col">Tasks</th><th scope="col">Share</th></tr></thead><tbody id="allocationLegend"></tbody></table></div>
+      </div>
+      <p class="allocation-note">Shared tasks count once for each assigned owner; "Everyone" tasks count for all five, and "Each child" tasks for each of the three kids. Percentages show the share of owner assignments, not time or effort. Open tasks are included; removed tasks are excluded.</p>
+    </section>
+    <section class="allocation-widget done-widget" aria-labelledby="doneTitle">
+      <div class="done-head">
+        <h3 id="doneTitle">Chores done</h3>
+        <div class="cal-nav">
+          <button type="button" class="button button-quiet button-small" data-done-step="-1" aria-label="Previous day">‹</button>
+          <strong id="doneDay" aria-live="polite"></strong>
+          <button type="button" class="button button-quiet button-small" data-done-step="1" aria-label="Next day">›</button>
+          <button type="button" class="button button-quiet button-small" id="doneToday">Back to today</button>
+        </div>
+      </div>
+      <div class="done-layout">
+        <div class="done-hero"><strong id="doneTotal">0</strong><span id="doneSummary">chores done</span></div>
+        <div class="done-bars" id="doneBars" role="list" aria-label="Chores done by person"></div>
+      </div>
+      <div id="doneList"></div>
+      <h4 class="done-subhead">Last 7 days</h4>
+      <div class="allocation-table-wrap"><table class="allocation-table done-week" id="doneWeek"></table></div>
+      <p class="allocation-note">Counts chores marked done on the Calendar, on the day they were marked. Mark chores done with the round check on each one.</p>
+      <div id="homeEarnings" hidden></div>
+    </section>
+  </section>
+  <section id="ownersView" class="feature-view" hidden>
+    <h2 id="ownersTitle">Tasks by owner</h2>
+    <p data-admin-only>New owners override original assignments. Shared tasks appear under each owner, "Everyone" tasks under all five people and "Each child" tasks under each kid; tasks marked assignable that have no new owner yet appear under Open — needs an owner. Removed tasks are excluded.</p>
+    <div id="ownerGroups"></div>
+  </section>
+  <section id="assignView" class="feature-view feature-view-wide" hidden>
+    <p class="eyebrow">Chores</p>
+    <h2>Assignments</h2>
+    <p class="view-intro">Everyone with their chores, and the parking lot of chores waiting for an owner. Tap a chore, then tap a name. Chores sit under their new owner, or the catalog owner if none is set, the same as Tasks by owner. The parking lot holds chores marked assignable that have no new owner yet.</p>
+    <div id="choreBoard"></div>
+  </section>
+  <section id="calendarView" class="feature-view feature-view-wide" hidden>
+    <p class="eyebrow">When things happen</p>
+    <h2>Calendar</h2>
+    <p class="view-intro">Chores are spread across the days so nobody gets a pile-up. Drag a chore to another day, or tap it for details. Tap a day or month to zoom in; in the week view, tap a day's name to see just that day. <span class="paid-key">Paid</span> chores have a blue edge.</p>
+    <div class="cal-toolbar">
+      <label data-admin-only><span class="field-label">Who</span>
+        <select class="owner-select" id="calWho"><option value="">Everyone</option></select></label>
+      <label><span class="field-label">Time</span>
+        <select class="owner-select" id="calSpan">
+          <option value="day">Today</option>
+          <option value="week">This week</option>
+          <option value="month">This month</option>
+          <option value="quarter">This quarter</option>
+          <option value="year">This year</option>
+        </select></label>
+      <div class="cal-nav">
+        <button type="button" class="button button-quiet button-small" data-cal-step="-1" aria-label="Previous">‹</button>
+        <h3 id="calTitle" aria-live="polite"></h3>
+        <button type="button" class="button button-quiet button-small" data-cal-step="1" aria-label="Next">›</button>
+        <button type="button" class="button button-quiet button-small" id="calToday">Back to today</button>
+      </div>
+    </div>
+    <div class="cal-layout" id="calLayout">
+      <div id="calEarnings"></div>
+      <div id="calBody"></div>
+    </div>
+    <section class="standing" aria-labelledby="standingTitle">
+      <header class="standing-head">
+        <h3 id="standingTitle">Standing Items</h3>
+        <p>Done when they need doing, not on a set day. Tap the round check when one's done; each shows when it was last done.</p>
+      </header>
+      <div id="standingGroups"></div>
+    </section>
+  </section>
+  <section id="skillsView" class="feature-view feature-view-wide" hidden>
+    <p class="eyebrow">Expectations, not to-dos</p>
+    <h2>Soft skills</h2>
+    <p class="view-intro" data-admin-only>The way we work together. A task whose notes include <strong>#softskill</strong> or say it should be a soft skill shows up here too.</p>
+    <form id="addSkillForm" class="inline-form" autocomplete="off" data-admin-only>
+      <label><span class="field-label">New soft skill</span><input class="text-input" name="title" required pattern=".*\S.*" placeholder="e.g. Put shoes away when you come in"></label>
+      <label><span class="field-label">Details (optional)</span><input class="text-input" name="description" placeholder="What it looks like when it's done well"></label>
+      <button class="button button-solid" type="submit">Add to parking lot</button>
+    </form>
+    <div id="skillBoard"></div>
+  </section>
+  <section id="usersView" class="feature-view" hidden>
+    <p class="eyebrow">Admin</p>
+    <h2>Users</h2>
+    <p class="view-intro">Everyone who can sign in. Admins see every tab and everyone's data; everyone else sees only their own chores, soft skills and awards. To see the app exactly as someone else does, use <strong>Simulate user</strong> at the top.</p>
+    <div id="usersRoot"></div>
+  </section>
+  <section id="awardsView" class="feature-view" hidden>
+    <p class="eyebrow">One-off recognition</p>
+    <h2>Awards</h2>
+    <p class="view-intro" data-admin-only>For the good stuff nobody can be assigned: cleaning up a mess you didn't make, pitching in without being asked. Tap a name to give the award.</p>
+    <div id="awardsRoot"></div>
+  </section>
+  <section id="maturityView" class="feature-view" hidden>
+    <p class="eyebrow">Family &amp; home needs</p>
+    <h2>Maturity Marks</h2>
+    <p class="view-intro">What growing up in this house looks like: the things to own without being asked. Where part of it is a chore, the card says so.</p>
+    <div class="maturity-toolbar" data-admin-only>
+      <label><span class="field-label">User name</span>
+        <select class="owner-select" id="maturityWho"></select></label>
+      <button class="button button-solid button-small" id="maturityAdd" type="button">+ Add a card</button>
+    </div>
+    <div id="maturityRoot"></div>
+  </section>
+  <main class="app-shell" id="reviewView" hidden>
+    <aside class="sidebar" aria-label="Rooms and areas">
+      <div class="progress-card">
+        <div class="progress-copy"><span>Review progress</span><strong id="progressText">0 of 295</strong></div>
+        <div class="progress-track" aria-hidden="true"><span id="progressBar"></span></div>
+      </div>
+      <nav id="sectionNav"></nav>
+    </aside>
+    <section class="workspace" id="workspace">
+      <div class="pending-bar" id="pendingBar" role="region" aria-label="Unsaved changes" aria-live="polite" hidden>
+        <span id="pendingText"></span>
+        <div class="pending-actions">
+          <button class="button button-quiet button-small" id="pendingDiscard" type="button">Discard</button>
+          <button class="button button-solid button-small" id="pendingSubmit" type="button">Submit changes</button>
+        </div>
+      </div>
+      <div class="workspace-intro">
+        <p class="eyebrow">Choose one decision per task</p>
+        <h2 id="sectionTitle">Daily / ongoing routines</h2>
+        <p id="sectionMeta">Loading tasks...</p>
+        <button class="button button-quiet button-small next-ai-note" id="nextAiNote" type="button" data-admin-only hidden title="Go to the next chore with an AI note that is not marked done">AI notes to do</button>
+      </div>
+      <div id="taskGroups"></div>
+    </section>
+    <button class="fab" id="addTaskButton" type="button" aria-label="Add a task" title="Add a task">+</button>
+  </main>
+  <dialog id="addTaskDialog" class="task-dialog" aria-labelledby="addTaskTitle">
+    <form id="addTaskForm" method="dialog" autocomplete="off">
+      <header class="dialog-head">
+        <h2 id="addTaskTitle">Add a task</h2>
+        <p id="addTaskHint">Only the title and cadence are required.</p>
+      </header>
+      <div class="dialog-grid">
+        <label class="paid-option span-2 one-off-option"><input type="checkbox" name="oneOff" id="addTaskOneOff"><span>One-off</span><small>Just on the day(s) you pick, for the owners you tick. Never in the room view, never repeats, never in a parking lot.</small></label>
+        <label class="span-2"><span class="field-label">Title *</span><input class="text-input" name="title" required pattern=".*\S.*" placeholder="e.g. Wipe down light switches"></label>
+        <div class="span-2 one-off-only" id="oneOffDays">
+          <span class="field-label">Day(s) *</span>
+          <div class="one-off-days" id="oneOffDayList"></div>
+          <button class="button button-quiet button-small" type="button" id="addOneOffDay">+ Add another day</button>
+        </div>
+        <label class="not-one-off"><span class="field-label">Cadence *</span><input class="text-input" name="cadence" required pattern=".*\S.*" list="cadenceOptions" placeholder="e.g. Weekly"></label>
+        <label><span class="field-label">Room</span><select class="owner-select" name="sectionId" id="addTaskRoom"></select></label>
+        <label class="span-2"><span class="field-label">Standard / description</span><textarea class="notes-input dialog-textarea" name="standard" placeholder="What done looks like"></textarea></label>
+        <div class="span-2"><span class="field-label">Owners<span class="one-off-only"> *</span></span><div class="owner-picks" id="addTaskOwners" role="group" aria-label="Owners for the new task"></div></div>
+        <label><span class="field-label">Effort each time</span>
+          <select class="owner-select" name="effort">
+            <option value="">Not sure (estimate it)</option>
+            <option value="5">Quick, about 5 minutes</option>
+            <option value="15">Short, about 15 minutes</option>
+            <option value="30">Medium, about 30 minutes</option>
+            <option value="60">Long, about an hour</option>
+            <option value="120">Big, 2 hours or more</option>
+          </select></label>
+        <div class="dialog-flags not-one-off">
+          <label class="paid-option"><input type="checkbox" name="assignable"><span>Mark assignable</span></label>
+          <label class="paid-option"><input type="checkbox" name="paid"><span>Paid item</span></label>
+          <label class="paid-option"><input type="checkbox" name="standing"><span>Standing item</span></label>
+        </div>
+        <label class="span-2 not-one-off"><span class="field-label">Checklist (simple steps, one per line, no time of their own)</span><textarea class="notes-input dialog-textarea" name="checklist" placeholder="Optional steps"></textarea></label>
+        <fieldset class="span-2 subtask-picker not-one-off">
+          <legend class="field-label">Subtasks (optional)</legend>
+          <p class="subtask-help">Subtasks aren't chores of their own: they show inside this chore, and their time is added to its time.</p>
+          <div class="subtask-pull">
+            <p class="board-actions-label">Pull in existing chores <span id="pullCount"></span></p>
+            <div class="subtask-pull-head">
+              <label><span class="visually-hidden">Room to pull chores from</span><select class="owner-select" id="pullRoom"></select></label>
+              <label><span class="visually-hidden">Search chores</span><input class="text-input" id="pullSearch" type="search" placeholder="Search chores" autocomplete="off"></label>
+            </div>
+            <div class="pull-list" id="pullList" role="group" aria-label="Existing chores to pull in as subtasks"></div>
+          </div>
+          <p class="board-actions-label">New subtasks</p>
+          <div class="new-subtasks" id="newSubtasks"></div>
+          <button class="button button-quiet button-small" type="button" id="addSubtaskRow">+ Add a new subtask</button>
+        </fieldset>
+        <label class="span-2"><span class="field-label">Notes</span><textarea class="notes-input dialog-textarea" name="notes" placeholder="Support, reminders, standards..."></textarea></label>
+      </div>
+      <footer class="dialog-actions">
+        <button class="button button-quiet" type="button" id="addTaskCancel">Cancel</button>
+        <button class="button button-solid" type="submit" id="addTaskSubmit">Add task</button>
+      </footer>
+    </form>
+  </dialog>
+  <dialog id="calDetail" class="task-dialog" aria-labelledby="calDetailTitle">
+    <div id="calDetailBody"></div>
+  </dialog>
+  <dialog id="calMove" class="task-dialog cal-move-dialog" aria-labelledby="calMoveTitle">
+    <header class="dialog-head">
+      <h2 id="calMoveTitle">Move chore</h2>
+      <p id="calMoveText"></p>
+    </header>
+    <footer class="dialog-actions">
+      <button class="button button-quiet" type="button" data-cal-move="cancel">Cancel</button>
+      <button class="button button-quiet" type="button" data-cal-move="once">Just this time</button>
+      <button class="button button-solid" type="button" data-cal-move="always">Every time from now</button>
+    </footer>
+  </dialog>
+  <dialog id="calDoneWho" class="task-dialog cal-move-dialog" aria-labelledby="calDoneWhoTitle">
+    <header class="dialog-head">
+      <h2 id="calDoneWhoTitle">Who did it?</h2>
+      <p id="calDoneWhoText"></p>
+    </header>
+    <div class="cal-done-who" id="calDoneWhoChoices"></div>
+    <footer class="dialog-actions">
+      <button class="button button-quiet" type="button" data-cal-who="cancel">Cancel</button>
+    </footer>
+  </dialog>
+  <datalist id="cadenceOptions">
+    <option value="Daily"></option>
+    <option value="Nightly"></option>
+    <option value="2-3x/week"></option>
+    <option value="Weekly"></option>
+    <option value="Every 2 weeks"></option>
+    <option value="Monthly"></option>
+    <option value="Every 2 months"></option>
+    <option value="Quarterly"></option>
+    <option value="2x/year"></option>
+    <option value="Annually"></option>
+    <option value="As needed"></option>
+  </datalist>
+  <dialog id="maturityDialog" class="task-dialog" aria-labelledby="maturityDialogTitle">
+    <form id="maturityForm" method="dialog" autocomplete="off">
+      <header class="dialog-head">
+        <h2 id="maturityDialogTitle">Edit card</h2>
+        <p>A card shows on the Maturity Marks tab for each person it is for.</p>
+      </header>
+      <div class="dialog-grid">
+        <label class="span-2"><span class="field-label">Title *</span><input class="text-input" name="title" required pattern=".*\S.*" placeholder="e.g. Independent Morning Routine"></label>
+        <label><span class="field-label">Section</span><select class="owner-select" id="maturitySection"></select></label>
+        <label id="maturityNewSection"><span class="field-label">New section name *</span><input class="text-input" name="newSection" placeholder="e.g. Summer Expectations"></label>
+        <div class="span-2"><span class="field-label">For</span><div class="owner-picks" id="maturityPeople" role="group" aria-label="Who the card is for"></div></div>
+        <label class="span-2"><span class="field-label">Expectations</span><textarea class="notes-input dialog-textarea maturity-items-input" name="items" placeholder="Label: what it means"></textarea>
+          <small class="field-help">One per line, as <strong>Label: what it means</strong>. Start a line with a space or "-" to make it a sub-point of the line above. A label that mentions "Core Need" is highlighted.</small></label>
+        <div class="span-2"><span class="field-label">On the chore list</span>
+          <label><span class="visually-hidden">Search chores to link</span><input class="text-input" id="maturityChoreSearch" type="search" placeholder="Search chores to link" autocomplete="off"></label>
+          <div class="pull-list" id="maturityChores" role="group" aria-label="Chores linked to this card"></div></div>
+      </div>
+      <footer class="dialog-actions">
+        <button class="button button-quiet maturity-delete" type="button" id="maturityDelete">Delete card</button>
+        <button class="button button-quiet" type="button" id="maturityCancel">Cancel</button>
+        <button class="button button-solid" type="submit">Save card</button>
+      </footer>
+    </form>
+  </dialog>
+  <section id="printRoot" aria-hidden="true"></section>
+  <div id="toast" role="status" aria-live="polite"></div>
+  <script src="local-config.js"></script>
+  <script src="data.js"></script>
+  <script src="characters.js"></script>
+  <script src="maturity.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

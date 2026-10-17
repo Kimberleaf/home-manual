@@ -1,0 +1,26 @@
+# Exported backups written by the app's "Save file" button.
+# The canonical restore snapshot in restore/ is tracked deliberately.
+house-manual-review-*.json
+!restore/house-manual-review-2026-09-19.json
+
+# Phase 2 (Next.js) artifacts
+node_modules/
+.next/
+out/
+*.tsbuildinfo
+.env
+.env.*
+!.env.example
+*.db
+*.db-journal
+
+# OS cruft
+Thumbs.db
+desktop.ini
+.DS_Store
+
+# This computer's default sign-in details (template: dist/local-config.example.js).
+dist/local-config.js
+
+# Local Claude Code preview config.
+.claude/
