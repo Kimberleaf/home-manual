@@ -144,7 +144,8 @@
   }
 
   function hasCustomPassword(user) {
-    return Boolean(extras.users.accounts[user.id]?.hash);
+    const account = extras.users.accounts[user.id];
+    return Boolean(account?.hash || account?.hasPassword);
   }
 
   function checkPassword(user, password) {
@@ -280,7 +281,7 @@
     // counts -- and `title` keeps the name in case the task is later deleted.
     const completions = value.completions && typeof value.completions === 'object' ? value.completions : {};
     for (const [key, entry] of Object.entries(completions)) {
-      if (!/^[^|]+\|(\d+|then|standing)\|\d{4}-\d{2}-\d{2}$/.test(key) || !entry || typeof entry !== 'object') continue;
+      if (!/^[^|]+\|(\d+|then|standing)\|\d{4}-\d{2}-\d{2}(\|[A-Za-z]+)?$/.test(key) || !entry || typeof entry !== 'object') continue;
       if (!isoDate.test(text(entry.on)) || !text(entry.by).trim()) continue;
       clean.completions[key] = { by: entry.by, at: text(entry.at), on: entry.on, title: text(entry.title) };
     }
@@ -309,7 +310,9 @@
       if (usernamePattern.test(username) && !taken.has(username)) { kept.username = username; taken.add(username); }
       if (/^[0-9a-f]{32}$/.test(text(account.salt)) && /^[0-9a-f]{64}$/.test(text(account.hash))) { kept.salt = account.salt; kept.hash = account.hash; }
       if (text(account.changedAt)) kept.changedAt = account.changedAt;
-      if (kept.username || kept.hash) clean.users.accounts[id] = kept;
+      // From the home server: the hash stays there, and this says one is set.
+      if (account.hasPassword === true) kept.hasPassword = true;
+      if (kept.username || kept.hash || kept.hasPassword) clean.users.accounts[id] = kept;
     }
     // One-off tasks: on the given days for the given people, and nowhere else
     // -- never in a room, on a board or in a parking lot, and never repeating.
@@ -433,6 +436,24 @@
     };
   }
 
+  // A cadence or name changed in the Gallery overrides the catalog's (or the
+  // one a task added in the app was given). Everything downstream --
+  // frequency groups, the weekly room chores, standing items, the calendar,
+  // the boards and time estimates -- reads the task's cadence and title, so it
+  // all follows. The originals are kept as `originalCadence` and
+  // `originalTitle`.
+  function withOwnCadence(task) {
+    const item = taskState(task.id);
+    const cadence = String(item.cadence || '').trim();
+    const title = String(item.title || '').trim();
+    let own = task;
+    if (cadence && cadence !== task.cadence) own = { ...own, cadence, frequency: frequencyForCadence(cadence), originalCadence: task.cadence };
+    if (title && title !== task.title) own = { ...own, title, originalTitle: task.title };
+    // An estimated time chosen in the Gallery.
+    if (item.effort > 0 && item.effort !== task.effort) own = { ...own, effort: item.effort };
+    return own;
+  }
+
   function rebuildSections() {
     sectionByTask.clear();
     subtasksOf.clear();
@@ -442,7 +463,7 @@
       tasks: [
         ...section.tasks.filter(task => !task.retired),
         ...extras.customTasks.filter(task => task.sectionId === section.id)
-      ]
+      ].map(withOwnCadence)
     }));
     const isPaid = task => taskState(task.id).paid === true;
     const kept = task => taskState(task.id).decision !== 'remove';
@@ -575,7 +596,7 @@
   };
 
   function blankRecord() {
-    return { decision: '', newOwner: '', notes: '', assignable: false, paid: false, aiNote: '', aiDone: false };
+    return { decision: '', newOwner: '', notes: '', assignable: false, paid: false, aiNote: '', aiDone: false, startOn: '', cadence: '', title: '', effort: 0, ownerSet: false };
   }
 
   // AI notes -- instructions for Claude to change the catalog -- have their own
@@ -666,6 +687,8 @@
   let storageWarned = false;
 
   function writeState() {
+    // From the home server, saving means sending the change there.
+    if (sync.server) { scheduleServerSave(); return true; }
     try {
       localStorage.setItem(storageKey, JSON.stringify(state));
       localStorage.setItem(extrasKey, JSON.stringify(extras));
@@ -726,7 +749,12 @@
         assignable: Boolean(item.assignable),
         paid: item.paid === true,
         aiNote: item.aiNote || '',
-        aiDone: item.aiDone === true
+        aiDone: item.aiDone === true,
+        startOn: item.startOn || '',
+        cadence: item.cadence || '',
+        title: item.title || '',
+        effort: Number(item.effort) > 0 ? Number(item.effort) : 0,
+        ownerSet: item.ownerSet === true
       };
     });
     return {
@@ -792,7 +820,12 @@
         assignable: item.assignable === true,
         paid: item.paid === true,
         aiNote: typeof item.aiNote === 'string' ? item.aiNote : '',
-        aiDone: item.aiDone === true
+        aiDone: item.aiDone === true,
+        startOn: typeof item.startOn === 'string' && /^\d{4}-\d{2}-\d{2}$/.test(item.startOn) ? item.startOn : '',
+        cadence: typeof item.cadence === 'string' ? item.cadence.trim() : '',
+        title: typeof item.title === 'string' ? item.title.trim() : '',
+        effort: Number.isFinite(item.effort) && item.effort > 0 ? item.effort : 0,
+        ownerSet: item.ownerSet === true
       };
     });
     moveAiNotes(restored, restoredExtras);
@@ -810,6 +843,18 @@
   async function restoreBackup(file) {
     try {
       const backup = validatedBackup(JSON.parse(await file.text()));
+      if (sync.server) {
+        const reply = await api('POST', '/api/import', { tasks: backup.tasks, extras: backup.extras });
+        if (!reply.ok) throw new Error(reply.data?.error || "The house computer didn't accept the backup.");
+        pendingEdits.clear();
+        receiveServerData(reply.data, { replace: true });
+        activeSection = backup.activeSection;
+        redrawAfterSync();
+        renderSection();
+        updateProgress();
+        showToast('Backup restored for everyone. The shared copy now matches the file.');
+        return;
+      }
       state = backup.tasks;
       extras = backup.extras;
       activeSection = backup.activeSection;
@@ -856,8 +901,8 @@
     [/2-3x ?(?:\/|per) ?week/, 10],
     [/every 2-3 weeks/, 1.7],
     [/every 3 weeks/, 1.4],
-    [/every 2 weeks|every other week|bi-?weekly|fortnight/, 2.15],
-    [/weekly|once a week|every week|each week/, 4.3],
+    [/every 2 weeks|every other week|bi-?weekly|fortnight|every other (?:mon|tues|wednes|thurs|fri|satur|sun)day/, 2.15],
+    [/weekly|once a week|every week|each week|every (?:mon|tues|wednes|thurs|fri|satur|sun)day|(?:mon|tues|wednes|thurs|fri|satur|sun)days\b/, 4.3],
     [/every 4 weeks|monthly|every month|once a month/, 1],
     [/every 2 months/, 0.5],
     [/quarterly|every 3 months|4x\/year/, 0.33],
@@ -1097,7 +1142,7 @@
     document.querySelector('#pendingText').textContent = `Unsaved changes on ${count} chore${count === 1 ? '' : 's'}`;
     // The tab button specifically: <body> carries data-view too, for the
     // view that's showing.
-    document.querySelector('.feature-tabs [data-view="review"]').textContent = count ? `Room-by-room review (${count} unsaved)` : 'Room-by-room review';
+    document.querySelector('.feature-tabs [data-view="review"]').textContent = count ? `Gallery (${count} unsaved)` : 'Gallery';
     renderAiNotesButton();
   }
 
@@ -1284,6 +1329,53 @@
     }));
   }
 
+  // A chore's name in the Gallery, with any rename waiting for Submit shown,
+  // a Rename button, and the original when it has changed.
+  function renameableTitleHtml(task) {
+    const original = task.originalTitle || task.title;
+    const shown = draftOf(task.id).title || task.title;
+    if (task.weeklyRoom) return escapeHtml(shown);
+    return `<span class="title-text" data-original="${escapeHtml(original)}">${escapeHtml(shown)}</span>`
+      + ` <button type="button" class="rename-chip" data-rename title="Rename this chore" aria-label="Rename ${escapeHtml(shown)}">Rename</button>`
+      + (shown !== original ? ` <small class="renamed-from">was “${escapeHtml(original)}”</small>` : '');
+  }
+
+  // Swaps the name for a text box: Enter or leaving it stages the new name
+  // (blank, or the original, puts the original back); Esc cancels.
+  function startRename(button) {
+    const card = button.closest('[data-task-id]');
+    const text = button.previousElementSibling;
+    if (!card || !text?.classList.contains('title-text')) return;
+    const taskId = card.dataset.taskId;
+    const original = text.dataset.original;
+    const input = document.createElement('input');
+    input.className = 'text-input rename-input';
+    input.value = text.textContent;
+    input.setAttribute('aria-label', 'New name');
+    text.replaceWith(input);
+    button.hidden = true;
+    input.focus();
+    input.select();
+    let finished = false;
+    const finish = save => {
+      if (finished) return;
+      finished = true;
+      if (save) {
+        const value = input.value.trim();
+        stageEdit(taskId, { title: value && value !== original ? value : '' });
+      }
+      const parentId = parentOf.get(taskId);
+      if (parentId) openSubtaskPanels.add(parentId);
+      renderSection();
+      taskGroups.querySelector(`[data-task-id="${CSS.escape(taskId)}"] [data-rename]`)?.focus();
+    };
+    input.addEventListener('keydown', event => {
+      if (event.key === 'Enter') { event.preventDefault(); finish(true); }
+      if (event.key === 'Escape') { event.preventDefault(); finish(false); }
+    });
+    input.addEventListener('blur', () => finish(true));
+  }
+
   function subtaskRoomPrefix(sub, parent) {
     const room = sectionFor(sub);
     return room && room.id !== sectionFor(parent)?.id ? `${roomTagHtml(room)}: ` : '';
@@ -1325,6 +1417,80 @@
     return `<label class="paid-option standing-option" title="${escapeHtml(why)}"><input type="checkbox" data-field="standing" ${draftStanding(task) ? 'checked' : ''} ${locked ? 'disabled' : ''}><span>Standing item</span></label>`;
   }
 
+  // A chore's cadence, editable. Blank, or the original wording, means the
+  // original. The hint says how the app reads it, since that decides its
+  // frequency group, its calendar days and whether it is a standing item.
+  function cadenceReading(cadence) {
+    const group = frequencyForCadence(cadence);
+    return group === 'As needed' || group === 'Trigger-based' ? `Reads as: ${group.toLowerCase()} (a standing item, no set days)` : `Reads as: ${group.toLowerCase()}`;
+  }
+
+  // A real dropdown -- the original wording, the current one, the usual
+  // cadences -- and "Other…" to type any wording, in the box underneath. (A
+  // text box with suggestions only suggests what matches what's already in it,
+  // so a chore reading "Weekly / as needed" offered nothing else.)
+  const cadenceChoices = ['Daily', 'Nightly', 'Every other day', '2-3x/week', 'Weekly', 'Every 2 weeks', 'Every 3 weeks', 'Monthly', 'Every 2 months', 'Quarterly', '2x/year', 'Annually', 'As needed'];
+
+  function cadenceFieldHtml(task, item) {
+    if (task.weeklyRoom) return '';
+    const original = task.originalCadence || task.cadence || '';
+    const value = item.cadence || task.cadence || '';
+    const changed = value.trim() !== original;
+    const values = [...new Set([original, value, ...cadenceChoices].filter(Boolean))];
+    const label = choice => choice === original && !cadenceChoices.includes(choice) ? `${choice} (original)` : choice;
+    return `<div class="cadence-field"><label><span class="field-label">Cadence</span><select class="owner-select" data-field="cadenceChoice" aria-label="Cadence">
+        ${values.map(choice => `<option value="${escapeHtml(choice)}" ${choice === value ? 'selected' : ''}>${escapeHtml(label(choice))}</option>`).join('')}
+        <option value="__other">Other… (type your own)</option>
+      </select></label>
+      <input class="text-input cadence-custom" data-field="cadence" data-original="${escapeHtml(original)}" value="${escapeHtml(value)}" autocomplete="off" aria-label="Cadence, in your own words" placeholder="e.g. Every Saturday" hidden>
+      <small class="cadence-hint">${escapeHtml(cadenceReading(value))}${changed ? ` · was “${escapeHtml(original)}”` : ''}</small></div>`;
+  }
+
+  // Who owns the chore now (the last submitted owner boxes), and the catalog's
+  // original wording underneath when it says something else.
+  function currentOwnerHtml(task) {
+    const owners = ownersFor(task);
+    const now = owners[0] === openOwner ? openOwner : owners.map(ownerLabel).join(', ');
+    const original = (task.currentOwner || '').trim();
+    return `<span class="owner-label">Current owner</span><p class="current-owner">${escapeHtml(now)}</p>
+      ${original && original !== now ? `<p class="catalog-owner">Catalog: ${escapeHtml(original)}</p>` : ''}`;
+  }
+
+  // How long a chore takes each time. Only a time someone chose is shown on
+  // the calendar; without one the app still estimates it, for balancing
+  // workloads, but doesn't show the guess.
+  const effortChoices = [5, 10, 15, 20, 30, 45, 60, 90, 120, 180, 240];
+
+  function effortOptionsHtml(selected) {
+    const choices = selected && !effortChoices.includes(selected) ? [...effortChoices, selected].sort((a, b) => a - b) : effortChoices;
+    return `<option value="">Not set</option>${choices.map(minutes => `<option value="${minutes}" ${minutes === selected ? 'selected' : ''}>${escapeHtml(formatMinutes(minutes))}</option>`).join('')}`;
+  }
+
+  function effortFieldHtml(task, item) {
+    if (task.weeklyRoom) return '';
+    const selected = item.effort || task.effort || 0;
+    return `<label class="effort-field"><span class="field-label">Estimated time</span><select class="owner-select" data-field="effort">${effortOptionsHtml(selected)}</select>
+      <small>${selected ? 'Each time; shown on the calendar' : `Not set (the app guesses ≈ ${escapeHtml(formatMinutes(ownMinutesEach({ ...task, effort: null })))} for balancing)`}</small></label>`;
+  }
+
+  // The time to show for a chore: its own, or, for a chore with subtasks, the
+  // average each time once every part has one. Null when not known.
+  function knownMinutes(task) {
+    const subs = subtasksFor(task);
+    if (!subs.length) return task.effort > 0 ? task.effort : null;
+    return subs.every(sub => sub.effort > 0) ? minutesEach(task) : null;
+  }
+
+  // The day a chore first appears on its owners' calendars; it repeats from
+  // there. Standing items have no days on the calendar, so it doesn't apply.
+  function startOnHtml(task, item) {
+    const standing = draftStanding(task);
+    const hint = standing ? 'Standing items have no days on the calendar'
+      : item.startOn ? 'First on the calendar that day, then repeats'
+      : 'Optional: the first day it shows on the calendar';
+    return `<label class="start-on"><span class="field-label">Start on</span><input class="text-input" type="date" data-field="startOn" value="${escapeHtml(item.startOn)}" ${standing ? 'disabled' : ''}><small>${hint}</small></label>`;
+  }
+
   function subtaskCardHtml(sub, parent) {
     const item = draftOf(sub.id);
     // A Remove waiting for Submit: struck through, with Undo.
@@ -1336,7 +1502,7 @@
     }
     return `<li class="subtask-card${pendingEdits.has(sub.id) ? ' has-pending' : ''}" data-task-id="${sub.id}">
       <div class="subtask-head">
-        <strong>${subtaskRoomPrefix(sub, parent)}${escapeHtml(sub.title)}</strong>
+        <strong>${subtaskRoomPrefix(sub, parent)}${renameableTitleHtml(sub)}</strong>
         <span class="subtask-meta">${escapeHtml(sub.cadence || sub.frequency)} · ≈ ${escapeHtml(formatMinutes(ownWorkload(sub)))}/mo</span>
       </div>
       ${sub.standard ? `<p class="standard">${escapeHtml(sub.standard)}</p>` : ''}
@@ -1344,6 +1510,8 @@
         <label><span class="field-label">Notes</span><textarea class="notes-input" data-field="notes" placeholder="Notes">${escapeHtml(item.notes)}</textarea></label>
         ${aiNoteHtml(item)}
         <label class="paid-option" title="Paid chores always stand on their own"><input type="checkbox" data-field="paid" ${item.paid ? 'checked' : ''}><span>Paid item</span></label>
+        ${cadenceFieldHtml(sub, item)}
+        ${effortFieldHtml(sub, item)}
         ${standingSwitchHtml(sub)}
         <button type="button" class="chip" data-split-subtask="${sub.id}">Make it a chore of its own</button>
         ${sub.custom
@@ -1407,7 +1575,7 @@
     return `<article class="task-card${pendingEdits.has(task.id) ? ' has-pending' : ''}" data-task-id="${task.id}" data-reviewed="${isReviewed(task.id)}" data-assignable="${open}">
       <div class="task-summary">
         <div>
-          <h4 class="task-title">${taskTitleHtml(task, section)}</h4>
+          <h4 class="task-title">${roomTagHtml(section)}: ${renameableTitleHtml(task)}</h4>
           ${open ? '<span class="assignable-indicator">Open · needs an owner</span>' : ''}
           ${item.paid ? '<span class="paid-indicator">Paid</span>' : ''}
           ${award ? `<button type="button" class="award-indicator" data-go-awards>Award · ${award.points} pts</button>` : ''}
@@ -1420,7 +1588,7 @@
           ${checklist}
           ${subtaskManagerHtml(task)}
         </div>
-        <div><span class="owner-label">Current owner</span><p class="current-owner">${escapeHtml(task.currentOwner || 'No consistent owner')}</p>
+        <div>${currentOwnerHtml(task)}
           ${task.custom ? `<button type="button" class="button button-quiet button-small delete-task" data-delete-task="${task.id}">Delete task</button>` : ''}
           ${extras.standalone[task.id] && weeklyRoomSections.has(section.id) && fitsWeeklyRule(task)
             ? `<button type="button" class="button button-quiet button-small delete-task" data-unsplit-subtask="${task.id}">Move back into ${escapeHtml(section.name)} (weekly)</button>` : ''}</div>
@@ -1434,6 +1602,9 @@
         <label class="assignable-option"><input type="checkbox" data-field="assignable" ${item.assignable ? 'checked' : ''}><span>Mark assignable</span><small>Waits in the Assignments parking lot until it has an owner</small></label>
         <label class="paid-option"><input type="checkbox" data-field="paid" ${item.paid ? 'checked' : ''}><span>Paid item</span></label>
         ${standingSwitchHtml(task)}
+        ${cadenceFieldHtml(task, item)}
+        ${effortFieldHtml(task, item)}
+        ${startOnHtml(task, item)}
         ${aiNoteHtml(item)}
       </div>
     </article>`;
@@ -1505,9 +1676,31 @@
       stageEdit(taskId, { decision: event.target.value });
     } else if (field === 'notes' || field === 'aiNote') {
       // Typing is staged as it happens (the input handler below).
+    } else if (field === 'startOn') {
+      stageEdit(taskId, { startOn: event.target.value });
+    } else if (field === 'effort') {
+      stageEdit(taskId, { effort: Number(event.target.value) || 0 });
+    } else if (field === 'cadenceChoice') {
+      const custom = event.target.closest('.cadence-field').querySelector('[data-field="cadence"]');
+      if (event.target.value === '__other') {
+        custom.hidden = false;
+        custom.focus();
+        custom.select();
+        return;
+      }
+      custom.hidden = true;
+      custom.value = event.target.value;
+      stageEdit(taskId, { cadence: event.target.value !== custom.dataset.original ? event.target.value : '' });
+      updateCadenceHint(custom);
+    } else if (field === 'cadence') {
+      // Back to the original wording, or blank: no override.
+      const value = event.target.value.trim();
+      stageEdit(taskId, { cadence: value && value !== event.target.dataset.original ? value : '' });
+      if (!value) event.target.value = event.target.dataset.original;
+      updateCadenceHint(event.target);
     } else {
       const patch = field === 'ownerPick'
-        ? { newOwner: [...card.querySelectorAll('[data-field="ownerPick"]')].filter(box => box.checked).map(box => box.value).join(', ') }
+        ? { newOwner: [...card.querySelectorAll('[data-field="ownerPick"]')].filter(box => box.checked).map(box => box.value).join(', '), ownerSet: true }
         : { [field]: event.target.checked };
       stageEdit(taskId, patch);
       // Redraw so badges like "Open · needs an owner" follow the draft, then
@@ -1522,6 +1715,7 @@
     // Only the notes textareas need live input handling. Every other control
     // is a radio or a checkbox, and those report on change.
     const field = event.target.dataset.field;
+    if (field === 'cadence') { updateCadenceHint(event.target); return; }
     if (field !== 'notes' && field !== 'aiNote') return;
     const card = event.target.closest('[data-task-id]');
     if (!card) return;
@@ -1534,6 +1728,12 @@
     done.checked = false;
     done.disabled = !note.trim();
   });
+
+  function updateCadenceHint(input) {
+    const value = input.value.trim() || input.dataset.original;
+    const changed = value !== input.dataset.original;
+    input.closest('.cadence-field').querySelector('.cadence-hint').textContent = `${cadenceReading(value)}${changed ? ` · was “${input.dataset.original}”` : ''}`;
+  }
 
   // Clicking the selected decision clears it. A radio can't be unchecked by
   // clicking it, and its `change` event fires before `click`, so the only way
@@ -1645,6 +1845,8 @@
   // the decision straight back. The forwarded click is last, so clearing there
   // is the only point nothing undoes.
   taskGroups.addEventListener('click', event => {
+    const rename = event.target.closest('[data-rename]');
+    if (rename) { event.preventDefault(); startRename(rename); return; }
     const deleteButton = event.target.closest('[data-delete-task]');
     if (deleteButton) { deleteCustomTask(deleteButton.dataset.deleteTask); return; }
     // A subtask's Remove / Restore (and their Undo) wait for Submit changes.
@@ -1868,7 +2070,8 @@
       newOwner: joinOwners(form.getAll('owners').filter(name => allowed.includes(name))),
       notes: text('notes'),
       assignable: form.get('assignable') === 'on',
-      paid: form.get('paid') === 'on'
+      paid: form.get('paid') === 'on',
+      startOn: form.get('standing') === 'on' ? '' : text('startOn')
     };
     // Subtasks: chores pulled in from the list, then new ones. A new subtask
     // with no cadence of its own comes around with the chore.
@@ -1903,7 +2106,8 @@
     const card = taskGroups.querySelector(`[data-task-id="${task.id}"]`);
     card?.scrollIntoView({ block: 'center' });
     const subs = pulled.length + created.length;
-    showToast(`Added “${task.title}”${subs ? ` with ${subs} subtask${subs === 1 ? '' : 's'}` : ''} to ${sectionFor(task).name}.`);
+    const starts = state[task.id].startOn ? ` It starts on the calendar ${formatDay(dayFromIso(state[task.id].startOn), { weekday: 'short', month: 'short', day: 'numeric' })}.` : '';
+    showToast(`Added “${task.title}”${subs ? ` with ${subs} subtask${subs === 1 ? '' : 's'}` : ''} to ${sectionFor(task).name}.${starts}`);
   });
 
   // Deleting a chore added in the app also deletes the subtasks that were
@@ -1941,7 +2145,10 @@
 
   const openOwner = 'Open — needs an owner';
 
-  // Who a task belongs to: its New owner, else the owner the catalog names.
+  // Who a task belongs to: the owner boxes ticked in the Gallery. Until a
+  // chore's boxes have been set (`ownerSet`), the owner the catalog names
+  // stands in -- and seedOwnersFromCatalog() ticks those boxes for it, so
+  // after that the boxes alone decide, and clearing them all means nobody.
   // "Each child" and "Everyone" are spelled out as the people they cover, so a
   // household-wide chore counts once for each person -- on Home, in Tasks by
   // owner, on the Assignments board and on the Calendar alike, and their
@@ -1950,12 +2157,38 @@
     const item = taskState(task.id);
     const assigned = item.newOwner.trim();
     if (!assigned && item.assignable) return [openOwner];
-    const named = assigned ? splitOwners(assigned) : catalogOwners(task);
+    const named = assigned ? splitOwners(assigned) : item.ownerSet ? [] : catalogOwners(task);
     const owners = [
       ...householdMembers(named),
       ...named.filter(owner => !rosterValue(owner) && !/each child|everyone/i.test(owner))
     ];
     return owners.length ? owners : [openOwner];
+  }
+
+  // Ticks the owner boxes of every chore that has never had them set, with the
+  // people its catalog owner names (as ownersFor reads them, so nobody's
+  // totals change). Chores waiting in a parking lot and removed chores are
+  // left alone. Runs whenever data loads, so chores added to the catalog later
+  // get theirs too. True if anything changed.
+  function seedOwnersFromCatalog() {
+    let changed = false;
+    const everyTask = [...allTasks, ...[...subtasksOf.values()].flat()];
+    for (const task of everyTask) {
+      if (task.weeklyRoom) continue;
+      const item = taskState(task.id);
+      if (item.ownerSet || item.decision === 'remove' || (item.assignable && !item.newOwner.trim())) continue;
+      if (!item.newOwner.trim()) {
+        const named = catalogOwners(task);
+        const allowed = eligibleNames(task);
+        const people = householdMembers(named).filter(name => allowed.includes(name));
+        const written = named.filter(owner => !rosterValue(owner) && !/each child|everyone/i.test(owner));
+        item.newOwner = joinOwners([...people, ...written]);
+      }
+      item.ownerSet = true;
+      state[task.id] = item;
+      changed = true;
+    }
+    return changed;
   }
 
   function catalogOwners(task) {
@@ -2155,7 +2388,7 @@
     const rule = item.restricted ? `<p class="board-rule">${escapeHtml(adultsOnlyRule)}</p>` : '';
     const detail = (item.detail ? `<p class="board-detail">${escapeHtml(item.detail)}</p>` : '') + (item.task ? subtasksHtml(item.task) : '');
     const tools = [];
-    if (kind === 'chores') tools.push(`<button type="button" class="chip chip-quiet" data-act="open" data-item="${escapeHtml(item.id)}">Open in room view</button>`);
+    if (kind === 'chores') tools.push(`<button type="button" class="chip chip-quiet" data-act="open" data-item="${escapeHtml(item.id)}">Open in Gallery</button>`);
     if (kind === 'skills' && item.fromNotes) tools.push(`<button type="button" class="chip chip-quiet" data-act="open" data-item="${escapeHtml(item.fromTask)}">Open the task</button>`);
     if (kind === 'skills' && !item.fromNotes) tools.push(`<button type="button" class="chip chip-danger" data-act="delete-skill" data-item="${escapeHtml(item.id)}">Delete skill</button>`);
 
@@ -2217,13 +2450,99 @@
         <aside class="parking-lot${paidLot ? ' is-paid' : ''}" aria-label="${paidLot ? 'Paid parking lot' : 'Parking lot'}">
           <header>${lotTabs}<div><h3>${paidLot ? 'Paid parking lot' : 'Parking lot'}</h3><p>${lot.length} waiting</p></div>
             <button type="button" class="button button-solid" data-act="auto" ${lot.length ? '' : 'disabled'}>Auto-assign ${lot.length ? `all ${lot.length}${paidLot ? ' paid' : ''}` : ''}</button>
-            ${paidLot ? `<p class="lot-note">Auto-assign splits paid jobs evenly between ${paidAutoAssignees.map(ownerLabel).join(' and ')}. Tap a job to give it to anyone.</p>` : ''}</header>
+            ${paidLot ? `<p class="lot-note">Auto-assign splits paid jobs evenly between ${paidAutoAssignees.map(ownerLabel).join(' and ')}. Tap a job to give it to anyone.</p>${paidBalanceHtml()}` : ''}</header>
           <ul class="board-list">${lot.length ? lot.map(item => cardHtml(kind, item, 'lot')).join('') : `<li class="board-empty">${paidLot ? 'No paid jobs waiting.' : `Nothing waiting. Every ${board.unit} has an owner.`}</li>`}</ul>
         </aside>
       </div>`;
     const list = root.querySelector('.parking-lot .board-list');
     if (list) list.scrollTop = lotScroll;
     boardFlash[kind] = null;
+  }
+
+  // ---- Keeping Oliver's and Ephraim's paid work even ----
+
+  // Each one's paid work, in estimated minutes a month (a job they share
+  // counts half for each, as on the board).
+  function paidLoads(items = choreItems()) {
+    const loads = new Map(paidAutoAssignees.map(name => [name, 0]));
+    for (const item of items) {
+      if (!item.paid) continue;
+      for (const owner of item.owners) {
+        const name = rosterValue(owner);
+        if (loads.has(name)) loads.set(name, loads.get(name) + shareOf('chores', item));
+      }
+    }
+    return loads;
+  }
+
+  // The fewest moves (or swaps) of paid jobs one of them does alone that bring
+  // their monthly times closest together. Jobs either could do only.
+  function paidBalancePlan() {
+    const [a, b] = paidAutoAssignees;
+    const items = choreItems();
+    const loads = paidLoads(items);
+    const solo = items.filter(item => item.paid && item.owners.length === 1 && paidAutoAssignees.includes(rosterValue(item.owners[0]))
+      && item.eligible.includes(a) && item.eligible.includes(b));
+    const owner = new Map(solo.map(item => [item.id, rosterValue(item.owners[0])]));
+    const moves = [];
+    for (let step = 0; step < 30; step++) {
+      const heavy = loads.get(a) >= loads.get(b) ? a : b;
+      const light = heavy === a ? b : a;
+      const gap = loads.get(heavy) - loads.get(light);
+      let best = null;
+      for (const item of solo) {
+        if (owner.get(item.id) !== heavy) continue;
+        const after = Math.abs(gap - 2 * item.weight);
+        if (after < gap - 1 && (!best || after < best.after)) best = { after, give: item, take: null };
+        for (const other of solo) {
+          if (owner.get(other.id) !== light) continue;
+          const swapped = Math.abs(gap - 2 * (item.weight - other.weight));
+          if (swapped < gap - 1 && (!best || swapped < best.after - 1)) best = { after: swapped, give: item, take: other };
+        }
+      }
+      if (!best) break;
+      owner.set(best.give.id, light);
+      loads.set(heavy, loads.get(heavy) - best.give.weight);
+      loads.set(light, loads.get(light) + best.give.weight);
+      moves.push({ item: best.give, from: heavy, to: light });
+      if (best.take) {
+        owner.set(best.take.id, heavy);
+        loads.set(light, loads.get(light) - best.take.weight);
+        loads.set(heavy, loads.get(heavy) + best.take.weight);
+        moves.push({ item: best.take, from: light, to: heavy });
+      }
+    }
+    // A job moved there and back again is not a move.
+    const net = new Map();
+    for (const move of moves) {
+      const first = net.get(move.item.id);
+      net.set(move.item.id, { item: move.item, from: first ? first.from : move.from, to: move.to });
+    }
+    return { before: paidLoads(items), after: loads, moves: [...net.values()].filter(move => move.from !== move.to) };
+  }
+
+  function paidBalanceHtml() {
+    const [a, b] = paidAutoAssignees;
+    const loads = paidLoads();
+    const gap = Math.abs(loads.get(a) - loads.get(b));
+    const total = loads.get(a) + loads.get(b);
+    const even = gap <= Math.max(30, total * 0.03);
+    return `<p class="lot-note paid-balance">${escapeHtml(ownerLabel(a))} ≈ ${escapeHtml(formatMinutes(loads.get(a)))}/mo · ${escapeHtml(ownerLabel(b))} ≈ ${escapeHtml(formatMinutes(loads.get(b)))}/mo of paid work${even ? ' (even)' : ''}</p>
+      <button type="button" class="button button-quiet button-small" data-act="balance-paid" ${even ? 'disabled' : ''}>Balance ${escapeHtml(ownerLabel(a))} &amp; ${escapeHtml(ownerLabel(b))}</button>`;
+  }
+
+  function balancePaid() {
+    const [a, b] = paidAutoAssignees;
+    const plan = paidBalancePlan();
+    if (!plan.moves.length) { showToast(`${ownerLabel(a)} and ${ownerLabel(b)} are as even as moving paid jobs can make them.`); return; }
+    const hours = loads => `${ownerLabel(a)} ${formatMinutes(loads.get(a))}/mo, ${ownerLabel(b)} ${formatMinutes(loads.get(b))}/mo`;
+    const list = plan.moves.map(move => `• ${move.item.title}: ${ownerLabel(move.from)} → ${ownerLabel(move.to)}`).join('\n');
+    if (!window.confirm(`Even out paid work by estimated time?\n\nNow: ${hours(plan.before)}\nAfter: ${hours(plan.after)}\n\n${list}\n\nUndo is on the board afterwards.`)) return;
+    const changes = plan.moves.map(move => ({ id: move.item.id, name: move.to, before: { ...taskState(move.item.id) } }));
+    for (const move of plan.moves) setOwners('chores', move.item.id, [move.to]);
+    lastAutoAssign = { kind: 'chores', category: 'paid', changes };
+    saveBoardChange('chores');
+    showToast(`Moved ${plan.moves.length} paid job${plan.moves.length === 1 ? '' : 's'}. Now ${hours(plan.after)}.`);
   }
 
   function saveBoardChange(kind) {
@@ -2297,6 +2616,7 @@
   function boardAction(kind, button) {
     const act = button.dataset.act;
     if (act === 'auto') { autoAssign(kind); return; }
+    if (act === 'balance-paid') { balancePaid(); return; }
     if (act === 'undo-auto') { undoAutoAssign(kind); return; }
     if (act === 'select') {
       boardSelected[kind] = boardSelected[kind] === button.dataset.key ? null : button.dataset.key;
@@ -2644,7 +2964,9 @@
         const owners = task.trigger ? [task.trigger.first] : calendarOwners(task);
         // A standing item has no days on the calendar; it is listed under
         // Standing Items instead.
-        return { task, owners, order, series: isStanding(task) ? null : seriesTemplate(task), minutes: minutesEach(task), bucket: owners[0] || '_shared' };
+        // A start date: nothing before it, and the first time falls on it.
+        const startOn = taskState(task.id).startOn;
+        return { task, owners, order, series: isStanding(task) ? null : seriesTemplate(task), minutes: minutesEach(task), bucket: owners[0] || '_shared', start: startOn ? dayFromIso(startOn) : null };
       });
     plans.push(...oneOffPlans(plans.length));
 
@@ -2653,7 +2975,9 @@
       const load = loadFor(plan.bucket);
       plan.series.forEach((series, index) => {
         if (series.daily) { series.anchor = 0; return; }
-        const pin = pins[plan.task.id]?.[index];
+        // A day chosen on the calendar wins; otherwise the start date sets the
+        // pattern (a chore done several times a week keeps its spacing).
+        const pin = pins[plan.task.id]?.[index] || (plan.start != null && series.unit !== 'dates' ? isoOf(plan.start + (series.step || 0)) : null);
         if (!pin) return;
         const day = dayFromIso(pin);
         series.pinned = true;
@@ -2722,7 +3046,31 @@
   // originally scheduled -- so marking it done survives a one-off move.
   function withKey(item) {
     item.key = `${item.plan.task.id}|${item.part}|${isoOf(item.orig)}`;
+    item.doneKey = item.key;
     return item;
+  }
+
+  // A chore with more than one owner -- every child's shower, a room two kids
+  // share -- has a done check for each of them: Ephraim checking his off
+  // doesn't tick Brighton's. Their checks are saved as 'key|Person'. A check
+  // saved before that (under the plain key) counts only for whoever made it.
+  // Seen as one person (the calendar narrowed to them, or their group on the
+  // day view or Standing Items), an item is theirs; seen as Everyone, a shared
+  // chore is done once every owner's is.
+  function isSharedItem(item) {
+    return item.plan.owners.length > 1 && !item.followUp;
+  }
+
+  function forPerson(item, person) {
+    if (!person || !isSharedItem(item) || !item.plan.owners.includes(person)) return item;
+    return { ...item, person, doneKey: `${item.key}|${person}` };
+  }
+
+  function personalDone(item, person) {
+    const own = extras.completions[`${item.key}|${person}`];
+    if (own) return own;
+    const older = extras.completions[item.key];
+    return older && older.by === person ? older : null;
   }
 
   // Every chore occurrence from `start` to `end` (day numbers, inclusive),
@@ -2736,7 +3084,10 @@
       plan.series.forEach((series, index) => {
         if (skipDaily && series.daily) return;
         const daily = Boolean(series.daily);
+        // Nothing before a chore's start date.
+        const beforeStart = orig => plan.start != null && orig < plan.start;
         const add = orig => {
+          if (beforeStart(orig)) return;
           const moved = moves[`${index}|${isoOf(orig)}`];
           const day = moved ? dayFromIso(moved) : orig;
           if (day >= start && day <= end) found.push(withKey({ plan, part: index, orig, day, moved: Boolean(moved), daily }));
@@ -2759,7 +3110,7 @@
           const [seriesIndex, origIso] = key.split('|');
           if (Number(seriesIndex) !== index) continue;
           const orig = dayFromIso(origIso), day = dayFromIso(target);
-          if ((orig < start || orig > end) && day >= start && day <= end && occursOn(series, orig)) {
+          if ((orig < start || orig > end) && day >= start && day <= end && occursOn(series, orig) && !beforeStart(orig)) {
             found.push(withKey({ plan, part: index, orig, day, moved: true, daily }));
           }
         }
@@ -2819,6 +3170,7 @@
 
   function calendarItemsIn(start, end, plans, options) {
     return [...occurrencesIn(start, end, plans, options), ...followUpsIn(start, end)]
+      .map(item => forPerson(item, calendarState.who))
       .sort((a, b) => a.day - b.day || a.plan.order - b.plan.order || (a.followUp ? 1 : 0) - (b.followUp ? 1 : 0));
   }
 
@@ -2881,7 +3233,15 @@
   }
 
   function doneRecord(item) {
-    return extras.completions[item.key] || null;
+    if (!isSharedItem(item)) return extras.completions[item.key] || null;
+    if (item.person) return personalDone(item, item.person);
+    const records = item.plan.owners.map(person => personalDone(item, person));
+    return records.every(Boolean) ? records[records.length - 1] : null;
+  }
+
+  // Seen as Everyone: which owners of a shared chore have done theirs.
+  function ownersDone(item) {
+    return isSharedItem(item) && !item.person ? item.plan.owners.filter(person => personalDone(item, person)) : [];
   }
 
   function isPaidItem(item) {
@@ -2889,15 +3249,31 @@
   }
 
   // Overdue: its day has passed and nobody marked it done. The daily routines
-  // are left out -- they come round again tomorrow anyway.
+  // are left out -- they come round again tomorrow anyway. Only from the day
+  // the household started marking chores done (the first check ever made):
+  // before that nothing was being tracked, so nothing can be late. Worked out
+  // afresh at the start of each Calendar or Home draw.
+  let overdueFrom = null;
+
+  function trackingStart() {
+    let first = null;
+    for (const entry of Object.values(extras.completions)) {
+      const day = dayFromIso(entry.on);
+      if (Number.isFinite(day) && (first === null || day < first)) first = day;
+    }
+    return first;
+  }
+
   function isOverdue(item) {
-    return !item.daily && !item.standing && item.day < todayNumber() && !doneRecord(item);
+    return overdueFrom !== null && !item.daily && !item.standing && item.day >= overdueFrom && item.day < todayNumber() && !doneRecord(item);
   }
 
   function checkHtml(item) {
     const done = doneRecord(item);
-    const label = done ? `Done by ${ownerLabel(done.by)}. Tap to undo` : 'Mark done';
-    return `<button type="button" class="cal-check${done ? ' is-done' : ''}" data-cal-done="${escapeHtml(item.key)}" aria-pressed="${done ? 'true' : 'false'}" aria-label="${escapeHtml(`${label}: ${item.plan.task.title}`)}" title="${escapeHtml(label)}"></button>`;
+    const partly = ownersDone(item);
+    const label = done ? (isSharedItem(item) && !item.person ? 'Done by everyone. Tap to undo' : `Done by ${ownerLabel(done.by)}. Tap to undo`)
+      : partly.length ? `Done by ${partly.map(ownerLabel).join(', ')} so far. Mark done` : 'Mark done';
+    return `<button type="button" class="cal-check${done ? ' is-done' : ''}" data-cal-done="${escapeHtml(item.doneKey)}" aria-pressed="${done ? 'true' : 'false'}" aria-label="${escapeHtml(`${label}: ${item.plan.task.title}`)}" title="${escapeHtml(label)}"></button>`;
   }
 
   function tagsHtml(item) {
@@ -2909,16 +3285,19 @@
     if (item.moved) tags.push('<span class="cal-chip-tag">Moved</span>');
     if (item.plan.task.trigger) tags.push(`<span class="cal-chip-tag is-trigger">Then ${escapeHtml(ownerLabel(item.plan.task.trigger.then))}</span>`);
     if (item.followUp) tags.push(`<span class="cal-chip-tag is-trigger">${item.waitingSince != null ? `Waiting since ${escapeHtml(formatDay(item.waitingSince, { weekday: 'short' }))}` : `After ${escapeHtml(ownerLabel(item.plan.task.followUpOf.trigger.first))}`}</span>`);
-    if (done) tags.push(`<span class="cal-chip-tag is-done">Done · ${escapeHtml(ownerLabel(done.by))}</span>`);
+    const partly = ownersDone(item);
+    if (done) tags.push(`<span class="cal-chip-tag is-done">Done · ${escapeHtml(partly.length ? 'everyone' : ownerLabel(done.by))}</span>`);
+    else if (partly.length) tags.push(`<span class="cal-chip-tag is-done">${partly.length} of ${item.plan.owners.length} done · ${escapeHtml(partly.map(ownerLabel).join(', '))}</span>`);
     return tags.join('');
   }
 
   function chipHtml(item, showOwners) {
-    renderedItems.set(item.key, item);
+    renderedItems.set(item.doneKey, item);
     // Only admins rearrange the household's schedule.
     const draggable = !item.daily && !item.followUp && viewerIsAdmin();
-    return `<li class="cal-item${doneRecord(item) ? ' is-done' : ''}">${checkHtml(item)}<button type="button" class="cal-chip${item.moved ? ' is-moved' : ''}${item.followUp ? ' is-follow-up' : ''}${isPaidItem(item) ? ' is-paid' : ''}${isOverdue(item) ? ' is-overdue' : ''}" ${draggable ? 'draggable="true"' : ''} data-cal-key="${escapeHtml(item.key)}">
+    return `<li class="cal-item${doneRecord(item) ? ' is-done' : ''}">${checkHtml(item)}<button type="button" class="cal-chip${item.moved ? ' is-moved' : ''}${item.followUp ? ' is-follow-up' : ''}${isPaidItem(item) ? ' is-paid' : ''}${isOverdue(item) ? ' is-overdue' : ''}" ${draggable ? 'draggable="true"' : ''} data-cal-key="${escapeHtml(item.doneKey)}">
       <span class="cal-chip-title">${taskTitleHtml(item.plan.task)}</span>
+      ${knownMinutes(item.plan.task) ? `<span class="cal-chip-time">${escapeHtml(formatMinutes(knownMinutes(item.plan.task)))}</span>` : ''}
       ${showOwners ? `<span class="cal-chip-who">${escapeHtml(calendarOwnerText(item.plan.owners))}</span>` : ''}
       ${tagsHtml(item)}
     </button></li>`;
@@ -2951,7 +3330,7 @@
   // For Everyone, the cards are grouped by person, so a shared chore appears
   // under each of its owners.
   function dayCardHtml(item, viewer) {
-    renderedItems.set(item.key, item);
+    renderedItems.set(item.doneKey, item);
     const { task } = item.plan;
     const others = item.plan.owners.filter(name => name !== viewer);
     const trigger = task.trigger;
@@ -2960,10 +3339,10 @@
       : item.followUp
         ? `<span class="cal-card-extra">Step 2, started when ${escapeHtml(ownerLabel(task.followUpOf.trigger.first))} marked “${escapeHtml(task.followUpOf.title)}” done on ${escapeHtml(formatDay(item.orig, { weekday: 'long', month: 'short', day: 'numeric' }))}.</span>`
         : '';
-    return `<li class="cal-card-item${doneRecord(item) ? ' is-done' : ''}">${checkHtml(item)}<button type="button" class="cal-card${item.moved ? ' is-moved' : ''}${item.followUp ? ' is-follow-up' : ''}${isPaidItem(item) ? ' is-paid' : ''}${isOverdue(item) ? ' is-overdue' : ''}" data-cal-key="${escapeHtml(item.key)}">
+    return `<li class="cal-card-item${doneRecord(item) ? ' is-done' : ''}">${checkHtml(item)}<button type="button" class="cal-card${item.moved ? ' is-moved' : ''}${item.followUp ? ' is-follow-up' : ''}${isPaidItem(item) ? ' is-paid' : ''}${isOverdue(item) ? ' is-overdue' : ''}" data-cal-key="${escapeHtml(item.doneKey)}">
       <span class="cal-card-room">${escapeHtml(sectionFor(task).name)}</span>
       <span class="cal-card-title">${escapeHtml(task.title)}</span>
-      <span class="cal-card-meta">${escapeHtml(task.cadence || task.frequency)} · ≈ ${formatMinutes(minutesEach(task))}${others.length ? ` · with ${escapeHtml(others.map(ownerLabel).join(', '))}` : ''}</span>
+      <span class="cal-card-meta">${escapeHtml(task.cadence || task.frequency)}${knownMinutes(task) ? ` · ${escapeHtml(formatMinutes(knownMinutes(task)))}` : ''}${others.length ? ` · with ${escapeHtml(others.map(ownerLabel).join(', '))}` : ''}</span>
       ${task.standard ? `<span class="cal-card-standard">${escapeHtml(task.standard)}</span>` : ''}
       ${task.checklist?.length ? `<span class="cal-card-extra">Checklist · ${task.checklist.length} items</span>` : ''}
       ${!item.followUp && subtasksFor(task).length ? `<span class="cal-card-extra">Subtasks · ${subtasksFor(task).length} (tap to see them)</span>` : ''}
@@ -2980,16 +3359,17 @@
     const groups = who
       ? [{ name: who, label: ownerLabel(who), items: rest }]
       : [
-          ...ownerRoster.map(owner => ({ name: owner.value, label: owner.label, items: rest.filter(item => item.plan.owners.includes(owner.value)) })),
+          ...ownerRoster.map(owner => ({ name: owner.value, label: owner.label, items: rest.filter(item => item.plan.owners.includes(owner.value)).map(item => forPerson(item, owner.value)) })),
           { name: null, label: 'Unassigned', items: rest.filter(item => !item.plan.owners.length) }
         ].filter(group => group.items.length);
-    const minutes = list => list.reduce((sum, item) => sum + minutesEach(item.plan.task), 0);
+    // Only the times someone set.
+    const minutes = list => list.reduce((sum, item) => sum + (knownMinutes(item.plan.task) || 0), 0);
     const dailyBlock = daily.length
       ? `<details class="cal-day-daily"><summary>Daily routines (${daily.length})${doneCountText(daily)}</summary><ul class="cal-day-chips">${daily.map(item => chipHtml(item, !who)).join('')}</ul></details>`
       : '';
     const body = groups.length && rest.length
       ? groups.map(group => `<section class="cal-day-group">
-          <h3>${escapeHtml(group.label)} <span>${group.items.length} chore${group.items.length === 1 ? '' : 's'} · ≈ ${formatMinutes(minutes(group.items))}${doneCountText(group.items)}</span></h3>
+          <h3>${escapeHtml(group.label)} <span>${group.items.length} chore${group.items.length === 1 ? '' : 's'}${minutes(group.items) ? ` · ${formatMinutes(minutes(group.items))}` : ''}${doneCountText(group.items)}</span></h3>
           <ul class="cal-cards">${group.items.map(item => dayCardHtml(item, group.name)).join('')}</ul>
         </section>`).join('')
       : '<p class="board-hidden-note">Nothing scheduled this day beyond the daily routines.</p>';
@@ -3057,7 +3437,7 @@
     const paid = occurrencesIn(start, start + 6, plans).filter(isPaidItem);
     return kids.map(kid => {
       const mine = paid.filter(item => item.plan.owners.includes(kid));
-      const done = mine.filter(item => doneRecord(item)?.by === kid).length;
+      const done = mine.filter(item => personalDone(item, kid)?.by === kid).length;
       const each = mine.length ? weeklyAllowance / mine.length : 0;
       return { kid, scheduled: mine.length, done, each, earned: each * done };
     });
@@ -3083,6 +3463,7 @@
 
   function renderCalendar() {
     renderedItems.clear();
+    overdueFrom = trackingStart();
     // A member's calendar is always their own.
     if (!viewerIsAdmin()) calendarState.who = viewer().name;
     calPlans = buildSchedule();
@@ -3110,10 +3491,12 @@
   // their character standing tall beside it. Checking one off records it for
   // today, so it can be done again another day, and each card says when it
   // was last done and by whom.
-  function lastDone(taskId) {
+  // With `person`, only their own checks (for a shared standing item).
+  function lastDone(taskId, person = null) {
     let latest = null;
     for (const [key, entry] of Object.entries(extras.completions)) {
       if (!key.startsWith(`${taskId}|`) || key.split('|')[1] === 'then') continue;
+      if (person && !key.endsWith(`|${person}`) && entry.by !== person) continue;
       if (!latest || (entry.at || entry.on) > (latest.at || latest.on)) latest = entry;
     }
     return latest;
@@ -3125,14 +3508,14 @@
   }
 
   function standingCardHtml(item, viewerName) {
-    renderedItems.set(item.key, item);
+    renderedItems.set(item.doneKey, item);
     const { task } = item.plan;
-    const last = lastDone(task.id);
+    const last = lastDone(task.id, item.person || null);
     const others = item.plan.owners.filter(name => name !== viewerName);
-    return `<li class="cal-card-item standing-item${doneRecord(item) ? ' is-done' : ''}">${checkHtml(item)}<button type="button" class="cal-card${isPaidItem(item) ? ' is-paid' : ''}" data-cal-key="${escapeHtml(item.key)}">
+    return `<li class="cal-card-item standing-item${doneRecord(item) ? ' is-done' : ''}">${checkHtml(item)}<button type="button" class="cal-card${isPaidItem(item) ? ' is-paid' : ''}" data-cal-key="${escapeHtml(item.doneKey)}">
       <span class="cal-card-room">${escapeHtml(sectionFor(task).name)}</span>
       <span class="cal-card-title">${escapeHtml(task.title)}</span>
-      <span class="cal-card-meta">${escapeHtml(task.cadence || task.frequency)}${others.length ? ` · with ${escapeHtml(others.map(ownerLabel).join(', '))}` : ''}</span>
+      <span class="cal-card-meta">${escapeHtml(task.cadence || task.frequency)}${knownMinutes(task) ? ` · ${escapeHtml(formatMinutes(knownMinutes(task)))}` : ''}${others.length ? ` · with ${escapeHtml(others.map(ownerLabel).join(', '))}` : ''}</span>
       <span class="standing-last">${last ? `Last done ${escapeHtml(formatDay(dayFromIso(last.on), { weekday: 'short', month: 'short', day: 'numeric' }))}, by ${escapeHtml(ownerLabel(last.by))}` : 'Not done yet'}</span>
       <span class="cal-card-tags">${tagsHtml(item)}</span>
     </button></li>`;
@@ -3142,9 +3525,9 @@
     const items = plans.filter(plan => isStanding(plan.task)).map(standingItem);
     const who = calendarState.who;
     const groups = who
-      ? [{ name: who, label: ownerLabel(who), items }]
+      ? [{ name: who, label: ownerLabel(who), items: items.map(item => forPerson(item, who)) }]
       : [
-          ...ownerRoster.map(owner => ({ name: owner.value, label: owner.label, items: items.filter(item => item.plan.owners.includes(owner.value)) })),
+          ...ownerRoster.map(owner => ({ name: owner.value, label: owner.label, items: items.filter(item => item.plan.owners.includes(owner.value)).map(item => forPerson(item, owner.value)) })),
           { name: null, label: 'Unassigned', items: items.filter(item => !item.plan.owners.length) }
         ].filter(group => group.items.length);
     const characters = window.HOUSE_MANUAL_CHARACTERS || {};
@@ -3178,22 +3561,35 @@
   // chore's only owner. When that isn't clear, ask.
   function toggleDone(key) {
     if (blockedBySimulation()) return;
-    if (extras.completions[key]) {
-      delete extras.completions[key];
+    const item = renderedItems.get(key);
+    if (!item) return;
+    if (doneRecord(item)) {
+      undoDone(item);
       saveCompletions();
       showToast('Marked not done.');
       return;
     }
-    const item = renderedItems.get(key);
-    if (!item) return;
     const owners = item.plan.owners;
-    const who = calendarState.who || (owners.length === 1 ? owners[0] : null);
+    const who = item.person || calendarState.who || (owners.length === 1 ? owners[0] : null);
     if (who) markDone(item, who);
     else askWhoDidIt(item);
   }
 
+  // Undoes the check that is showing: one person's, or (a shared chore seen as
+  // Everyone, done by all) every owner's.
+  function undoDone(item) {
+    if (!isSharedItem(item)) { delete extras.completions[item.key]; return; }
+    for (const person of item.person ? [item.person] : item.plan.owners) {
+      delete extras.completions[`${item.key}|${person}`];
+      if (extras.completions[item.key]?.by === person) delete extras.completions[item.key];
+    }
+  }
+
+  // A shared chore's check is saved for the owner it is for: the one being
+  // looked at, or whoever did it if they are an owner.
   function markDone(item, who) {
-    extras.completions[item.key] = { by: who, at: new Date().toISOString(), on: isoOf(todayNumber()), title: taskTitle(item.plan.task) };
+    const owner = isSharedItem(item) ? item.person || (item.plan.owners.includes(who) ? who : null) : null;
+    extras.completions[owner ? `${item.key}|${owner}` : item.key] = { by: who, at: new Date().toISOString(), on: isoOf(todayNumber()), title: taskTitle(item.plan.task) };
     saveCompletions();
     const trigger = item.plan.task.trigger;
     showToast(trigger
@@ -3208,7 +3604,8 @@
 
   function askWhoDidIt(item) {
     pendingDone = item;
-    const owners = item.plan.owners;
+    // A shared chore: the owners who haven't done theirs yet.
+    const owners = isSharedItem(item) ? item.plan.owners.filter(person => !personalDone(item, person)) : item.plan.owners;
     const others = rosterNames.filter(name => !owners.includes(name));
     const chip = (name, style) => `<button type="button" class="chip ${style}" data-cal-who="${name}">${escapeHtml(ownerLabel(name))}</button>`;
     document.querySelector('#calDoneWhoText').textContent = taskTitle(item.plan.task);
@@ -3270,7 +3667,9 @@
             : `<span>${item.standing ? 'Not done today.' : 'Not done yet.'}</span><button type="button" class="button button-solid button-small" data-cal-detail="done">Mark done</button>`}
         </div>` : ''}
         ${trigger ? `<p><span class="field-label">Trigger</span>Step 1 (${escapeHtml(ownerLabel(trigger.first))}): ${escapeHtml(trigger.firstStep)}. Marking it done puts “${escapeHtml(trigger.thenTitle)}” on ${escapeHtml(ownerLabel(trigger.then))}'s list that same day.</p>` : ''}
-        <p><span class="field-label">Repeats</span>${escapeHtml(repeats)}${automatic ? ` <small>(${pinned ? 'day chosen by you' : 'spread automatically'})</small>` : ''}</p>
+        <p><span class="field-label">Repeats</span>${escapeHtml(repeats)}${automatic ? ` <small>(${pinned ? 'day chosen by you' : review.startOn ? 'from its start date' : 'spread automatically'})</small>` : ''}</p>
+        ${review.startOn && !oneOff && !item?.followUp ? `<p><span class="field-label">Starts</span>${escapeHtml(formatDay(dayFromIso(review.startOn), { weekday: 'long', month: 'long', day: 'numeric', year: 'numeric' }))}</p>` : ''}
+        <p><span class="field-label">Estimated time</span>${knownMinutes(task) ? `${escapeHtml(formatMinutes(knownMinutes(task)))} each time` : '<span class="muted-note">Not set yet. Admins can add it in the Gallery.</span>'}</p>
         ${task.standard ? `<p><span class="field-label">What done looks like</span>${escapeHtml(task.standard)}</p>` : ''}
         ${task.checklist?.length ? `<div><span class="field-label">Checklist</span><ul>${task.checklist.map(entry => `<li>${escapeHtml(entry)}</li>`).join('')}</ul></div>` : ''}
         ${item?.followUp ? '' : subtasksHtml(task, { open: true, weekIndex: item && plan.series?.[0]?.unit === 'day' && plan.series[0].every === 7 ? Math.round((item.orig - plan.series[0].anchor) / 7) : null })}
@@ -3287,11 +3686,11 @@
         ${(pinned || moved) && !item?.followUp ? `<button type="button" class="button button-quiet" data-cal-detail="reset" data-admin-only>${oneOff ? 'Back to its first day' : 'Back to automatic'}</button>` : ''}
         ${oneOff
           ? '<button type="button" class="button button-quiet chip-danger" data-cal-detail="delete-one-off" data-admin-only>Delete this one-off</button>'
-          : '<button type="button" class="button button-quiet" data-cal-detail="open" data-admin-only>Open in room view</button>'}
+          : '<button type="button" class="button button-quiet" data-cal-detail="open" data-admin-only>Open in Gallery</button>'}
         <button type="button" class="button button-solid" data-cal-detail="close">Close</button>
       </footer>`;
     calDetail.dataset.task = task.id;
-    calDetail.dataset.key = item ? item.key : '';
+    calDetail.dataset.key = item ? item.doneKey : '';
     calDetail.showModal();
   }
 
@@ -3512,6 +3911,85 @@
     homeEarnings.hidden = !earnings;
   }
 
+  // ---- Home: chores overdue ----
+
+  // Everything overdue right now, from the last four weeks: one entry per
+  // chore and owner who hasn't done it (a chore nobody owns counts once, as
+  // unassigned). The same rule as the red Overdue chips on the Calendar.
+  const overdueWindowDays = 28;
+
+  function overdueEntries() {
+    const today = todayNumber();
+    const entries = [];
+    if (overdueFrom === null) return entries;
+    for (const item of occurrencesIn(Math.max(today - overdueWindowDays, overdueFrom), today - 1, buildSchedule())) {
+      if (item.daily || item.standing) continue;
+      const owners = item.plan.owners;
+      const minutes = minutesEach(item.plan.task);
+      if (!owners.length) {
+        if (!doneRecord(item)) entries.push({ item, person: null, day: item.day, minutes });
+        continue;
+      }
+      for (const person of owners) {
+        const done = isSharedItem(item) ? personalDone(item, person) : doneRecord(item);
+        if (!done) entries.push({ item, person, day: item.day, minutes });
+      }
+    }
+    return entries.sort((a, b) => a.day - b.day || a.item.plan.order - b.item.plan.order);
+  }
+
+  function renderOverdueAnalytics() {
+    // A member sees only their own; an admin sees everyone's.
+    const me = viewerIsAdmin() ? null : viewer();
+    const today = todayNumber();
+    overdueFrom = trackingStart();
+    const all = overdueEntries();
+    const entries = me ? all.filter(entry => entry.person === me.name) : all;
+    const roster = me ? ownerRoster.filter(owner => owner.value === me.name) : ownerRoster;
+    const totalMinutes = entries.reduce((sum, entry) => sum + entry.minutes, 0);
+    document.querySelector('#overdueTitle').textContent = me ? 'Your overdue chores' : 'Overdue';
+    const since = Math.max(today - overdueWindowDays, overdueFrom ?? today);
+    document.querySelector('#overdueWindow').textContent = overdueFrom === null
+      ? 'Starts counting once chores are marked done on the Calendar'
+      : `Right now · counted from ${formatDay(since, { weekday: 'short', month: 'short', day: 'numeric' })}${since > today - overdueWindowDays ? ', when chores started being marked done' : ` (the last ${overdueWindowDays / 7} weeks)`}`;
+    document.querySelector('#overdueTotal').textContent = entries.length;
+    document.querySelector('#overdueSummary').textContent = `${entries.length === 1 ? 'chore' : 'chores'} overdue${entries.length ? ` · ≈ ${formatMinutes(totalMinutes)}` : ''}`;
+
+    const people = roster.map(owner => {
+      const mine = entries.filter(entry => entry.person === owner.value);
+      return { owner, count: mine.length, minutes: mine.reduce((sum, entry) => sum + entry.minutes, 0) };
+    });
+    const most = Math.max(1, ...people.map(person => person.count));
+    document.querySelector('#overdueBars').innerHTML = people.map(({ owner, count, minutes }) => {
+      const summary = `${owner.label}: ${count} overdue${count ? `, ≈ ${formatMinutes(minutes)}` : ''}`;
+      return `<div class="done-bar-row" role="listitem" title="${escapeHtml(summary)}" aria-label="${escapeHtml(summary)}">
+        <span class="done-bar-name">${escapeHtml(owner.label)}</span>
+        <span class="done-bar-track" aria-hidden="true"><span class="done-bar" style="width:${(count / most * 100).toFixed(1)}%"></span></span>
+        <span class="done-bar-value">${count}${count ? ` <small>≈ ${escapeHtml(formatMinutes(minutes))}</small>` : ''}</span>
+      </div>`;
+    }).join('');
+
+    const shown = entries.slice(0, 25);
+    const late = day => { const n = today - day; return n === 1 ? '1 day late' : `${n} days late`; };
+    document.querySelector('#overdueList').innerHTML = entries.length
+      ? `<ol class="done-list overdue-list">${shown.map(entry => `<li>
+          <time datetime="${escapeHtml(isoOf(entry.day))}">${escapeHtml(formatDay(entry.day, { weekday: 'short', month: 'short', day: 'numeric' }))}</time>
+          <strong>${escapeHtml(entry.person ? ownerLabel(entry.person) : 'Unassigned')}</strong>
+          <span>${taskTitleHtml(entry.item.plan.task)} <small>· ${escapeHtml(late(entry.day))} · ≈ ${escapeHtml(formatMinutes(entry.minutes))}</small></span>
+        </li>`).join('')}</ol>${entries.length > shown.length ? `<p class="allocation-note">And ${entries.length - shown.length} more, oldest first above.</p>` : ''}`
+      : `<p class="board-empty">Nothing overdue${me ? ' for you' : ''}. Nice work.</p>`;
+
+    const days = [...Array(7).keys()].map(offset => today - 7 + offset);
+    const head = `<thead><tr><th scope="col">Person</th>${days.map(d => `<th scope="col">${escapeHtml(formatDay(d, { weekday: 'short' }))} ${dateParts(d).d}</th>`).join('')}<th scope="col">Total</th></tr></thead>`;
+    const rows = roster.map(owner => {
+      const counts = days.map(d => entries.filter(entry => entry.person === owner.value && entry.day === d).length);
+      return `<tr><th scope="row">${escapeHtml(owner.label)}</th>${counts.map(n => `<td>${n || '·'}</td>`).join('')}<td><strong>${counts.reduce((a, b) => a + b, 0)}</strong></td></tr>`;
+    }).join('');
+    const totals = days.map(d => entries.filter(entry => entry.day === d).length);
+    const foot = `<tr class="done-week-total"><th scope="row">Everyone</th>${totals.map(n => `<td>${n || '·'}</td>`).join('')}<td><strong>${totals.reduce((a, b) => a + b, 0)}</strong></td></tr>`;
+    document.querySelector('#overdueWeek').innerHTML = `${head}<tbody>${rows}${me ? '' : foot}</tbody>`;
+  }
+
   document.querySelectorAll('[data-done-step]').forEach(button => button.addEventListener('click', () => {
     doneState.day += Number(button.dataset.doneStep);
     renderDoneAnalytics();
@@ -3611,8 +4089,11 @@
     access.simulating = null;
     sessionSet(sessionKey, user.id);
     sessionSet(simulateKey, null);
-    extras.users.lastLogin[user.id] = new Date().toISOString();
-    queueSave();
+    // The home server notes the sign-in itself.
+    if (!sync.server) {
+      extras.users.lastLogin[user.id] = new Date().toISOString();
+      queueSave();
+    }
     calendarState.who = '';
     maturityWho = null;
     doneState.day = todayNumber();
@@ -3623,7 +4104,13 @@
 
   function signOut() {
     if (pendingEdits.size && !discardEdits()) return;
+    if (sync.server && hasUnsavedServerChanges() && !window.confirm("Some changes haven't reached the house computer yet. Sign out anyway and lose them?")) return;
     persistState();
+    if (sync.server) {
+      api('POST', '/api/logout').catch(() => {});
+      sessionSet(tokenKey, null);
+      clearServerCopy();
+    }
     access.user = null;
     access.simulating = null;
     sessionSet(sessionKey, null);
@@ -3653,10 +4140,31 @@
   const loginForm = document.querySelector('#loginForm');
   // No local config: say how to set up default sign-ins.
   document.querySelector('#loginSetup').hidden = Boolean(localConfig.passwordPattern);
-  loginForm.addEventListener('submit', event => {
+  loginForm.addEventListener('submit', async event => {
     event.preventDefault();
-    const user = userByUsername(loginForm.elements.username.value);
     const error = document.querySelector('#loginError');
+    if (sync.server) {
+      const fail = message => {
+        error.textContent = message;
+        error.hidden = false;
+        loginForm.elements.password.value = '';
+        loginForm.elements.password.focus();
+      };
+      const reply = await api('POST', '/api/login', { username: loginForm.elements.username.value, password: loginForm.elements.password.value }).catch(() => null);
+      if (!reply) return fail("Can't reach the house computer. Is it on, with the House Manual running?");
+      if (!reply.ok) return fail(reply.data?.error || "That username and password don't match.");
+      sessionSet(tokenKey, reply.data.token);
+      if (!await loadServerData()) return fail("Signed in, but the household's data didn't load. Try again.");
+      const user = userById(reply.data.userId);
+      await offerToMoveOldData(user);
+      if (isAdmin(user) && applyDataUpdates()) scheduleServerSave();
+      error.hidden = true;
+      loginForm.reset();
+      signIn(user);
+      redrawAfterSync();
+      return;
+    }
+    const user = userByUsername(loginForm.elements.username.value);
     if (!user || !checkPassword(user, loginForm.elements.password.value)) {
       error.textContent = "That username and password don't match.";
       error.hidden = false;
@@ -3785,6 +4293,16 @@
     if (event.target.closest('[data-users-default]')) {
       const user = userById(editingUser);
       if (!user || !viewerIsAdmin() || !window.confirm(`Put ${user.label} back to the default username (${user.defaultUsername}) and default password?`)) return;
+      if (sync.server) {
+        api('POST', '/api/account', { userId: user.id, reset: true }).then(reply => {
+          if (!reply.ok) { showToast(reply.data?.error || "That didn't save. Try again."); return; }
+          editingUser = null;
+          receiveServerData(reply.data);
+          redrawAfterSync();
+          showToast(`${user.label} is back to the default sign-in.`);
+        }).catch(() => showToast("Can't reach the house computer."));
+        return;
+      }
       delete extras.users.accounts[user.id];
       editingUser = null;
       queueSave();
@@ -3812,6 +4330,18 @@
     }
     const usernameChanged = username !== usernameOf(user);
     if (!usernameChanged && !password) { editingUser = null; renderUsers(); return; }
+    if (sync.server) {
+      // The house computer hashes and keeps the password; it never comes back.
+      api('POST', '/api/account', { userId: user.id, username, password }).then(reply => {
+        if (!reply.ok) { fail(reply.data?.error || "That didn't save. Try again."); return; }
+        editingUser = null;
+        receiveServerData(reply.data);
+        redrawAfterSync();
+        const self = user.id === access.user.id;
+        showToast(`Saved ${user.label}'s sign-in.${self ? ' Use the new details next time you sign in.' : ''}`);
+      }).catch(() => fail("Can't reach the house computer."));
+      return;
+    }
 
     const account = { ...extras.users.accounts[user.id] };
     if (username === user.defaultUsername) delete account.username;
@@ -4101,7 +4631,7 @@
     if (!access.user) return;
     const admin = viewerIsAdmin();
     if (currentView === 'owners') renderOwners();
-    if (currentView === 'home') { if (admin) renderDashboard(); renderDoneAnalytics(); }
+    if (currentView === 'home') { if (admin) renderDashboard(); renderDoneAnalytics(); renderOverdueAnalytics(); }
     if (currentView === 'assign') renderBoard('chores');
     if (currentView === 'calendar') renderCalendar();
     if (currentView === 'skills') { if (admin) renderBoard('skills'); else renderMySkills(); }
@@ -4133,11 +4663,11 @@
 
   function buildPrintView() {
     const today = new Intl.DateTimeFormat(undefined, { dateStyle: 'long' }).format(new Date());
-    const cover = `<div class="print-cover"><div><p>House Manual</p><h1>Room-by-Room Review</h1><p>${reviewedCount()} of ${allTasks.length} tasks reviewed</p><p>Saved ${escapeHtml(today)}</p></div></div>`;
+    const cover = `<div class="print-cover"><div><p>House Manual</p><h1>Gallery</h1><p>Every chore, room by room</p><p>${reviewedCount()} of ${allTasks.length} tasks reviewed</p><p>Saved ${escapeHtml(today)}</p></div></div>`;
     const printed = sections.map(section => {
       const groups = groupByFrequency(section.tasks).map(({ name, tasks }) => `<h3 class="print-frequency">${escapeHtml(name)} (${tasks.length})</h3>
         <table class="print-table"><thead><tr><th>Task / standard</th><th>Current owner</th><th>Decision</th><th>New owner</th><th>Notes</th></tr></thead><tbody>
-        ${tasks.map(task => { const item = taskState(task.id); return `<tr><td><div class="print-task-title">${escapeHtml(taskTitle(task, section))}</div><div class="print-cadence">${escapeHtml(task.cadence)}${task.standard ? ` · ${escapeHtml(task.standard)}` : ''}${task.checklist?.length ? ` · Checklist: ${escapeHtml(task.checklist.join(', '))}` : ''}${subtasksFor(task).length ? ` · Subtasks: ${escapeHtml(subtasksFor(task).map(sub => `${sub.title} (${sub.cadence || sub.frequency})`).join('; '))}` : ''}</div></td><td>${escapeHtml(task.currentOwner)}</td><td>${escapeHtml(item.decision ? item.decision[0].toUpperCase() + item.decision.slice(1) : '')}</td><td>${escapeHtml(item.newOwner)}</td><td>${escapeHtml(item.notes)}</td></tr>`; }).join('')}
+        ${tasks.map(task => { const item = taskState(task.id); return `<tr><td><div class="print-task-title">${escapeHtml(taskTitle(task, section))}</div><div class="print-cadence">${escapeHtml(task.cadence)}${task.standard ? ` · ${escapeHtml(task.standard)}` : ''}${task.checklist?.length ? ` · Checklist: ${escapeHtml(task.checklist.join(', '))}` : ''}${subtasksFor(task).length ? ` · Subtasks: ${escapeHtml(subtasksFor(task).map(sub => `${sub.title} (${sub.cadence || sub.frequency})`).join('; '))}` : ''}</div></td><td>${escapeHtml(ownersFor(task).map(ownerLabel).join(', '))}</td><td>${escapeHtml(item.decision ? item.decision[0].toUpperCase() + item.decision.slice(1) : '')}</td><td>${escapeHtml(item.newOwner)}</td><td>${escapeHtml(item.notes)}</td></tr>`; }).join('')}
         </tbody></table>`).join('');
       return `<section class="print-section"><h2>${escapeHtml(section.name)} · ${reviewedCount(section.tasks)}/${section.tasks.length}</h2>${groups}</section>`;
     }).join('');
@@ -4200,39 +4730,398 @@
     });
   }
 
+  // ---- Home server: one shared copy of the data ----
+
+  // Opened from the home server (server/server.js), the app keeps no data of
+  // its own: it loads the household's data after sign-in, saves every change
+  // back, and checks every few seconds for changes made on other devices.
+  // Opened any other way (the plain file server, a copy of the files), it
+  // works as before, with the data in this browser.
+  //
+  // Saving sends the whole copy with the version it started from. If someone
+  // else saved in between, the server sends back the newer data instead; this
+  // device then replays its own changes onto it -- field by field, item by
+  // item -- and tries again. A change to something the other person also
+  // changed is dropped in favour of theirs, and the person is told.
+  const tokenKey = 'house-manual-token';
+  const sync = { server: false, version: 0, initialized: true, base: null, timer: null, inFlight: false, again: false, retry: null };
+
+  async function api(method, url, body) {
+    const headers = {};
+    const token = sessionGet(tokenKey);
+    if (token) headers.Authorization = `Bearer ${token}`;
+    if (body !== undefined) headers['Content-Type'] = 'application/json';
+    const response = await fetch(url, { method, headers, body: body === undefined ? undefined : JSON.stringify(body), cache: 'no-store' });
+    let data = null;
+    try { data = await response.json(); } catch { data = null; }
+    return { ok: response.ok, status: response.status, data };
+  }
+
+  async function detectServer() {
+    try {
+      const controller = new AbortController();
+      const timer = setTimeout(() => controller.abort(), 3000);
+      const response = await fetch('/api/status', { cache: 'no-store', signal: controller.signal });
+      clearTimeout(timer);
+      const data = response.ok ? await response.json() : null;
+      return Boolean(data && data.server === true);
+    } catch {
+      return false;
+    }
+  }
+
+  function setSaveStatus(text, error = false) {
+    saveStatus.textContent = text;
+    if (error) saveStatus.setAttribute('data-error', 'true');
+    else saveStatus.removeAttribute('data-error');
+  }
+
+  const isPlainObject = value => Boolean(value) && typeof value === 'object' && !Array.isArray(value);
+  const isIdList = list => Array.isArray(list) && list.every(item => isPlainObject(item) && typeof item.id === 'string');
+  const copyOf = value => value === undefined ? undefined : JSON.parse(JSON.stringify(value));
+
+  function sameValue(a, b) {
+    if (a === b) return true;
+    if (Array.isArray(a) || Array.isArray(b)) {
+      return Array.isArray(a) && Array.isArray(b) && a.length === b.length && a.every((item, index) => sameValue(item, b[index]));
+    }
+    if (!isPlainObject(a) || !isPlainObject(b)) return false;
+    for (const key of new Set([...Object.keys(a), ...Object.keys(b)])) if (!sameValue(a[key], b[key])) return false;
+    return true;
+  }
+
+  function snapshot() {
+    return copyOf({ tasks: state, extras });
+  }
+
+  // Every change from `before` to `after`, as small as it can be: a field of
+  // an object, or one item of a list of things with ids (one award, one task
+  // added in the app). Anything else that changed counts as one change.
+  function changesBetween(before, after, path = [], out = []) {
+    if (sameValue(before, after)) return out;
+    if (isPlainObject(before) && isPlainObject(after)) {
+      for (const key of new Set([...Object.keys(before), ...Object.keys(after)])) changesBetween(before[key], after[key], [...path, key], out);
+    } else if (isIdList(before) && isIdList(after)) {
+      const byId = list => new Map(list.map(item => [item.id, item]));
+      const was = byId(before), now = byId(after);
+      for (const id of new Set([...was.keys(), ...now.keys()])) changesBetween(was.get(id), now.get(id), [...path, { id }], out);
+    } else {
+      out.push({ path, before, after });
+    }
+    return out;
+  }
+
+  function stepInto(node, step) {
+    if (node == null || typeof node !== 'object') return undefined;
+    return typeof step === 'object' ? (Array.isArray(node) ? node.find(item => item?.id === step.id) : undefined) : node[step];
+  }
+
+  function valueAt(root, path) {
+    return path.reduce(stepInto, root);
+  }
+
+  // Puts a value at a path, making the objects on the way. False when the
+  // place has gone (an item someone else deleted).
+  function setAt(root, path, value) {
+    let node = root;
+    for (let index = 0; index < path.length - 1; index++) {
+      const step = path[index];
+      let next = stepInto(node, step);
+      if (next == null) {
+        if (typeof step === 'object') return false;
+        next = typeof path[index + 1] === 'object' ? [] : {};
+        node[step] = next;
+      }
+      if (typeof next !== 'object') return false;
+      node = next;
+    }
+    const last = path[path.length - 1];
+    if (typeof last === 'object') {
+      if (!Array.isArray(node)) return false;
+      const index = node.findIndex(item => item?.id === last.id);
+      if (value === undefined) { if (index >= 0) node.splice(index, 1); }
+      else if (index >= 0) node[index] = value;
+      else node.push(value);
+    } else if (value === undefined) {
+      delete node[last];
+    } else {
+      node[last] = value;
+    }
+    return true;
+  }
+
+  // Replays changes onto newer data. Returns how many could not be kept
+  // because someone else changed the same thing.
+  function replayChanges(target, changes) {
+    let clashes = 0;
+    for (const change of changes) {
+      const now = valueAt(target, change.path);
+      if (sameValue(now, change.after)) continue;
+      if (sameValue(now, change.before) && setAt(target, change.path, copyOf(change.after))) continue;
+      clashes++;
+    }
+    return clashes;
+  }
+
+  function normalizedServerData(data) {
+    const tasks = isPlainObject(data.tasks) ? data.tasks : {};
+    for (const record of Object.values(tasks)) {
+      if (record && typeof record === 'object') record.decision = normalizeDecision(record.decision);
+    }
+    return { tasks, extras: cleanExtras(data.extras) };
+  }
+
+  // Takes data from the server, keeping any changes made here that it hasn't
+  // seen yet. With `replace`, changes made here are dropped (a restore).
+  function receiveServerData(data, { replace = false } = {}) {
+    const changes = !replace && sync.base ? changesBetween(sync.base, snapshot()) : [];
+    const fresh = normalizedServerData(data);
+    sync.base = copyOf(fresh);
+    sync.version = data.version;
+    sync.initialized = data.initialized !== false;
+    const clashes = replayChanges(fresh, changes);
+    state = fresh.tasks;
+    extras = fresh.extras;
+    rebuildSections();
+    return { pending: changes.length > clashes, clashes };
+  }
+
+  function hasUnsavedServerChanges() {
+    return sync.server && Boolean(sync.base) && !sameValue(snapshot(), sync.base);
+  }
+
+  // The one-time updates the app applies to saved data (owner updates, the
+  // starter soft skills and awards, moving old AI notes, the Maturity Marks
+  // cards). Only an admin's device applies them to the shared copy.
+  function applyDataUpdates() {
+    let updated = false;
+    if (!extras.applied.includes(reviewUpdate)) {
+      applyReviewUpdates(state);
+      extras.applied.push(reviewUpdate);
+      updated = true;
+    }
+    if (!extras.applied.includes(starterSeed)) {
+      seedStarters(extras);
+      updated = true;
+    }
+    if (moveAiNotes(state, extras)) updated = true;
+    if (seedMaturity(extras)) updated = true;
+    if (updated) rebuildSections();
+    if (seedOwnersFromCatalog()) updated = true;
+    return updated;
+  }
+
+  function redrawAfterSync() {
+    // Only on the home server, for an admin, in a browser that still has data
+    // from before it.
+    document.querySelector('#moveOldDataButton').hidden = !(sync.server && access.user && isAdmin(access.user) && oldBrowserData());
+    renderNav();
+    renderPendingBar();
+    if (access.user) applyAccess();
+  }
+
+  function scheduleServerSave() {
+    clearTimeout(sync.timer);
+    sync.timer = setTimeout(pushToServer, 300);
+  }
+
+  async function pushToServer() {
+    if (!sync.server || !access.user || !sync.base) return;
+    if (sync.inFlight) { sync.again = true; return; }
+    sync.inFlight = true;
+    clearTimeout(sync.retry);
+    try {
+      for (let attempt = 0; attempt < 6; attempt++) {
+        const local = snapshot();
+        if (sameValue(local, sync.base)) break;
+        setSaveStatus('Saving...');
+        const reply = await api('PUT', '/api/data', { baseVersion: sync.version, tasks: local.tasks, extras: local.extras });
+        if (reply.ok) {
+          sync.version = reply.data.version;
+          sync.base = local;
+          continue;
+        }
+        if (reply.status === 409) {
+          const { clashes } = receiveServerData(reply.data);
+          redrawAfterSync();
+          if (clashes) showToast(`Someone else changed ${clashes === 1 ? 'the same thing' : `${clashes} of the same things`} at the same time; their version was kept.`);
+          continue;
+        }
+        if (reply.status === 401) { sessionEnded(); return; }
+        throw new Error(reply.data?.error || 'Not saved');
+      }
+      setSaveStatus('Saved on the house computer');
+    } catch {
+      setSaveStatus("Not saved: can't reach the house computer. Retrying...", true);
+      sync.retry = setTimeout(pushToServer, 10000);
+    } finally {
+      sync.inFlight = false;
+      if (sync.again) { sync.again = false; pushToServer(); }
+    }
+  }
+
+  // Loads the household's data after signing in (or returning to a tab that
+  // was signed in). False if the sign-in has run out or the server can't be
+  // reached.
+  async function loadServerData() {
+    const reply = await api('GET', '/api/data').catch(() => null);
+    if (!reply || !reply.ok) return false;
+    sync.base = null;
+    receiveServerData(reply.data, { replace: true });
+    return true;
+  }
+
+  // The first time an admin signs in, this browser may still hold everything
+  // from before the home server existed. Offer to move it into the shared
+  // copy, once.
+  function oldBrowserData() {
+    try {
+      const tasks = JSON.parse(localStorage.getItem(storageKey) || 'null');
+      const saved = JSON.parse(localStorage.getItem(extrasKey) || 'null');
+      if (!isPlainObject(tasks) || !Object.keys(tasks).length) return null;
+      return { tasks, extras: cleanExtras(saved) };
+    } catch {
+      return null;
+    }
+  }
+
+  // Asked once per browser, at an admin's sign-in, whatever the shared copy
+  // already holds; after that (moved, or declined) it is in the Actions menu.
+  const movedKey = 'house-manual-moved-to-server';
+
+  function localGet(key) {
+    try { return localStorage.getItem(key); } catch { return null; }
+  }
+
+  function localSet(key, value) {
+    try { localStorage.setItem(key, value); } catch { /* the menu item still works */ }
+  }
+
+  async function offerToMoveOldData(user, { fromMenu = false } = {}) {
+    if (!isAdmin(user)) return false;
+    const old = oldBrowserData();
+    if (!old || (!fromMenu && localGet(movedKey))) return false;
+    const question = "This browser still has House Manual data from before the house computer kept it.\n\nMove it into the shared copy now, so every device sees it? This replaces what the shared copy holds now (the house computer keeps a backup of it).";
+    if (!window.confirm(question)) {
+      if (!fromMenu) localSet(movedKey, 'declined');
+      if (!fromMenu) showToast("Not moved. You can do it later from Actions → Move this browser's old data in.");
+      return false;
+    }
+    const reply = await api('POST', '/api/import', old).catch(() => null);
+    if (reply?.ok) {
+      localSet(movedKey, new Date().toISOString());
+      pendingEdits.clear();
+      receiveServerData(reply.data, { replace: true });
+      showToast("Moved this browser's data into the shared copy.");
+      return true;
+    }
+    showToast(reply?.data?.error || "Couldn't move the data. Try Restore file instead.");
+    return false;
+  }
+
+  document.querySelector('#moveOldDataButton').addEventListener('click', async () => {
+    closeMenus();
+    if (await offerToMoveOldData(access.user, { fromMenu: true })) redrawAfterSync();
+  });
+
+  function sessionEnded() {
+    sessionSet(tokenKey, null);
+    clearServerCopy();
+    access.user = null;
+    access.simulating = null;
+    sessionSet(sessionKey, null);
+    sessionSet(simulateKey, null);
+    applyAccess();
+    showToast('Signed out. Please sign in again.');
+  }
+
+  // Nothing of the household's stays in the page once signed out.
+  function clearServerCopy() {
+    clearTimeout(sync.timer);
+    clearTimeout(sync.retry);
+    state = {};
+    extras = emptyExtras();
+    sync.base = null;
+    pendingEdits.clear();
+    rebuildSections();
+  }
+
+  // Busy typing, in a dialog or a menu: wait, so a refresh can't move things
+  // under someone's fingers.
+  function busyForRefresh() {
+    const active = document.activeElement;
+    return Boolean(document.querySelector('dialog[open], details.menu[open]'))
+      || Boolean(active && /^(INPUT|TEXTAREA|SELECT)$/.test(active.tagName) && !active.closest('#loginForm'));
+  }
+
+  async function checkForChanges() {
+    if (!sync.server || !access.user || !sync.base || sync.inFlight || document.hidden || busyForRefresh()) return;
+    try {
+      const status = await api('GET', '/api/status');
+      if (!status.ok || status.data.version === sync.version) return;
+      const reply = await api('GET', '/api/data');
+      if (reply.status === 401) { sessionEnded(); return; }
+      if (!reply.ok || sync.inFlight || busyForRefresh()) return;
+      const { pending, clashes } = receiveServerData(reply.data);
+      redrawAfterSync();
+      if (clashes) showToast('Someone else changed the same thing at the same time; their version was kept.');
+      if (pending) scheduleServerSave();
+      if (!saveStatus.hasAttribute('data-error')) setSaveStatus('Saved on the house computer');
+    } catch {
+      setSaveStatus("Can't reach the house computer", true);
+    }
+  }
+
+  setInterval(checkForChanges, 5000);
+  document.addEventListener('visibilitychange', () => { if (!document.hidden) checkForChanges(); });
+  window.addEventListener('beforeunload', event => {
+    if (!hasUnsavedServerChanges() && !sync.inFlight) return;
+    event.preventDefault();
+    event.returnValue = '';
+  });
+
   // ---- Start ----
 
-  state = loadState();
-  extras = loadExtras();
-  let updated = false;
-  if (!extras.applied.includes(reviewUpdate)) {
-    applyReviewUpdates(state);
-    extras.applied.push(reviewUpdate);
-    updated = true;
-  }
-  if (!extras.applied.includes(starterSeed)) {
-    seedStarters(extras);
-    updated = true;
-  }
-  if (moveAiNotes(state, extras)) updated = true;
-  if (seedMaturity(extras)) updated = true;
-  rebuildSections();
-  if (updated) writeState();
+  async function start() {
+    sync.server = await detectServer();
+    if (sync.server) {
+      // The household's data arrives after sign-in.
+      state = {};
+      extras = emptyExtras();
+      rebuildSections();
+      setSaveStatus('Saved on the house computer');
+      document.querySelector('#loginSetup').hidden = true;
+    } else {
+      state = loadState();
+      extras = loadExtras();
+      rebuildSections();
+      if (applyDataUpdates()) writeState();
+    }
 
-  document.body.dataset.view = currentView;
-  renderNav();
-  renderSection();
-  updateProgress();
-  registerWebMcp();
+    document.body.dataset.view = currentView;
+    renderNav();
+    renderSection();
+    updateProgress();
+    registerWebMcp();
 
-  // Still signed in from earlier in this tab? Pick up where it left off,
-  // including a simulation in progress; otherwise show the sign-in screen.
-  const returning = userFromSession(sessionGet(sessionKey));
-  if (returning) {
-    access.user = returning;
-    const simulated = userFromSession(sessionGet(simulateKey));
-    if (simulated && isAdmin(returning) && !isAdmin(simulated)) access.simulating = simulated;
+    // Still signed in from earlier in this tab? Pick up where it left off,
+    // including a simulation in progress; otherwise show the sign-in screen.
+    let returning = userFromSession(sessionGet(sessionKey));
+    if (returning && sync.server && !(sessionGet(tokenKey) && await loadServerData())) {
+      sessionSet(tokenKey, null);
+      sessionSet(sessionKey, null);
+      returning = null;
+    }
+    if (returning) {
+      access.user = returning;
+      const simulated = userFromSession(sessionGet(simulateKey));
+      if (simulated && isAdmin(returning) && !isAdmin(simulated)) access.simulating = simulated;
+      if (sync.server && isAdmin(returning) && applyDataUpdates()) scheduleServerSave();
+    }
+    if (sync.server) redrawAfterSync();
+    applyAccess();
+    if (!access.user) loginForm.elements.username.focus();
   }
-  applyAccess();
-  if (!access.user) loginForm.elements.username.focus();
+
+  start();
 })();

@@ -6,30 +6,75 @@ from `oawm-data-bkup.md`.
 
 ## Run it
 
-Double-click **House Manual** on your desktop. That starts the server and opens
-the app; closing the window it leaves behind stops the server. Double-clicking it
-again while it is already running just reopens the browser rather than starting a
-second server.
+The House Manual runs on one computer at home (the *house computer*) and every
+phone, tablet and laptop on the home Wi-Fi uses it from there. All of them share
+one copy of the data, kept on the house computer. Nothing goes to the internet.
 
-To recreate the shortcut if it ever goes missing, or to add one to the Start Menu:
-
-```powershell
-.\tools\install-shortcut.ps1
-.\tools\install-shortcut.ps1 -StartMenu
-.\tools\install-shortcut.ps1 -Remove
-```
-
-### From a terminal
+Double-click **House Manual** on the desktop. That starts the home server
+(`server/server.js`, which needs [Node.js](https://nodejs.org)) and opens the
+app. The window it leaves open lists the address for other devices, like
+`http://192.168.1.20:8347/`; type that into a phone's browser on the home Wi-Fi.
+Closing the window stops the app for everyone. Double-clicking again while it is
+running just reopens the browser.
 
 ```powershell
-.\serve.ps1
+.\tools\install-shortcut.ps1            # recreate the desktop shortcut
+.\tools\install-shortcut.ps1 -StartMenu # add one to the Start Menu too
+.\tools\install-shortcut.ps1 -Startup   # start the server (minimized) whenever you sign in to Windows
+.\tools\install-shortcut.ps1 -Remove    # take them all away
 ```
 
-That starts a dependency-free static server on <http://localhost:8347/> and opens
-a browser. It is built on the .NET `HttpListener` that ships with Windows
-PowerShell, so it runs with nothing installed.
+To keep it available:
 
-Useful switches:
+- **The house computer must be on and awake** whenever someone wants the app.
+  Set Windows to never sleep while plugged in (Settings → System → Power); the
+  screen can still turn off.
+- **Allow it through the firewall, for private networks only.** The first time
+  the server starts, Windows asks whether *Node.js JavaScript Runtime* may
+  communicate on networks: tick **Private** and choose **Allow**. Leave
+  **Public** unticked. If you missed the prompt: Windows Security → Firewall &
+  network protection → Allow an app through firewall → Node.js → Private. The
+  home Wi-Fi itself must be set to *Private* in Windows (Settings → Network &
+  internet → Wi-Fi → your network).
+- **Home network only.** Traffic is plain `http://`, so never forward the port
+  on your router or otherwise open it to the internet.
+
+### The shared data
+
+Everything lives in `data/` on the house computer (git ignores it):
+
+| File | What it is |
+| --- | --- |
+| `data/household.json` | the shared data every device sees |
+| `data/accounts.json` | passwords an admin set, as salted hashes; never sent to any device |
+| `data/sessions.json` | who is signed in on which device |
+| `data/backups/` | a copy of `household.json` at most once an hour (the latest 200) |
+
+Every change is saved there straight away, and each device checks for other
+people's changes every few seconds (and whenever it comes back into view). If
+two people change things at once, both changes are kept; if they changed the
+very same thing, the one who saved second is told and sees the other's version.
+The header says **Saved on the house computer**, or that it can't reach it.
+
+Passwords are checked by the server, and the household's default-password
+pattern in `dist/local-config.js` never leaves the house computer. Admins can
+change anything; everyone else can only mark chores done, and the server
+enforces that too.
+
+**First time on the house computer:** sign in as Kim or Michael in the browser
+you have always used for the House Manual (at `http://localhost:8347/`). The app
+offers to move that browser's data into the shared copy; say yes. It asks once per
+browser; after that (or if you said no), **Actions → Move this browser's old data
+in** does it, in any browser that still has data from before. On any other
+device, or to start again from a file, use **Actions → Restore file**: on the
+home server it replaces the shared copy for everyone.
+
+### Without the home server
+
+Opened any other way (`.\serve.ps1`, `python -m http.server`, a copy of the
+files), the app works as before: each browser keeps its own data in
+`localStorage` and nothing is shared. `serve.ps1` is a dependency-free static
+server built on the .NET `HttpListener`:
 
 | Switch | Purpose |
 | --- | --- |
@@ -37,17 +82,14 @@ Useful switches:
 | `-Root .` | Serve the whole project rather than just `dist`. |
 | `-NoBrowser` | Don't auto-open a browser. |
 
-Node, Python and Git are installed now, so `npx serve dist` or
-`python -m http.server` work too — `serve.ps1` just needs nothing at all.
-
 **Serve it over HTTP — don't open `dist/index.html` directly.** `localStorage` is
-scoped per origin, and `file://` origins handle it unreliably. Your saved review
-would come and go.
+scoped per origin, and `file://` origins handle it unreliably.
 
 ## Load your saved data
 
-The app starts empty. To load a snapshot, choose **Actions → Restore file** in the
-header and pick a file from `restore\`.
+To load a snapshot, choose **Actions → Restore file** in the header and pick a
+file from `restore\`. On the home server this replaces the shared copy for every
+device.
 
 `restore\house-manual-review-2026-10-04-assignments-only.json` holds only the
 chore assignments from the Oct 4, 11:08 AM backup (before any auto-assign).
@@ -56,9 +98,6 @@ else (chores marked done, sign-ins, calendar moves, awards). The tracked baselin
 `house-manual-review-2026-09-19.json`; the later dated files are your own exports
 (git ignores them).
 
-Because `localStorage` is per-origin, you need to do this once per port you serve
-from. Stick to the default port and it's a one-time step.
-
 ## What's here
 
 | Path | What it is |
@@ -66,7 +105,9 @@ from. Stick to the default port and it's a one-time step.
 | `dist/` | The running app — `index.html`, `styles.css`, `app.js`, `data.js`. |
 | `restore/` | Your data snapshot, extracted verbatim from the backup document. |
 | `.openai/hosting.json` | Original hosting config, kept for provenance only. |
-| `serve.ps1` | The local static server. |
+| `server/server.js` | The home server: serves the app to the home network and keeps the shared data. |
+| `data/` | The shared data, sign-ins and backups (on the house computer only; git ignores it). |
+| `serve.ps1` | A browser-only static server, for running without the home server. |
 | `start-house-manual.ps1` | What the desktop shortcut runs. |
 | `start-house-manual.cmd` | Same thing, for double-clicking from Explorer. |
 | `assets/house-manual.ico` | The shortcut's icon, matching the app's favicon. |
@@ -129,14 +170,15 @@ Nine views, switched by the tabs under the header (admins see all of them). Ther
 toggled panels.
 
 - **Home** — the "100-Acre Wood" dashboard with a single task-allocation pie and table.
-- **Room-by-room review** — 26 sections, grouped by frequency (most frequent
+- **Gallery** (formerly *Room-by-room review*) — every chore, in 26 rooms and areas
+  listed down the left, grouped by frequency (most frequent
   first). Per task you set a decision (Keep / Remove), new owners, notes, and the
   *assignable* and *paid* flags. The gold **+** button in the bottom right adds a
   task to any room; only the title and cadence are required.
   Edits here wait for you: Keep / Remove, new owners, notes, the *assignable*,
   *paid* and *standing* boxes, and removing or restoring a subtask are held as
   unsaved changes. A gold bar at the top says how many chores have them, each
-  changed card is marked *Unsaved*, and the tab reads "Room-by-room review
+  changed card is marked *Unsaved*, and the tab reads "Gallery
   (N unsaved)". **Submit changes** saves them all at once and **Discard** throws
   them away. They survive switching rooms or tabs. Signing out or reloading
   asks first. Adding a subtask, splitting one off or moving it back, deleting a
@@ -153,10 +195,41 @@ toggled panels.
   note:") moved into it once, marked done.
   Ticking **One-off** in the **+** form makes an ephemeral task instead: pick
   one or more days and at least one owner, and it sits on just those days on
-  those people's calendars. It has no cadence, never appears in the room view,
+  those people's calendars. It has no cadence, never appears in the Gallery,
   on the Assignments board or in a parking lot, and is never reassigned. On
   the Calendar it carries a *One-off* tag; tap it to mark it done, move it to
   another day, or (admins) delete it. One-offs are saved in `extras.oneOffs`.
+  Any chore with a cadence can have a **Start on** date: in the **+** form, or
+  on its card in the Gallery (where it waits for **Submit changes** like other
+  edits). The chore first appears on its owners' calendars that day and repeats
+  from there, with nothing before it; a chore done several times a week keeps
+  its spacing from that day. Clear the date to go back to the automatic
+  schedule. A day chosen on the Calendar (**Every time from now**) still wins.
+  Standing items have no days on the calendar, so the field is off for them.
+  It is saved as `startOn` on the task.
+  A chore's **Cadence** is editable on its card too (main chores and subtasks;
+  a room's weekly chore takes its cadence from its parts). Pick one from the
+  dropdown, or **Other…** to type any wording ("Every Saturday" reads as weekly,
+  "Every other Saturday" as every 2 weeks); the hint says how the app reads it (weekly, monthly,
+  or a standing item with no set days) and what it was. It waits for **Submit
+  changes**; then the chore moves to its new frequency group, joins or leaves
+  its room's weekly chore, and the calendar follows. Clear the field to go back
+  to the original. It is saved as `cadence` on the task; the catalog is not
+  changed.
+  **Rename** next to a chore's name (main chores and subtasks; not a room's
+  weekly chore, which is named after the room) turns it into a text box: Enter
+  or clicking away keeps the new name, Esc cancels, and a blank box puts the
+  original back. It waits for **Submit changes**; then the new name is used
+  everywhere (the Calendar, Assignments, Tasks by owner, the PDF), with "was …"
+  under it in the Gallery. Saved as `title` on the task; the catalog is not
+  changed.
+  **Estimated time** (each time) is a choice on every card and in the **+**
+  form (5 minutes to 4 hours). Once set, it shows on the Calendar: on the week
+  view's chips, the day view's cards (and each person's total), Standing Items
+  and the chore's details. Without one, the Calendar shows no time and the
+  details say it isn't set yet; the app still guesses one for balancing
+  workloads (the card says what it guesses). A chore with subtasks shows a time
+  once every part has one. Saved as `effort` on the task.
 - **Tasks by owner** — the same tasks regrouped by resolved owner.
 - **Assignments** — one column per person with their chores, and a **parking
   lot** of chores waiting for an owner. See below.
@@ -189,8 +262,13 @@ toggled panels.
 
 ### Assignments
 
-Every chore is on the board. It sits under its New owner, or under the catalog
-owner when no New owner is set. Those catalog-owned cards say *catalog owner*.
+Every chore is on the board, under the people ticked in its owner boxes in the
+Gallery. Those boxes are the only word on who owns a chore: each chore's boxes
+were ticked once from the owner the catalog names (`ownerSet` on the task), and
+a chore added to the catalog later gets the same the first time an admin loads
+the app. Clearing every box means nobody owns it, and it waits in the parking
+lot. The Gallery card's **Current owner** shows the owners from the last
+submitted boxes, with the catalog's original wording underneath as a note.
 "Each child" chores sit under all three kids and "Everyone" chores under all
 five. That rule lives in one place, `ownersFor()` in `dist/app.js`, and Home,
 Tasks by owner, the board and the Calendar all use it, so their per-person
@@ -204,6 +282,14 @@ when nobody owns it at all. Removed tasks and award-only tasks are left off.
   *back to the parking lot*. Doing that to a catalog-owned chore sets its New
   owner. Taking the last owner off marks it assignable, so it
   lands back in the lot rather than disappearing.
+- **Keeping Oliver and Ephraim even.** The Paid tab of the parking lot shows each
+  one's paid work in estimated time a month. **Balance Oliver & Ephraim** moves
+  (or swaps) the fewest paid jobs either could do to bring them as close as
+  possible, shows the before, after and every move to confirm, and leaves an
+  **Undo** on the board. Jobs they share and adults-only jobs aren't moved. It
+  uses each chore's estimated time where one is set, so set times and balance
+  again. A single week can still lean one way (monthly jobs bunch up); it is
+  the monthly total that's kept even.
 - **Paid chores** (those marked *Paid item*) have a blue edge and a *Paid* label,
   here and on the Calendar. The parking lot has two tabs, **Chores** and
   **Paid**, each with its count. Auto-assign hands out only the tab that is
@@ -292,6 +378,25 @@ is filtered to, or the chore's only owner; otherwise a **Who did it?** picker
 asks. The month view shows a ✓ count on each day. Completions are saved in
 `extras.completions` and travel with **Save file**.
 
+A chore with more than one owner ("Each child" chores like *Shower*, or one two
+kids share) has a check **for each owner**: Ephraim checking his off leaves
+Brighton's and Oliver's open. Narrowed to one person, or in a person's group on
+the day view or Standing Items, the check is theirs. Seen as Everyone, it shows
+"2 of 3 done · Brighton, Ephraim" until everyone's is done, and tapping it asks
+only about the owners who haven't. Each owner's check is saved as
+`task|part|date|Person`; a check saved before this (under the plain key) counts
+only for whoever made it.
+
+**Home → Overdue** keeps the same kind of tally for what's late, right now: the
+total and its estimated time, a bar per person with their count and time, the
+overdue chores oldest first (who, how many days late), and a 7-day table of how
+many went overdue each day. It is the same rule as the red *Overdue* chips on
+the Calendar: a chore's day has passed and it isn't marked done (daily routines
+and standing items aside), and a shared chore counts for each owner who hasn't
+done theirs. Both count only from the day the household first marked a chore
+done (nothing was tracked before that), and the tally looks back at most 4
+weeks. A kid sees only their own.
+
 **Home → Chores done** shows any day (‹ › to step, **Back to today**): the
 total, a bar per person with their count and estimated time, a timed list of
 what was done, and the last seven days per person. A completion counts on the
@@ -302,7 +407,7 @@ day it was marked done.
 A trigger chore has two steps for two people. The first step is scheduled like
 any chore but only shows on the first person's calendar. The day they mark it
 done, the second step appears on the second person's list, and it stays on their
-today list ("Waiting since …") until it is marked done. In the room view it is
+today list ("Waiting since …") until it is marked done. In the Gallery it is
 marked *Trigger · Kim, then Michael*.
 
 *Kimberly + Michael laundry* (`task-181`) is the first: Kim washes and dries,
@@ -315,7 +420,7 @@ is defined by a `trigger` block on the task in `dist/data.js` (`first`,
 The board works like Assignments, but soft skills have no cadence, so auto-assign
 balances them by count, and a shared skill counts in full for each person.
 Add one with the form at the top. A task also shows up here, marked *Soft
-skill* in the room view, when its notes include `#softskill` (or `#soft-skill`) or
+skill* in the Gallery, when its notes include `#softskill` (or `#soft-skill`) or
 say in words that it should be a soft skill. The task itself stays a chore.
 
 ### Awards
@@ -324,7 +429,7 @@ Award types (name, points, description) are tapped onto a person to log points.
 **Something else** gives a one-off award that isn't on the list. Totals show this
 month and all time; **History** can remove an entry given by mistake. Edit or add
 types under **Edit the award list**. A task linked to an award, like *Spills,
-stains, and pet messes*, shows an award badge in the room view and stays off the
+stains, and pet messes*, shows an award badge in the Gallery and stays off the
 assignment board. Points are recognition only; nothing here moves money.
 
 ### Checklists
@@ -357,7 +462,7 @@ and left out of its day, week, month, quarter and year counts.
   closet floor, Holiday planning, the seven *Assess/reorder … products* chores,
   and Kimberly + Michael laundry. Shopping-day chores (grocery list, the
   before-shopping fridge reset) stay on the calendar.
-- **The Standing item switch** on every chore (room view, subtask cards, and the
+- **The Standing item switch** on every chore (Gallery, subtask cards, and the
   + form) moves a chore in or out; a change is saved in `extras.standing` and
   travels with **Save file**. It's locked on for chores with no cadence and off
   for a room's weekly chore. A standing item is never part of a room's weekly
@@ -372,7 +477,7 @@ A chore can hold other chores as **subtasks**. A subtask is not a chore of its
 own: it is left out of the room list, Tasks by owner, Assignments, the Calendar,
 Home and the review count, and shown only inside its main chore, under
 **Subtasks**, with its cadence and estimated monthly time. Click the main chore
-(room view, Assignments card, Calendar details, My chores) to see them.
+(Gallery, Assignments card, Calendar details, My chores) to see them.
 
 The main chore's time is all its subtasks' monthly time added up (plus its own,
 if it states an effort), spread over its own cadence. A quarterly subtask adds
@@ -398,7 +503,7 @@ chore of its own.
   `rebuildSections()` in `dist/app.js`; each weekly chore's id is
   `weekly-<section id>`, and its owner, notes and the rest are saved and backed
   up like any chore.
-- **In the room view**, a main chore's **Subtasks** open into full cards: notes,
+- **In the Gallery**, a main chore's **Subtasks** open into full cards: notes,
   **Paid item**, and **Remove** (for catalog chores; **Show removed** lists them
   with **Restore**) or **Delete** (for ones added in the app). A form at the
   bottom adds a new subtask (a blank cadence means the main chore's). Everywhere

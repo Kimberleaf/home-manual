@@ -1,46 +1,39 @@
 <#
 .SYNOPSIS
-  What the desktop shortcut runs: opens the House Manual, starting the server
-  only if it is not already up.
+  What the desktop shortcut runs: starts the House Manual home server and
+  opens the app.
 
 .DESCRIPTION
-  Double-clicking twice should not leave two servers running. If the port is
-  already serving the app, this just opens a browser at it. Otherwise it hands
-  off to serve.ps1, which holds this window for as long as the server runs.
+  Runs server/server.js with Node.js. The server serves the app to every
+  device on the home network and keeps the one shared copy of the data in
+  data/. If it is already running, this just opens a browser at it.
 
-  Closing this window stops the server.
+  Closing this window stops the app for everyone.
+
+.EXAMPLE
+  .\start-house-manual.ps1
+  .\start-house-manual.ps1 -NoOpen      # start without opening a browser
 #>
 [CmdletBinding()]
-param([int]$Port = 8347)
+param(
+    [int]$Port = 8347,
+    [switch]$NoOpen
+)
 
 $ErrorActionPreference = 'Stop'
 $here = if ($PSScriptRoot) { $PSScriptRoot } else { Split-Path -Parent $MyInvocation.MyCommand.Path }
-$url = "http://localhost:$Port/"
+$server = Join-Path $here 'server\server.js'
 
-function Test-AlreadyServing {
-    try {
-        $request = [System.Net.HttpWebRequest]::Create($url)
-        $request.Timeout = 1200
-        $request.Method = 'GET'
-        $response = $request.GetResponse()
-        $reader = New-Object System.IO.StreamReader($response.GetResponseStream())
-        $body = $reader.ReadToEnd()
-        $reader.Close(); $response.Close()
-        # Make sure it is this app and not some other project on the same port.
-        return $body -match '<title>House Manual Review</title>'
-    } catch {
-        return $false
-    }
+$node = Get-Command node -ErrorAction SilentlyContinue
+if (-not $node) {
+    Write-Host ""
+    Write-Host "  Node.js isn't installed (or isn't on PATH). Install it from https://nodejs.org," -ForegroundColor Yellow
+    Write-Host "  or run .\serve.ps1 for the browser-only version (no shared data)."
+    Write-Host ""
+    Read-Host "  Press Enter to close"
+    exit 1
 }
 
-if (Test-AlreadyServing) {
-    Write-Host ""
-    Write-Host "  House Manual is already running at $url" -ForegroundColor Cyan
-    Write-Host "  Opening it in your browser."
-    Write-Host ""
-    Start-Process $url
-    Start-Sleep -Seconds 2
-    exit 0
-}
-
-& (Join-Path $here 'serve.ps1') -Port $Port
+$arguments = @($server, '--port', $Port)
+if ($NoOpen) { $arguments += '--no-open' }
+& $node.Source @arguments

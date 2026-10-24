@@ -438,3 +438,110 @@ separate port, starting from the 2026-10-04 export as version 1 browser data.
 | With the local config: default usernames and passwords sign in exactly as before | Pass |
 | Without it: usernames fall back to first names, no default password works, the sign-in screen explains how to set it up, and a password an admin set still works | Pass |
 | No tracked file contains the family name or the password pattern | Pass |
+
+## Home server: one shared copy on the home network (2026-10-17)
+
+Run against a throwaway data folder (`--data`) on test ports, never the real `data/`.
+
+| Check | Result |
+| --- | --- |
+| `/api/status` reports the server; wrong password and no sign-in get 401; the default sign-ins from `dist/local-config.js` work | Pass |
+| The page is sent `local-config.js` with the family name only, never the password pattern | Pass |
+| A browser holding the old data: Kim signs in, is asked once, and its 313 records move into the shared copy (`initialized`) | Pass |
+| A password hash in an imported file moves into `data/accounts.json`; devices only see `hasPassword`; `household.json` holds no hash | Pass |
+| A member (Oliver) can only save chores marked done: his note edit is ignored, import and account changes get 403 | Pass |
+| Oliver marks a paid chore done in one tab; Kim's tab shows it done (and $0.83 earned) within about 5 seconds, without a reload | Pass |
+| Kim saves while Oliver's tab is a version behind: Oliver's next change is merged, and Kim's change and both of Oliver's survive | Pass |
+| Two admins change the same note at once: the second keeps the first's text and is told "their version was kept" | Pass |
+| A save that changes nothing keeps the version, so devices don't re-fetch | Pass |
+| Users tab: setting Ephraim's password goes through the server, which hashes it; the new password signs in; Back to default works; passwords under 8 characters are refused | Pass |
+| A reload keeps the tab signed in; Log out ends the session on the server and clears the household's data from the page | Pass |
+| 5 wrong passwords from one device lock it out for a minute (429); `..` paths can't reach `data/` (404) | Pass |
+| Served as plain files (`python -m http.server`), the app falls back to browser-only storage and signs in as before | Pass |
+| Only console error: the expected 409 from the clash test | Pass |
+| Fix: the offer to move old browser data comes at an admin's first sign-in in that browser even when another device already saved to the shared copy; declining leaves **Actions → Move this browser's old data in**, which replaces the shared copy with it | Pass |
+| Fix: the server answers on IPv6 too (`[::1]`), so `localhost` works whichever the browser tries first | Pass |
+
+## Start on a date (2026-10-18)
+
+Run on the home server against a throwaway data folder loaded with the Oct 12 save.
+
+| Check | Result |
+| --- | --- |
+| Room view: *Room reset/tidy* (each child) set to start Wed Oct 21: staged ("Unsaved changes on 1 chore"), saved as `startOn` on Submit, hint changes | Pass |
+| Calendar for Oliver: nothing the week of Oct 11; Wed 21; Wed 28. Brighton's calendar shows Wed 21 too. Detail: "Every Wednesday (from its start date)" and "Starts Wednesday, October 21, 2026" | Pass |
+| **+** form: Start on shows for a regular task and hides for a one-off; a weekly task for Ephraim starting Tue Oct 20 lands on Tue 20; the toast names the start day | Pass |
+| A 2-3x a week task for Brighton starting Thu Oct 22: Thu 22, Sat 24; then Mon 26, Thu 29, Sat 31; nothing the week before | Pass |
+| Clearing the date and submitting puts the chore back on its automatic days (in the week of Oct 11 again) | Pass |
+| A standing item's Start on is switched off with "Standing items have no days on the calendar"; no console errors | Pass |
+
+## Editable cadence; the page is now Gallery (2026-10-18)
+
+Run on the home server against a throwaway data folder loaded with the Oct 12 save.
+
+| Check | Result |
+| --- | --- |
+| The tab reads **Gallery** ("Gallery (1 unsaved)" with a pending edit); the eyebrow, Export PDF, the calendar and board "Open in Gallery" buttons and the PDF cover use the new name | Pass |
+| *Room reset/tidy*: Cadence shows "Weekly / as needed", hint "Reads as: weekly"; typing "Monthly" updates the hint to "monthly · was …"; the change is staged, then on Submit saved as `cadence` and the card moves from Weekly to Monthly | Pass |
+| Oliver's calendar over 8 weeks shows it twice (about monthly) | Pass |
+| A part of Kitchen (weekly) set to Quarterly leaves the weekly chore (4 parts to 3) and becomes its own card under Quarterly; clearing the field restores the original wording and puts it back; the override is saved as blank | Pass |
+| A room's weekly chore has no Cadence field of its own; no console errors | Pass |
+
+## Fix: a shared chore's done check is per person (2026-10-18)
+
+The bug: *Shower* (each child) checked off by Ephraim showed as done on Brighton's calendar too. Run on the home server against a throwaway copy of the Oct 12 save.
+
+| Check | Result |
+| --- | --- |
+| Calendar on Ephraim: checking Shower on Sun 18 marks it done for him; on Brighton and Oliver it stays open; saved as `task-299|0|2026-10-18|Ephraim` | Pass |
+| Everyone: the chip reads "1 of 3 done · Ephraim" and isn't marked done; later "2 of 3 done · Brighton, Ephraim" | Pass |
+| Tapping it in Everyone asks only about the owner who hasn't (Oliver); then "Done · everyone" | Pass |
+| A check saved the old way (plain key, by Ephraim) shows done for Ephraim only; undoing it from his calendar removes it | Pass |
+| Day view for Everyone: checking the Shower in Ephraim's group marks only his; Brighton's and Oliver's stay open | Pass |
+| No console errors | Pass |
+
+## Owner boxes are the only word on ownership (2026-10-18)
+
+| Check | Result |
+| --- | --- |
+| The Oct 12 save in the previous version (a0d2704) and this one give identical Home totals: Kim 91, Ephraim 63, Oliver 60, Michael 57, Brighton 19, Open 8, "Person responsible…" 1 | Pass |
+| 268 chores with no owner boxes get them ticked from the catalog (`ownerSet`): e.g. *Basic personal hygiene* → everyone, *Room reset/tidy* and *Shower* → the three kids; parking-lot and removed chores are left alone | Pass |
+| Gallery cards: *Active laundry moved forward* reads "Current owner: Kim, Brighton" with "Catalog: Kimberly for everyone's laundry…" underneath, and those boxes ticked; *Pinto basic care* → Kim, Michael, Brighton | Pass |
+| Unticking *Check Prisma email* leaves "Current owner: Ephraim" until Submit; then "Open — needs an owner", with no fall back to the catalog, still so after a reload | Pass |
+| No console errors (the 404s are the plain test server answering `/api/status`, which is how the app knows it is not on the home server) | Pass |
+
+## Rename a chore in the Gallery (2026-10-18)
+
+| Check | Result |
+| --- | --- |
+| **Rename** on *Check Prisma email and messages* opens a focused text box with the name; Enter stages "Check Prisma inbox and messages" (1 unsaved), shown with "was …" | Pass |
+| Submit saves it as `title`; Tasks by owner, Assignments and the Calendar show the new name, and the old one is gone | Pass |
+| A Kitchen (weekly) subtask renamed to "Fridge reset before shopping" stays in its open panel; Esc on a second rename leaves it unchanged; a blank name puts the original back and leaves nothing pending | Pass |
+| A room's weekly chore has no Rename; no console errors (the 404s are the plain test server answering `/api/status`) | Pass |
+
+## Paid balance and estimated time (2026-10-18)
+
+Run on a throwaway copy of the live shared data (version 20) in browser-only mode; the scratch copy was deleted afterwards.
+
+| Check | Result |
+| --- | --- |
+| Live data before: Oliver 35 paid jobs ≈ 15.6 h/mo, Ephraim 38 ≈ 18.1 h/mo (6 shared); the Paid tab reads "Oliver ≈ 14 h/mo · Ephraim ≈ 16 h/mo" (shared jobs half each) | Pass |
+| **Balance Oliver & Ephraim** proposes 3 moves (Inside microwave and Cabinet exteriors to Oliver, Wipe/clean front door to Ephraim) for ≈ 15 h/mo each; after confirming it reads "(even)" and the button is off | Pass |
+| **Undo** puts the three back; balancing again gives the same result | Pass |
+| Gallery: *Shower* hint "Not set (the app guesses ≈ 15 min…)"; choosing 15 min is staged and saved as `effort` | Pass |
+| Calendar week for Oliver: only the 4 Shower chips show a time (15 min), the other 62 none; details show "15 min each time" or "Not set yet. Admins can add it in the Gallery." | Pass |
+| Day view: the Shower card reads "Every other day · 15 min"; others show no time; Oliver's header totals only set times ("4 chores · 15 min"); no console errors | Pass |
+
+## Overdue on Home; cadence dropdown fix (2026-10-18)
+
+Run on a throwaway copy of the live shared data in browser-only mode; the copy was deleted afterwards.
+
+| Check | Result |
+| --- | --- |
+| Live data has one completion, today: Overdue reads "Nothing overdue", counted from Sun, Oct 18; the Calendar has no red chips (before this, 339 chores going back 4 weeks counted as overdue, from before anyone tracked them) | Pass |
+| With tracking started Oct 12: 60 overdue (≈ 23 h): Kim 14, Michael 6, Brighton 7, Oliver 16, Ephraim 12; list oldest first ("Mon, Oct 12 · Brighton · Shower · 6 days late · ≈ 15 min"); 7-day table totals 12 11 16 7 9 5; the Calendar's red chips start Oct 12 | Pass |
+| Simulated Oliver: "Your overdue chores", only his 16, one bar and one table row | Pass |
+| Phone width: each overdue row puts the chore on its own line; no sideways scroll | Pass |
+| Bug: the Gallery's cadence box only suggested wording matching what was already in it. Now a dropdown: the original ("Weekly / as needed (original)"), the usual cadences, and **Other…** which opens a box to type in | Pass |
+| Picking Monthly stages it; picking the original again leaves nothing pending; Every 2 weeks submitted moves the chore to that group | Pass |
+| "Every Saturday" reads as weekly and "Every other Saturday" as every 2 weeks; no console errors | Pass |

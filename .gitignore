@@ -24,3 +24,6 @@ dist/local-config.js
 
 # Local Claude Code preview config.
 .claude/
+
+# The home server's shared data, sign-ins and backups (server/server.js).
+data/

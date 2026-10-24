@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="An interactive room-by-room household task review and reassignment workbook.">
+  <meta name="description" content="The household's chore gallery: every chore, room by room, with assignments, a calendar and more.">
   <meta name="theme-color" content="#173a3d">
   <title>House Manual Review</title>
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23173a3d'/%3E%3Cpath d='M15 31 32 17l17 14v20H37V39H27v12H15Z' fill='%23f7f4eb'/%3E%3C/svg%3E">
@@ -36,7 +36,8 @@
         <div class="menu-panel">
           <button class="menu-item" id="saveFileButton" type="button">Save file<small>Download a backup of everything</small></button>
           <button class="menu-item" id="restoreFileButton" type="button">Restore file…<small>Load a backup into this browser</small></button>
-          <button class="menu-item" id="printButton" type="button">Export PDF<small>Print the room-by-room review</small></button>
+          <button class="menu-item" id="moveOldDataButton" type="button" hidden>Move this browser's old data in<small>Copy what this browser kept before the house computer did</small></button>
+          <button class="menu-item" id="printButton" type="button">Export PDF<small>Print the gallery, room by room</small></button>
         </div>
       </details>
       <input id="restoreFileInput" type="file" accept="application/json,.json" hidden>
@@ -62,7 +63,7 @@
   </div>
   <nav class="feature-tabs" aria-label="Features">
     <button type="button" data-view="home" aria-current="page">Home</button>
-    <button type="button" data-view="review" data-admin-only>Room-by-room review</button>
+    <button type="button" data-view="review" data-admin-only>Gallery</button>
     <button type="button" data-view="owners" id="ownersTab">Tasks by owner</button>
     <button type="button" data-view="assign" data-admin-only>Assignments</button>
     <button type="button" data-view="calendar">Calendar</button>
@@ -102,6 +103,20 @@
       <div class="allocation-table-wrap"><table class="allocation-table done-week" id="doneWeek"></table></div>
       <p class="allocation-note">Counts chores marked done on the Calendar, on the day they were marked. Mark chores done with the round check on each one.</p>
       <div id="homeEarnings" hidden></div>
+    </section>
+    <section class="allocation-widget done-widget overdue-widget" aria-labelledby="overdueTitle">
+      <div class="done-head">
+        <h3 id="overdueTitle">Overdue</h3>
+        <p class="overdue-window" id="overdueWindow"></p>
+      </div>
+      <div class="done-layout">
+        <div class="done-hero"><strong id="overdueTotal">0</strong><span id="overdueSummary">chores overdue</span></div>
+        <div class="done-bars" id="overdueBars" role="list" aria-label="Overdue chores by person"></div>
+      </div>
+      <div id="overdueList"></div>
+      <h4 class="done-subhead">Gone overdue, last 7 days</h4>
+      <div class="allocation-table-wrap"><table class="allocation-table done-week" id="overdueWeek"></table></div>
+      <p class="allocation-note">A chore is overdue once its day has passed and it isn't marked done; the daily routines and standing items are left out. A chore with several owners counts for each owner who hasn't done theirs. Times are estimates. The 7-day table counts chores by the day they were due.</p>
     </section>
   </section>
   <section id="ownersView" class="feature-view" hidden>
@@ -200,7 +215,7 @@
         </div>
       </div>
       <div class="workspace-intro">
-        <p class="eyebrow">Choose one decision per task</p>
+        <p class="eyebrow">Gallery · every chore, room by room</p>
         <h2 id="sectionTitle">Daily / ongoing routines</h2>
         <p id="sectionMeta">Loading tasks...</p>
         <button class="button button-quiet button-small next-ai-note" id="nextAiNote" type="button" data-admin-only hidden title="Go to the next chore with an AI note that is not marked done">AI notes to do</button>
@@ -216,7 +231,7 @@
         <p id="addTaskHint">Only the title and cadence are required.</p>
       </header>
       <div class="dialog-grid">
-        <label class="paid-option span-2 one-off-option"><input type="checkbox" name="oneOff" id="addTaskOneOff"><span>One-off</span><small>Just on the day(s) you pick, for the owners you tick. Never in the room view, never repeats, never in a parking lot.</small></label>
+        <label class="paid-option span-2 one-off-option"><input type="checkbox" name="oneOff" id="addTaskOneOff"><span>One-off</span><small>Just on the day(s) you pick, for the owners you tick. Never in the Gallery, never repeats, never in a parking lot.</small></label>
         <label class="span-2"><span class="field-label">Title *</span><input class="text-input" name="title" required pattern=".*\S.*" placeholder="e.g. Wipe down light switches"></label>
         <div class="span-2 one-off-only" id="oneOffDays">
           <span class="field-label">Day(s) *</span>
@@ -225,17 +240,24 @@
         </div>
         <label class="not-one-off"><span class="field-label">Cadence *</span><input class="text-input" name="cadence" required pattern=".*\S.*" list="cadenceOptions" placeholder="e.g. Weekly"></label>
         <label><span class="field-label">Room</span><select class="owner-select" name="sectionId" id="addTaskRoom"></select></label>
+        <label class="not-one-off"><span class="field-label">Start on (optional)</span><input class="text-input" type="date" name="startOn"><small class="field-help">The first day it shows on its owners' calendars; it repeats from there.</small></label>
         <label class="span-2"><span class="field-label">Standard / description</span><textarea class="notes-input dialog-textarea" name="standard" placeholder="What done looks like"></textarea></label>
         <div class="span-2"><span class="field-label">Owners<span class="one-off-only"> *</span></span><div class="owner-picks" id="addTaskOwners" role="group" aria-label="Owners for the new task"></div></div>
-        <label><span class="field-label">Effort each time</span>
+        <label><span class="field-label">Estimated time</span>
           <select class="owner-select" name="effort">
-            <option value="">Not sure (estimate it)</option>
-            <option value="5">Quick, about 5 minutes</option>
-            <option value="15">Short, about 15 minutes</option>
-            <option value="30">Medium, about 30 minutes</option>
-            <option value="60">Long, about an hour</option>
-            <option value="120">Big, 2 hours or more</option>
-          </select></label>
+            <option value="">Not set</option>
+            <option value="5">5 min</option>
+            <option value="10">10 min</option>
+            <option value="15">15 min</option>
+            <option value="20">20 min</option>
+            <option value="30">30 min</option>
+            <option value="45">45 min</option>
+            <option value="60">1.0 h</option>
+            <option value="90">1.5 h</option>
+            <option value="120">2.0 h</option>
+            <option value="180">3.0 h</option>
+            <option value="240">4.0 h</option>
+          </select><small class="field-help">Each time. Shown on the calendar.</small></label>
         <div class="dialog-flags not-one-off">
           <label class="paid-option"><input type="checkbox" name="assignable"><span>Mark assignable</span></label>
           <label class="paid-option"><input type="checkbox" name="paid"><span>Paid item</span></label>

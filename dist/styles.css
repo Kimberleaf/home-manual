@@ -778,3 +778,33 @@ abbr.room-tag { text-decoration: underline dotted; text-decoration-thickness: 1p
 @media (max-width: 720px) {
   .earnings-row { grid-template-columns: 74px minmax(60px, 1fr) auto; }
 }
+.start-on { display: grid; gap: 4px; align-content: start; }
+.start-on small { color: var(--muted); font-size: .76rem; line-height: 1.3; }
+.start-on input:disabled { opacity: .55; }
+.cadence-field { display: grid; gap: 4px; align-content: start; }
+.cadence-field small { color: var(--muted); font-size: .76rem; line-height: 1.3; }
+.subtask-controls .cadence-field { flex: 1 1 180px; }
+.catalog-owner { margin: 4px 0 0; color: var(--muted); font-size: .76rem; line-height: 1.35; }
+.rename-chip { margin-left: 4px; padding: 1px 8px; border: 1px solid var(--line); border-radius: 999px; color: var(--deep-2); background: white; font-size: .72rem; font-weight: 700; vertical-align: middle; cursor: pointer; }
+.rename-chip:hover { border-color: var(--deep-2); }
+.rename-chip:focus-visible { outline: 3px solid var(--gold); outline-offset: 2px; }
+.rename-input { display: inline-block; width: min(100%, 420px); padding: 4px 8px; font: inherit; font-weight: 700; vertical-align: middle; }
+.renamed-from { display: block; margin-top: 2px; color: var(--muted); font-size: .76rem; font-weight: 500; }
+.effort-field { display: grid; gap: 4px; align-content: start; }
+.effort-field small { color: var(--muted); font-size: .76rem; line-height: 1.3; }
+.subtask-controls .effort-field { flex: 1 1 150px; }
+.cal-chip-time { color: var(--deep-2); font-size: .7rem; font-weight: 750; }
+.muted-note { color: var(--muted); }
+.paid-balance { margin-bottom: 6px; }
+/* Home: chores overdue */
+.overdue-widget .done-bar { background: var(--overdue); }
+.overdue-widget .done-hero strong { color: var(--overdue-ink); }
+.overdue-window { margin: 0; color: var(--muted); font-size: .86rem; }
+.overdue-list li { grid-template-columns: 110px 90px minmax(0, 1fr); }
+.overdue-list small { color: var(--muted); }
+@media (max-width: 720px) {
+  .overdue-list li { grid-template-columns: auto minmax(0, 1fr); }
+  .overdue-list li > span { grid-column: 1 / -1; }
+}
+.cadence-field label { display: grid; gap: 4px; }
+.cadence-field .cadence-custom { margin-top: 2px; }

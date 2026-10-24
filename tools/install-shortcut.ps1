@@ -5,12 +5,14 @@
 .DESCRIPTION
   Points at start-house-manual.ps1 via powershell.exe, so a double-click starts
   the server and opens the app. Re-run this any time to recreate or repair the
-  shortcut. Use -StartMenu to add one to the Start Menu as well, and -Remove to
-  take them away again.
+  shortcut. Use -StartMenu to add one to the Start Menu as well, -Startup to
+  start the home server (minimized) every time you sign in to Windows, and
+  -Remove to take them away again.
 
 .EXAMPLE
   .\tools\install-shortcut.ps1
   .\tools\install-shortcut.ps1 -StartMenu
+  .\tools\install-shortcut.ps1 -Startup
   .\tools\install-shortcut.ps1 -Remove
 #>
 [CmdletBinding()]
@@ -18,6 +20,7 @@ param(
     [string]$Name = 'House Manual',
     [int]$Port = 8347,
     [switch]$StartMenu,
+    [switch]$Startup,
     [switch]$Remove
 )
 
@@ -40,6 +43,7 @@ if ($StartMenu) {
 }
 
 if ($Remove) {
+    $targets += [System.IO.Path]::Combine([Environment]::GetFolderPath('Startup'), "$Name server.lnk")
     foreach ($t in $targets) {
         if (Test-Path $t) { Remove-Item $t -Force; Write-Host "  Removed $t" }
         else { Write-Host "  Not present: $t" }
@@ -63,6 +67,22 @@ foreach ($target in $targets) {
     $link.WindowStyle = 1
     $link.Save()
     Write-Host "  Created $target" -ForegroundColor Green
+}
+
+if ($Startup) {
+    # Starts the home server, minimized and without opening a browser, every
+    # time you sign in to Windows.
+    $startupDir = [Environment]::GetFolderPath('Startup')
+    $target = [System.IO.Path]::Combine($startupDir, "$Name server.lnk")
+    $link = $shell.CreateShortcut($target)
+    $link.TargetPath = $powershell
+    $link.Arguments = "-NoProfile -ExecutionPolicy Bypass -File `"$launcher`" -Port $Port -NoOpen"
+    $link.WorkingDirectory = $project
+    $link.IconLocation = "$icon,0"
+    $link.Description = 'Start the House Manual home server when you sign in'
+    $link.WindowStyle = 7
+    $link.Save()
+    Write-Host "  Created $target (starts the server minimized when you sign in)" -ForegroundColor Green
 }
 
 [Runtime.InteropServices.Marshal]::ReleaseComObject($shell) | Out-Null
