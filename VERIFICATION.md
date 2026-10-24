@@ -545,3 +545,13 @@ Run on a throwaway copy of the live shared data in browser-only mode; the copy w
 | Bug: the Gallery's cadence box only suggested wording matching what was already in it. Now a dropdown: the original ("Weekly / as needed (original)"), the usual cadences, and **Other…** which opens a box to type in | Pass |
 | Picking Monthly stages it; picking the original again leaves nothing pending; Every 2 weeks submitted moves the chore to that group | Pass |
 | "Every Saturday" reads as weekly and "Every other Saturday" as every 2 weeks; no console errors | Pass |
+
+## Kids' bedroom chores under the deep clean (2026-10-24)
+
+Run on a throwaway copy of the live shared data on the home server (test port); the copy was deleted afterwards.
+
+| Check | Result |
+| --- | --- |
+| Kids' bedrooms lists 10 chores (was 20): Kids' laundry, Weekly bedroom deep clean, personal-care products, the two removed ones and the five paid ones | Pass |
+| The deep clean's Subtasks hold the 10 room-cleaning chores, each with its own cadence (bedding keeps its Gallery cadence, Monthly): "≈ 1.3 h each time · ≈ 5.7 h/mo in all" | Pass |
+| Tasks by owner: the 10 show only inside Oliver's and Ephraim's deep clean; Brighton drops from 17 to 15 (vacuum, organize) and Kimberly no longer has bedding or organize | Pass |

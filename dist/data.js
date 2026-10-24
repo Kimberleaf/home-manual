@@ -2174,6 +2174,7 @@ window.HOUSE_MANUAL_DATA = {
         },
         {
           "id": "task-224",
+          "parent": "task-300",
           "frequency": "Weekly",
           "title": "Room reset/tidy",
           "cadence": "Weekly / as needed",
@@ -2197,6 +2198,7 @@ window.HOUSE_MANUAL_DATA = {
         },
         {
           "id": "task-225",
+          "parent": "task-300",
           "frequency": "Every 2 weeks",
           "title": "Vacuum carpet",
           "cadence": "Every 2 weeks",
@@ -2206,6 +2208,7 @@ window.HOUSE_MANUAL_DATA = {
         },
         {
           "id": "task-226",
+          "parent": "task-300",
           "frequency": "Weekly",
           "title": "Dust furniture/shelves/desks/nightstands",
           "cadence": "Weekly / every 2 weeks",
@@ -2215,6 +2218,7 @@ window.HOUSE_MANUAL_DATA = {
         },
         {
           "id": "task-227",
+          "parent": "task-300",
           "frequency": "Every 2-3 weeks",
           "title": "Kids' bedding wash/change",
           "cadence": "Every 2 weeks / sooner if needed",
@@ -2242,6 +2246,7 @@ window.HOUSE_MANUAL_DATA = {
         },
         {
           "id": "task-230",
+          "parent": "task-300",
           "frequency": "Monthly",
           "title": "Under bed",
           "cadence": "Monthly",
@@ -2270,6 +2275,7 @@ window.HOUSE_MANUAL_DATA = {
         },
         {
           "id": "task-233",
+          "parent": "task-300",
           "frequency": "Monthly",
           "title": "Organize needed areas",
           "cadence": "Monthly / as needed",
@@ -2279,6 +2285,7 @@ window.HOUSE_MANUAL_DATA = {
         },
         {
           "id": "task-234",
+          "parent": "task-300",
           "frequency": "Every 2 months",
           "title": "Light fixture",
           "cadence": "Every 2 months",
@@ -2288,6 +2295,7 @@ window.HOUSE_MANUAL_DATA = {
         },
         {
           "id": "task-235",
+          "parent": "task-300",
           "frequency": "Every 2 months",
           "title": "Pictures/wall hangings",
           "cadence": "Every 2 months",
@@ -2297,6 +2305,7 @@ window.HOUSE_MANUAL_DATA = {
         },
         {
           "id": "task-236",
+          "parent": "task-300",
           "frequency": "Every 2 months",
           "title": "Vents",
           "cadence": "Every 2 months",
@@ -2306,6 +2315,7 @@ window.HOUSE_MANUAL_DATA = {
         },
         {
           "id": "task-237",
+          "parent": "task-300",
           "frequency": "Every 2 months",
           "title": "Fan",
           "cadence": "Every 2 months, if applicable",

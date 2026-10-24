@@ -504,6 +504,11 @@ chore of its own.
   `rebuildSections()` in `dist/app.js`; each weekly chore's id is
   `weekly-<section id>`, and its owner, notes and the rest are saved and backed
   up like any chore.
+- **Kids' bedrooms.** The room-cleaning chores (room reset, vacuuming, dusting,
+  bedding, under the bed, organizing, light fixture, pictures, vents and fan) are
+  subtasks of *Weekly bedroom deep clean*, set with `"parent": "task-300"` in
+  `dist/data.js`. Its owners (Oliver and Ephraim) do them; the paid ones
+  (baseboards, door, walls, windows, blinds) stay chores of their own.
 - **In the Gallery**, a main chore's **Subtasks** open into full cards: notes,
   **Paid item**, and **Remove** (for catalog chores; **Show removed** lists them
   with **Restore**) or **Delete** (for ones added in the app). A form at the
