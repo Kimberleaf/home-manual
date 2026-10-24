@@ -1,0 +1,2303 @@
+{
+  "format": "house-manual-review-backup",
+  "version": 2,
+  "exportedAt": "2026-10-12T18:39:46.456Z",
+  "activeSection": "section-20",
+  "tasks": {
+    "task-1": {
+      "decision": "keep",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-2": {
+      "decision": "keep",
+      "newOwner": "",
+      "notes": "AI, make a new entry in category for bringing down laundry to be done and to put up their clean laundry. Owener should be Oliver and Ephraim. ",
+      "assignable": false,
+      "paid": false
+    },
+    "task-3": {
+      "decision": "keep",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-4": {
+      "decision": "keep",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-5": {
+      "decision": "keep",
+      "newOwner": "Oliver, Ephraim",
+      "notes": "AI, change this to be Eph and Oliver ensuring laundry goes in their laundry basket",
+      "assignable": false,
+      "paid": false
+    },
+    "task-296": {
+      "decision": "",
+      "newOwner": "Oliver, Ephraim",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-6": {
+      "decision": "keep",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-7": {
+      "decision": "keep",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-8": {
+      "decision": "keep",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-9": {
+      "decision": "keep",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-10": {
+      "decision": "keep",
+      "newOwner": "Everyone",
+      "notes": "We need a system to be able to allocate this. ",
+      "assignable": false,
+      "paid": false
+    },
+    "task-11": {
+      "decision": "keep",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-12": {
+      "decision": "keep",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-13": {
+      "decision": "keep",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-14": {
+      "decision": "keep",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-15": {
+      "decision": "keep",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-16": {
+      "decision": "keep",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-17": {
+      "decision": "keep",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-18": {
+      "decision": "",
+      "newOwner": "Brighton",
+      "notes": "",
+      "assignable": true,
+      "paid": false
+    },
+    "task-19": {
+      "decision": "keep",
+      "newOwner": "Oliver",
+      "notes": "",
+      "assignable": true,
+      "paid": true
+    },
+    "task-20": {
+      "decision": "keep",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-21": {
+      "decision": "keep",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-22": {
+      "decision": "",
+      "newOwner": "Ephraim",
+      "notes": "",
+      "assignable": true,
+      "paid": true
+    },
+    "task-23": {
+      "decision": "keep",
+      "newOwner": "Oliver",
+      "notes": "",
+      "assignable": true,
+      "paid": true
+    },
+    "task-24": {
+      "decision": "keep",
+      "newOwner": "Brighton",
+      "notes": "",
+      "assignable": true,
+      "paid": false
+    },
+    "task-25": {
+      "decision": "keep",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-26": {
+      "decision": "keep",
+      "newOwner": "Michael",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-27": {
+      "decision": "",
+      "newOwner": "Oliver",
+      "notes": "",
+      "assignable": true,
+      "paid": true
+    },
+    "task-28": {
+      "decision": "keep",
+      "newOwner": "",
+      "notes": "",
+      "assignable": true,
+      "paid": true
+    },
+    "task-29": {
+      "decision": "",
+      "newOwner": "Ephraim",
+      "notes": "",
+      "assignable": true,
+      "paid": true
+    },
+    "task-30": {
+      "decision": "keep",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-31": {
+      "decision": "keep",
+      "newOwner": "Michael",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-32": {
+      "decision": "keep",
+      "newOwner": "Oliver",
+      "notes": "",
+      "assignable": true,
+      "paid": true
+    },
+    "task-33": {
+      "decision": "keep",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-34": {
+      "decision": "keep",
+      "newOwner": "Ephraim",
+      "notes": "",
+      "assignable": true,
+      "paid": true
+    },
+    "task-35": {
+      "decision": "keep",
+      "newOwner": "Oliver",
+      "notes": "",
+      "assignable": true,
+      "paid": true
+    },
+    "task-36": {
+      "decision": "keep",
+      "newOwner": "Oliver",
+      "notes": "",
+      "assignable": true,
+      "paid": true
+    },
+    "task-37": {
+      "decision": "keep",
+      "newOwner": "Ephraim",
+      "notes": "",
+      "assignable": true,
+      "paid": true
+    },
+    "task-38": {
+      "decision": "keep",
+      "newOwner": "Oliver",
+      "notes": "",
+      "assignable": true,
+      "paid": true
+    },
+    "task-39": {
+      "decision": "keep",
+      "newOwner": "Ephraim",
+      "notes": "",
+      "assignable": true,
+      "paid": true
+    },
+    "task-40": {
+      "decision": "keep",
+      "newOwner": "Oliver",
+      "notes": "",
+      "assignable": true,
+      "paid": true
+    },
+    "task-41": {
+      "decision": "keep",
+      "newOwner": "Ephraim",
+      "notes": "",
+      "assignable": true,
+      "paid": true
+    },
+    "task-42": {
+      "decision": "keep",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-43": {
+      "decision": "keep",
+      "newOwner": "Brighton",
+      "notes": "",
+      "assignable": true,
+      "paid": false
+    },
+    "task-44": {
+      "decision": "keep",
+      "newOwner": "Ephraim",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-45": {
+      "decision": "keep",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-46": {
+      "decision": "keep",
+      "newOwner": "Ephraim",
+      "notes": "",
+      "assignable": true,
+      "paid": true
+    },
+    "task-47": {
+      "decision": "keep",
+      "newOwner": "Ephraim",
+      "notes": "",
+      "assignable": true,
+      "paid": true
+    },
+    "task-48": {
+      "decision": "keep",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-49": {
+      "decision": "keep",
+      "newOwner": "Michael",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-50": {
+      "decision": "keep",
+      "newOwner": "Ephraim",
+      "notes": "",
+      "assignable": true,
+      "paid": true
+    },
+    "task-51": {
+      "decision": "keep",
+      "newOwner": "Oliver",
+      "notes": "AI note: Add 'dusting' to item name",
+      "assignable": true,
+      "paid": true
+    },
+    "task-52": {
+      "decision": "keep",
+      "newOwner": "Ephraim",
+      "notes": "",
+      "assignable": true,
+      "paid": true
+    },
+    "task-53": {
+      "decision": "keep",
+      "newOwner": "Oliver",
+      "notes": "",
+      "assignable": true,
+      "paid": true
+    },
+    "task-54": {
+      "decision": "keep",
+      "newOwner": "Ephraim",
+      "notes": "",
+      "assignable": true,
+      "paid": true
+    },
+    "task-55": {
+      "decision": "keep",
+      "newOwner": "Ephraim",
+      "notes": "",
+      "assignable": true,
+      "paid": true
+    },
+    "task-56": {
+      "decision": "keep",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-57": {
+      "decision": "keep",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-58": {
+      "decision": "remove",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-59": {
+      "decision": "keep",
+      "newOwner": "Brighton",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-60": {
+      "decision": "keep",
+      "newOwner": "Michael",
+      "notes": "",
+      "assignable": true,
+      "paid": false
+    },
+    "task-61": {
+      "decision": "keep",
+      "newOwner": "Oliver",
+      "notes": "",
+      "assignable": true,
+      "paid": true
+    },
+    "task-62": {
+      "decision": "keep",
+      "newOwner": "Ephraim",
+      "notes": "",
+      "assignable": true,
+      "paid": true
+    },
+    "task-63": {
+      "decision": "keep",
+      "newOwner": "Oliver",
+      "notes": "",
+      "assignable": true,
+      "paid": true
+    },
+    "task-64": {
+      "decision": "keep",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-65": {
+      "decision": "keep",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-66": {
+      "decision": "keep",
+      "newOwner": "Ephraim",
+      "notes": "",
+      "assignable": true,
+      "paid": true
+    },
+    "task-67": {
+      "decision": "keep",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-68": {
+      "decision": "keep",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-69": {
+      "decision": "keep",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-70": {
+      "decision": "keep",
+      "newOwner": "Oliver",
+      "notes": "Dust and clean",
+      "assignable": true,
+      "paid": true
+    },
+    "task-71": {
+      "decision": "remove",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-72": {
+      "decision": "keep",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-73": {
+      "decision": "keep",
+      "newOwner": "Ephraim",
+      "notes": "",
+      "assignable": true,
+      "paid": true
+    },
+    "task-74": {
+      "decision": "keep",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-75": {
+      "decision": "keep",
+      "newOwner": "Oliver",
+      "notes": "",
+      "assignable": true,
+      "paid": true
+    },
+    "task-76": {
+      "decision": "keep",
+      "newOwner": "Ephraim",
+      "notes": "",
+      "assignable": true,
+      "paid": true
+    },
+    "task-77": {
+      "decision": "keep",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-78": {
+      "decision": "keep",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-79": {
+      "decision": "keep",
+      "newOwner": "Ephraim",
+      "notes": "",
+      "assignable": true,
+      "paid": true
+    },
+    "task-80": {
+      "decision": "keep",
+      "newOwner": "Oliver",
+      "notes": "",
+      "assignable": true,
+      "paid": true
+    },
+    "task-81": {
+      "decision": "keep",
+      "newOwner": "Oliver",
+      "notes": "",
+      "assignable": true,
+      "paid": true
+    },
+    "task-82": {
+      "decision": "keep",
+      "newOwner": "Ephraim",
+      "notes": "",
+      "assignable": true,
+      "paid": true
+    },
+    "task-83": {
+      "decision": "keep",
+      "newOwner": "Oliver",
+      "notes": "",
+      "assignable": true,
+      "paid": true
+    },
+    "task-84": {
+      "decision": "keep",
+      "newOwner": "Ephraim",
+      "notes": "",
+      "assignable": true,
+      "paid": true
+    },
+    "task-85": {
+      "decision": "keep",
+      "newOwner": "",
+      "notes": "Frontdoor and water mat",
+      "assignable": false,
+      "paid": false
+    },
+    "task-86": {
+      "decision": "keep",
+      "newOwner": "Ephraim",
+      "notes": "",
+      "assignable": true,
+      "paid": true
+    },
+    "task-87": {
+      "decision": "keep",
+      "newOwner": "Oliver",
+      "notes": "",
+      "assignable": true,
+      "paid": true
+    },
+    "task-88": {
+      "decision": "keep",
+      "newOwner": "Oliver",
+      "notes": "",
+      "assignable": true,
+      "paid": true
+    },
+    "task-89": {
+      "decision": "keep",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-90": {
+      "decision": "keep",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-91": {
+      "decision": "keep",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-92": {
+      "decision": "remove",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-93": {
+      "decision": "keep",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-94": {
+      "decision": "remove",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-95": {
+      "decision": "keep",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-96": {
+      "decision": "remove",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-97": {
+      "decision": "remove",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-98": {
+      "decision": "keep",
+      "newOwner": "Brighton",
+      "notes": "",
+      "assignable": true,
+      "paid": false
+    },
+    "task-99": {
+      "decision": "keep",
+      "newOwner": "Oliver",
+      "notes": "",
+      "assignable": true,
+      "paid": true
+    },
+    "task-100": {
+      "decision": "remove",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-101": {
+      "decision": "keep",
+      "newOwner": "Ephraim",
+      "notes": "",
+      "assignable": true,
+      "paid": true
+    },
+    "task-102": {
+      "decision": "keep",
+      "newOwner": "Kimberly",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-103": {
+      "decision": "keep",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-104": {
+      "decision": "keep",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-105": {
+      "decision": "keep",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-106": {
+      "decision": "keep",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-107": {
+      "decision": "keep",
+      "newOwner": "Oliver",
+      "notes": "",
+      "assignable": true,
+      "paid": true
+    },
+    "task-108": {
+      "decision": "keep",
+      "newOwner": "Ephraim",
+      "notes": "",
+      "assignable": true,
+      "paid": true
+    },
+    "task-109": {
+      "decision": "keep",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-110": {
+      "decision": "keep",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-111": {
+      "decision": "keep",
+      "newOwner": "Oliver",
+      "notes": "",
+      "assignable": true,
+      "paid": false
+    },
+    "task-112": {
+      "decision": "keep",
+      "newOwner": "Oliver",
+      "notes": "",
+      "assignable": true,
+      "paid": true
+    },
+    "task-113": {
+      "decision": "keep",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-114": {
+      "decision": "keep",
+      "newOwner": "Oliver",
+      "notes": "",
+      "assignable": true,
+      "paid": true
+    },
+    "task-115": {
+      "decision": "keep",
+      "newOwner": "Oliver",
+      "notes": "",
+      "assignable": true,
+      "paid": true
+    },
+    "task-116": {
+      "decision": "keep",
+      "newOwner": "Michael",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-117": {
+      "decision": "keep",
+      "newOwner": "Oliver",
+      "notes": "",
+      "assignable": true,
+      "paid": true
+    },
+    "task-118": {
+      "decision": "keep",
+      "newOwner": "Ephraim",
+      "notes": "",
+      "assignable": true,
+      "paid": true
+    },
+    "task-119": {
+      "decision": "keep",
+      "newOwner": "Ephraim",
+      "notes": "",
+      "assignable": true,
+      "paid": true
+    },
+    "task-120": {
+      "decision": "keep",
+      "newOwner": "Oliver",
+      "notes": "",
+      "assignable": true,
+      "paid": true
+    },
+    "task-121": {
+      "decision": "keep",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-122": {
+      "decision": "keep",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-123": {
+      "decision": "keep",
+      "newOwner": "Oliver",
+      "notes": "",
+      "assignable": true,
+      "paid": true
+    },
+    "task-124": {
+      "decision": "keep",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": true
+    },
+    "task-125": {
+      "decision": "keep",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-126": {
+      "decision": "keep",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-127": {
+      "decision": "keep",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-128": {
+      "decision": "keep",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-129": {
+      "decision": "keep",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-130": {
+      "decision": "keep",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-131": {
+      "decision": "keep",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-132": {
+      "decision": "keep",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-133": {
+      "decision": "keep",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-134": {
+      "decision": "keep",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-135": {
+      "decision": "keep",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-136": {
+      "decision": "keep",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-137": {
+      "decision": "keep",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-138": {
+      "decision": "keep",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-139": {
+      "decision": "keep",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-140": {
+      "decision": "keep",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-141": {
+      "decision": "keep",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-142": {
+      "decision": "keep",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-143": {
+      "decision": "keep",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-144": {
+      "decision": "keep",
+      "newOwner": "Ephraim",
+      "notes": "",
+      "assignable": true,
+      "paid": true
+    },
+    "task-145": {
+      "decision": "keep",
+      "newOwner": "Oliver",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-146": {
+      "decision": "keep",
+      "newOwner": "Michael",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-147": {
+      "decision": "keep",
+      "newOwner": "Oliver",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-148": {
+      "decision": "keep",
+      "newOwner": "Ephraim",
+      "notes": "",
+      "assignable": true,
+      "paid": true
+    },
+    "task-149": {
+      "decision": "keep",
+      "newOwner": "Ephraim",
+      "notes": "",
+      "assignable": true,
+      "paid": true
+    },
+    "task-150": {
+      "decision": "keep",
+      "newOwner": "Oliver",
+      "notes": "",
+      "assignable": true,
+      "paid": true
+    },
+    "task-151": {
+      "decision": "keep",
+      "newOwner": "Ephraim",
+      "notes": "",
+      "assignable": true,
+      "paid": true
+    },
+    "task-152": {
+      "decision": "keep",
+      "newOwner": "Oliver",
+      "notes": "",
+      "assignable": true,
+      "paid": true
+    },
+    "task-153": {
+      "decision": "keep",
+      "newOwner": "Ephraim",
+      "notes": "",
+      "assignable": true,
+      "paid": true
+    },
+    "task-154": {
+      "decision": "keep",
+      "newOwner": "Oliver",
+      "notes": "",
+      "assignable": true,
+      "paid": true
+    },
+    "task-155": {
+      "decision": "keep",
+      "newOwner": "Brighton",
+      "notes": "",
+      "assignable": true,
+      "paid": false
+    },
+    "task-156": {
+      "decision": "keep",
+      "newOwner": "Brighton",
+      "notes": "",
+      "assignable": true,
+      "paid": false
+    },
+    "task-157": {
+      "decision": "keep",
+      "newOwner": "",
+      "notes": "",
+      "assignable": true,
+      "paid": false
+    },
+    "task-158": {
+      "decision": "keep",
+      "newOwner": "",
+      "notes": "",
+      "assignable": true,
+      "paid": false
+    },
+    "task-159": {
+      "decision": "keep",
+      "newOwner": "",
+      "notes": "",
+      "assignable": true,
+      "paid": false
+    },
+    "task-160": {
+      "decision": "keep",
+      "newOwner": "",
+      "notes": "",
+      "assignable": true,
+      "paid": false
+    },
+    "task-161": {
+      "decision": "keep",
+      "newOwner": "",
+      "notes": "",
+      "assignable": true,
+      "paid": false
+    },
+    "task-162": {
+      "decision": "keep",
+      "newOwner": "Kimberly",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-163": {
+      "decision": "keep",
+      "newOwner": "",
+      "notes": "",
+      "assignable": true,
+      "paid": false
+    },
+    "task-164": {
+      "decision": "keep",
+      "newOwner": "",
+      "notes": "",
+      "assignable": true,
+      "paid": false
+    },
+    "task-165": {
+      "decision": "keep",
+      "newOwner": "Kimberly",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-166": {
+      "decision": "keep",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-167": {
+      "decision": "keep",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-168": {
+      "decision": "keep",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-169": {
+      "decision": "keep",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-170": {
+      "decision": "keep",
+      "newOwner": "",
+      "notes": "",
+      "assignable": true,
+      "paid": true
+    },
+    "task-171": {
+      "decision": "remove",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-172": {
+      "decision": "keep",
+      "newOwner": "Kimberly",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-173": {
+      "decision": "keep",
+      "newOwner": "Kimberly",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-174": {
+      "decision": "keep",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-175": {
+      "decision": "keep",
+      "newOwner": "Michael",
+      "notes": "",
+      "assignable": true,
+      "paid": false
+    },
+    "task-176": {
+      "decision": "keep",
+      "newOwner": "Michael",
+      "notes": "",
+      "assignable": true,
+      "paid": false
+    },
+    "task-177": {
+      "decision": "keep",
+      "newOwner": "Michael",
+      "notes": "",
+      "assignable": true,
+      "paid": false
+    },
+    "task-178": {
+      "decision": "keep",
+      "newOwner": "Michael",
+      "notes": "",
+      "assignable": true,
+      "paid": false
+    },
+    "task-179": {
+      "decision": "keep",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-180": {
+      "decision": "keep",
+      "newOwner": "Michael",
+      "notes": "",
+      "assignable": true,
+      "paid": false
+    },
+    "task-181": {
+      "decision": "keep",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-182": {
+      "decision": "keep",
+      "newOwner": "Michael",
+      "notes": "",
+      "assignable": true,
+      "paid": false
+    },
+    "task-183": {
+      "decision": "keep",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-184": {
+      "decision": "keep",
+      "newOwner": "Michael",
+      "notes": "",
+      "assignable": true,
+      "paid": false
+    },
+    "task-185": {
+      "decision": "keep",
+      "newOwner": "Michael",
+      "notes": "",
+      "assignable": true,
+      "paid": false
+    },
+    "task-186": {
+      "decision": "keep",
+      "newOwner": "Michael",
+      "notes": "",
+      "assignable": true,
+      "paid": false
+    },
+    "task-187": {
+      "decision": "keep",
+      "newOwner": "Michael",
+      "notes": "",
+      "assignable": true,
+      "paid": false
+    },
+    "task-188": {
+      "decision": "keep",
+      "newOwner": "Michael",
+      "notes": "",
+      "assignable": true,
+      "paid": false
+    },
+    "task-189": {
+      "decision": "keep",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-190": {
+      "decision": "keep",
+      "newOwner": "Michael",
+      "notes": "",
+      "assignable": true,
+      "paid": false
+    },
+    "task-191": {
+      "decision": "remove",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-192": {
+      "decision": "remove",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-193": {
+      "decision": "keep",
+      "newOwner": "Michael",
+      "notes": "",
+      "assignable": true,
+      "paid": false
+    },
+    "task-194": {
+      "decision": "keep",
+      "newOwner": "Michael",
+      "notes": "",
+      "assignable": true,
+      "paid": false
+    },
+    "task-195": {
+      "decision": "keep",
+      "newOwner": "Michael",
+      "notes": "",
+      "assignable": true,
+      "paid": false
+    },
+    "task-196": {
+      "decision": "keep",
+      "newOwner": "Michael",
+      "notes": "",
+      "assignable": true,
+      "paid": false
+    },
+    "task-197": {
+      "decision": "keep",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-198": {
+      "decision": "keep",
+      "newOwner": "Michael",
+      "notes": "",
+      "assignable": true,
+      "paid": false
+    },
+    "task-199": {
+      "decision": "keep",
+      "newOwner": "Michael",
+      "notes": "",
+      "assignable": true,
+      "paid": false
+    },
+    "task-200": {
+      "decision": "keep",
+      "newOwner": "Michael",
+      "notes": "",
+      "assignable": true,
+      "paid": false
+    },
+    "task-201": {
+      "decision": "keep",
+      "newOwner": "Michael",
+      "notes": "",
+      "assignable": true,
+      "paid": false
+    },
+    "task-202": {
+      "decision": "keep",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-203": {
+      "decision": "keep",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-204": {
+      "decision": "keep",
+      "newOwner": "Michael",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-205": {
+      "decision": "keep",
+      "newOwner": "Michael",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-206": {
+      "decision": "keep",
+      "newOwner": "Michael",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-207": {
+      "decision": "keep",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-208": {
+      "decision": "keep",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-209": {
+      "decision": "keep",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-210": {
+      "decision": "keep",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-211": {
+      "decision": "keep",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-212": {
+      "decision": "",
+      "newOwner": "Michael",
+      "notes": "",
+      "assignable": true,
+      "paid": false
+    },
+    "task-213": {
+      "decision": "keep",
+      "newOwner": "Michael",
+      "notes": "",
+      "assignable": true,
+      "paid": false
+    },
+    "task-214": {
+      "decision": "keep",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-215": {
+      "decision": "keep",
+      "newOwner": "Michael",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-216": {
+      "decision": "keep",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-217": {
+      "decision": "keep",
+      "newOwner": "Michael",
+      "notes": "",
+      "assignable": true,
+      "paid": false
+    },
+    "task-218": {
+      "decision": "keep",
+      "newOwner": "Michael",
+      "notes": "",
+      "assignable": true,
+      "paid": false
+    },
+    "task-219": {
+      "decision": "keep",
+      "newOwner": "Michael",
+      "notes": "",
+      "assignable": true,
+      "paid": false
+    },
+    "task-220": {
+      "decision": "keep",
+      "newOwner": "Michael",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-221": {
+      "decision": "keep",
+      "newOwner": "Michael",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-222": {
+      "decision": "keep",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-223": {
+      "decision": "keep",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-224": {
+      "decision": "keep",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-225": {
+      "decision": "keep",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-226": {
+      "decision": "keep",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-227": {
+      "decision": "keep",
+      "newOwner": "Kimberly, Oliver, Ephraim",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-228": {
+      "decision": "keep",
+      "newOwner": "Oliver, Ephraim",
+      "notes": "",
+      "assignable": true,
+      "paid": true
+    },
+    "task-229": {
+      "decision": "remove",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-230": {
+      "decision": "keep",
+      "newOwner": "Oliver, Ephraim",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-231": {
+      "decision": "keep",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-232": {
+      "decision": "keep",
+      "newOwner": "Oliver, Ephraim",
+      "notes": "",
+      "assignable": true,
+      "paid": true
+    },
+    "task-233": {
+      "decision": "keep",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-234": {
+      "decision": "keep",
+      "newOwner": "Oliver, Ephraim",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-235": {
+      "decision": "keep",
+      "newOwner": "Oliver, Ephraim",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-236": {
+      "decision": "keep",
+      "newOwner": "Oliver, Ephraim",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-237": {
+      "decision": "keep",
+      "newOwner": "Oliver, Ephraim",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-238": {
+      "decision": "remove",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-239": {
+      "decision": "keep",
+      "newOwner": "Oliver, Ephraim",
+      "notes": "",
+      "assignable": true,
+      "paid": true
+    },
+    "task-240": {
+      "decision": "keep",
+      "newOwner": "Oliver, Ephraim",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-241": {
+      "decision": "keep",
+      "newOwner": "Oliver, Ephraim",
+      "notes": "",
+      "assignable": true,
+      "paid": true
+    },
+    "task-242": {
+      "decision": "keep",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-243": {
+      "decision": "keep",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-244": {
+      "decision": "keep",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-245": {
+      "decision": "keep",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-246": {
+      "decision": "keep",
+      "newOwner": "Ephraim",
+      "notes": "",
+      "assignable": true,
+      "paid": true
+    },
+    "task-247": {
+      "decision": "remove",
+      "newOwner": "Oliver",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-248": {
+      "decision": "keep",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-249": {
+      "decision": "keep",
+      "newOwner": "Kimberly, Brighton",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-250": {
+      "decision": "keep",
+      "newOwner": "Ephraim",
+      "notes": "",
+      "assignable": true,
+      "paid": true
+    },
+    "task-251": {
+      "decision": "remove",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-252": {
+      "decision": "remove",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-253": {
+      "decision": "keep",
+      "newOwner": "Oliver",
+      "notes": "",
+      "assignable": true,
+      "paid": true
+    },
+    "task-254": {
+      "decision": "keep",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-255": {
+      "decision": "keep",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-256": {
+      "decision": "keep",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-257": {
+      "decision": "keep",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-258": {
+      "decision": "keep",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-259": {
+      "decision": "keep",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-260": {
+      "decision": "keep",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-261": {
+      "decision": "keep",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-262": {
+      "decision": "keep",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-263": {
+      "decision": "keep",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-264": {
+      "decision": "keep",
+      "newOwner": "Kimberly, Michael",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-265": {
+      "decision": "keep",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-266": {
+      "decision": "keep",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-267": {
+      "decision": "keep",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-268": {
+      "decision": "keep",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-269": {
+      "decision": "keep",
+      "newOwner": "Kimberly, Michael",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-270": {
+      "decision": "keep",
+      "newOwner": "",
+      "notes": "Add: Brighton and Kimberly as owners and also add Ephraim because he has a pet now as well",
+      "assignable": false,
+      "paid": false
+    },
+    "task-271": {
+      "decision": "keep",
+      "newOwner": "Kimberly, Brighton",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-272": {
+      "decision": "keep",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-273": {
+      "decision": "keep",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-274": {
+      "decision": "keep",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-275": {
+      "decision": "keep",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-276": {
+      "decision": "keep",
+      "newOwner": "Michael",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-277": {
+      "decision": "keep",
+      "newOwner": "Michael",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-278": {
+      "decision": "keep",
+      "newOwner": "Michael",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-279": {
+      "decision": "keep",
+      "newOwner": "Michael",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-280": {
+      "decision": "keep",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-281": {
+      "decision": "keep",
+      "newOwner": "Michael",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-282": {
+      "decision": "keep",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-283": {
+      "decision": "keep",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-284": {
+      "decision": "keep",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-285": {
+      "decision": "keep",
+      "newOwner": "Oliver",
+      "notes": "",
+      "assignable": true,
+      "paid": false
+    },
+    "task-286": {
+      "decision": "remove",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-287": {
+      "decision": "remove",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-288": {
+      "decision": "keep",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-289": {
+      "decision": "keep",
+      "newOwner": "Brighton",
+      "notes": "",
+      "assignable": true,
+      "paid": false
+    },
+    "task-290": {
+      "decision": "remove",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-291": {
+      "decision": "",
+      "newOwner": "Ephraim",
+      "notes": "",
+      "assignable": true,
+      "paid": true
+    },
+    "task-292": {
+      "decision": "keep",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-293": {
+      "decision": "remove",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-294": {
+      "decision": "remove",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-295": {
+      "decision": "remove",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "weekly-section-2": {
+      "decision": "",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "weekly-section-3": {
+      "decision": "",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "weekly-section-4": {
+      "decision": "",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "weekly-section-5": {
+      "decision": "",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "weekly-section-6": {
+      "decision": "",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "weekly-section-7": {
+      "decision": "",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "weekly-section-8": {
+      "decision": "",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "weekly-section-9": {
+      "decision": "",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "weekly-section-10": {
+      "decision": "",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "weekly-section-11": {
+      "decision": "",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "weekly-section-12": {
+      "decision": "",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "weekly-section-13": {
+      "decision": "",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "weekly-section-14": {
+      "decision": "",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "weekly-section-15": {
+      "decision": "",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "weekly-section-16": {
+      "decision": "",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "weekly-section-17": {
+      "decision": "",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "weekly-section-19": {
+      "decision": "",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    }
+  },
+  "extras": {
+    "customTasks": [],
+    "parents": {},
+    "standing": {},
+    "standalone": {},
+    "softSkills": [
+      {
+        "id": "skill-tell-kim-when-low",
+        "title": "Tell Kim when something is low or needed",
+        "description": "When you notice something running low, or something the household needs, let Kimberly know so it gets on the list.",
+        "fromTask": "task-255"
+      },
+      {
+        "id": "skill-school-follow-up",
+        "title": "Follow up on school; don't re-review",
+        "description": "Kimberly does the weekly school review. Michael follows up on what she finds rather than reviewing it again.",
+        "fromTask": "task-257"
+      },
+      {
+        "id": "skill-own-supplies",
+        "title": "Keep an eye on supplies for the things you use",
+        "description": "Check the supplies for the things you use and flag what's running out, so the household inventory check isn't Kimberly's job alone.",
+        "fromTask": "task-259"
+      }
+    ],
+    "skillOwners": {
+      "skill-tell-kim-when-low": [
+        "Michael",
+        "Brighton",
+        "Oliver",
+        "Ephraim"
+      ],
+      "skill-school-follow-up": [
+        "Michael"
+      ],
+      "skill-own-supplies": [
+        "Michael",
+        "Brighton",
+        "Oliver",
+        "Ephraim"
+      ]
+    },
+    "awardTypes": [
+      {
+        "id": "award-spill",
+        "title": "Cleaned up a spill, stain, or pet mess",
+        "points": 5,
+        "description": "Handled a mess right away, especially one you didn't make.",
+        "taskId": "task-243"
+      },
+      {
+        "id": "award-not-yours",
+        "title": "Did a job that wasn't yours, unasked",
+        "points": 5,
+        "description": "Saw something that needed doing and just did it.",
+        "taskId": null
+      },
+      {
+        "id": "award-helped",
+        "title": "Helped someone finish their job",
+        "points": 5,
+        "description": "Pitched in so someone else could get done.",
+        "taskId": null
+      },
+      {
+        "id": "award-heads-up",
+        "title": "Gave a heads-up before something ran out or broke",
+        "points": 5,
+        "description": "Noticed early and told someone who could fix it.",
+        "taskId": null
+      }
+    ],
+    "awardLog": [],
+    "autoPools": {
+      "chores": [
+        "Kimberly",
+        "Ephraim"
+      ]
+    },
+    "calendar": {
+      "pins": {
+        "task-260": {
+          "0": "2026-10-13"
+        }
+      },
+      "moves": {}
+    },
+    "completions": {},
+    "users": {
+      "admins": [
+        "Michael",
+        "Kimberly"
+      ],
+      "lastLogin": {
+        "Michael": "2026-10-12T00:41:41.696Z",
+        "Kimberly": "2026-10-12T12:46:03.035Z"
+      },
+      "accounts": {}
+    },
+    "applied": [
+      "review-updates-2026-10",
+      "starter-skills-and-awards-2026-10"
+    ]
+  }
+}

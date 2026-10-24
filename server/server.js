@@ -8,7 +8,7 @@
 //   node server/server.js --no-open  start without opening a browser
 //   node server/server.js --port 9000
 //
-// What lives in data/ (git-ignored):
+// What lives in data/ (accounts.json and sessions.json are git-ignored):
 //   household.json   the shared data: review records (`tasks`) and `extras`
 //   accounts.json    password salts and hashes an admin has set
 //   sessions.json    who is signed in, by token, so a restart keeps them in

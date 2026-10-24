@@ -1,0 +1,2073 @@
+{
+  "format": "house-manual-review-backup",
+  "version": 1,
+  "exportedAt": "2026-09-20T00:13:22.043Z",
+  "activeSection": "section-2",
+  "tasks": {
+    "task-1": {
+      "decision": "keep",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-2": {
+      "decision": "keep",
+      "newOwner": "",
+      "notes": "AI, make a new entry in category for bringing down laundry to be done and to put up their clean laundry. Owener should be Oliver and Ephraim. ",
+      "assignable": false,
+      "paid": false
+    },
+    "task-3": {
+      "decision": "keep",
+      "newOwner": "",
+      "notes": "AI - this will need subtasks. Make a section where this will link to the list of items. Lets start with an item list containing items [deodorant, showers, washing hair, brushing teeth, cutting nails, changing clothes (especially underwear])",
+      "assignable": false,
+      "paid": false
+    },
+    "task-4": {
+      "decision": "keep",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-5": {
+      "decision": "change",
+      "newOwner": "",
+      "notes": "AI, change this to be Eph and Oliver ensuring laundry goes in their laundry basket",
+      "assignable": false,
+      "paid": false
+    },
+    "task-6": {
+      "decision": "keep",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-7": {
+      "decision": "keep",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-8": {
+      "decision": "keep",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-9": {
+      "decision": "keep",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-10": {
+      "decision": "keep",
+      "newOwner": "Everyone",
+      "notes": "We need a system to be able to allocate this. ",
+      "assignable": false,
+      "paid": false
+    },
+    "task-11": {
+      "decision": "keep",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-12": {
+      "decision": "keep",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-13": {
+      "decision": "keep",
+      "newOwner": "",
+      "notes": "AI -change this to monitoring and purchasing new filter and related tasks",
+      "assignable": false,
+      "paid": false
+    },
+    "task-14": {
+      "decision": "keep",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-15": {
+      "decision": "keep",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-16": {
+      "decision": "keep",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-17": {
+      "decision": "keep",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-18": {
+      "decision": "",
+      "newOwner": "",
+      "notes": "",
+      "assignable": true,
+      "paid": false
+    },
+    "task-19": {
+      "decision": "keep",
+      "newOwner": "",
+      "notes": "",
+      "assignable": true,
+      "paid": true
+    },
+    "task-20": {
+      "decision": "keep",
+      "newOwner": "",
+      "notes": "AI - Add this to the nightly kitchen counter task",
+      "assignable": false,
+      "paid": false
+    },
+    "task-21": {
+      "decision": "change",
+      "newOwner": "",
+      "notes": "AI - Add this to the nightly kitchen counter task",
+      "assignable": false,
+      "paid": false
+    },
+    "task-22": {
+      "decision": "",
+      "newOwner": "",
+      "notes": "",
+      "assignable": true,
+      "paid": true
+    },
+    "task-23": {
+      "decision": "",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-24": {
+      "decision": "",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-25": {
+      "decision": "",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-26": {
+      "decision": "",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-27": {
+      "decision": "",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-28": {
+      "decision": "",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-29": {
+      "decision": "",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-30": {
+      "decision": "",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-31": {
+      "decision": "",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-32": {
+      "decision": "",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-33": {
+      "decision": "",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-34": {
+      "decision": "",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-35": {
+      "decision": "",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-36": {
+      "decision": "",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-37": {
+      "decision": "",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-38": {
+      "decision": "",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-39": {
+      "decision": "",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-40": {
+      "decision": "",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-41": {
+      "decision": "",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-42": {
+      "decision": "",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-43": {
+      "decision": "",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-44": {
+      "decision": "",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-45": {
+      "decision": "",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-46": {
+      "decision": "",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-47": {
+      "decision": "",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-48": {
+      "decision": "",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-49": {
+      "decision": "",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-50": {
+      "decision": "",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-51": {
+      "decision": "",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-52": {
+      "decision": "",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-53": {
+      "decision": "",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-54": {
+      "decision": "",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-55": {
+      "decision": "",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-56": {
+      "decision": "",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-57": {
+      "decision": "",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-58": {
+      "decision": "",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-59": {
+      "decision": "",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-60": {
+      "decision": "",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-61": {
+      "decision": "",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-62": {
+      "decision": "",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-63": {
+      "decision": "",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-64": {
+      "decision": "",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-65": {
+      "decision": "",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-66": {
+      "decision": "",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-67": {
+      "decision": "",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-68": {
+      "decision": "",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-69": {
+      "decision": "",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-70": {
+      "decision": "",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-71": {
+      "decision": "",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-72": {
+      "decision": "",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-73": {
+      "decision": "",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-74": {
+      "decision": "",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-75": {
+      "decision": "",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-76": {
+      "decision": "",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-77": {
+      "decision": "",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-78": {
+      "decision": "",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-79": {
+      "decision": "",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-80": {
+      "decision": "",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-81": {
+      "decision": "",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-82": {
+      "decision": "",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-83": {
+      "decision": "",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-84": {
+      "decision": "",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-85": {
+      "decision": "",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-86": {
+      "decision": "",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-87": {
+      "decision": "",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-88": {
+      "decision": "",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-89": {
+      "decision": "",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-90": {
+      "decision": "",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-91": {
+      "decision": "",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-92": {
+      "decision": "",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-93": {
+      "decision": "",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-94": {
+      "decision": "",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-95": {
+      "decision": "",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-96": {
+      "decision": "",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-97": {
+      "decision": "",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-98": {
+      "decision": "",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-99": {
+      "decision": "",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-100": {
+      "decision": "",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-101": {
+      "decision": "",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-102": {
+      "decision": "",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-103": {
+      "decision": "",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-104": {
+      "decision": "",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-105": {
+      "decision": "",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-106": {
+      "decision": "",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-107": {
+      "decision": "",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-108": {
+      "decision": "",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-109": {
+      "decision": "",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-110": {
+      "decision": "",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-111": {
+      "decision": "",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-112": {
+      "decision": "",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-113": {
+      "decision": "",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-114": {
+      "decision": "",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-115": {
+      "decision": "",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-116": {
+      "decision": "",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-117": {
+      "decision": "",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-118": {
+      "decision": "",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-119": {
+      "decision": "",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-120": {
+      "decision": "",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-121": {
+      "decision": "",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-122": {
+      "decision": "",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-123": {
+      "decision": "",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-124": {
+      "decision": "",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-125": {
+      "decision": "",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-126": {
+      "decision": "",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-127": {
+      "decision": "",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-128": {
+      "decision": "",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-129": {
+      "decision": "",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-130": {
+      "decision": "",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-131": {
+      "decision": "",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-132": {
+      "decision": "",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-133": {
+      "decision": "",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-134": {
+      "decision": "",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-135": {
+      "decision": "",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-136": {
+      "decision": "",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-137": {
+      "decision": "",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-138": {
+      "decision": "",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-139": {
+      "decision": "",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-140": {
+      "decision": "",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-141": {
+      "decision": "",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-142": {
+      "decision": "",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-143": {
+      "decision": "",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-144": {
+      "decision": "",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-145": {
+      "decision": "",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-146": {
+      "decision": "",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-147": {
+      "decision": "",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-148": {
+      "decision": "",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-149": {
+      "decision": "",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-150": {
+      "decision": "",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-151": {
+      "decision": "",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-152": {
+      "decision": "",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-153": {
+      "decision": "",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-154": {
+      "decision": "",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-155": {
+      "decision": "",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-156": {
+      "decision": "",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-157": {
+      "decision": "",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-158": {
+      "decision": "",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-159": {
+      "decision": "",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-160": {
+      "decision": "",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-161": {
+      "decision": "",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-162": {
+      "decision": "",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-163": {
+      "decision": "",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-164": {
+      "decision": "",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-165": {
+      "decision": "",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-166": {
+      "decision": "",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-167": {
+      "decision": "",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-168": {
+      "decision": "",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-169": {
+      "decision": "",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-170": {
+      "decision": "",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-171": {
+      "decision": "",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-172": {
+      "decision": "",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-173": {
+      "decision": "",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-174": {
+      "decision": "",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-175": {
+      "decision": "",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-176": {
+      "decision": "",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-177": {
+      "decision": "",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-178": {
+      "decision": "",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-179": {
+      "decision": "",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-180": {
+      "decision": "",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-181": {
+      "decision": "",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-182": {
+      "decision": "",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-183": {
+      "decision": "",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-184": {
+      "decision": "",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-185": {
+      "decision": "",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-186": {
+      "decision": "",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-187": {
+      "decision": "",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-188": {
+      "decision": "",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-189": {
+      "decision": "",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-190": {
+      "decision": "",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-191": {
+      "decision": "",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-192": {
+      "decision": "",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-193": {
+      "decision": "",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-194": {
+      "decision": "",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-195": {
+      "decision": "",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-196": {
+      "decision": "",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-197": {
+      "decision": "",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-198": {
+      "decision": "",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-199": {
+      "decision": "",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-200": {
+      "decision": "",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-201": {
+      "decision": "",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-202": {
+      "decision": "",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-203": {
+      "decision": "",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-204": {
+      "decision": "",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-205": {
+      "decision": "",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-206": {
+      "decision": "",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-207": {
+      "decision": "",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-208": {
+      "decision": "",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-209": {
+      "decision": "",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-210": {
+      "decision": "",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-211": {
+      "decision": "",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-212": {
+      "decision": "",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-213": {
+      "decision": "",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-214": {
+      "decision": "",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-215": {
+      "decision": "",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-216": {
+      "decision": "",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-217": {
+      "decision": "",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-218": {
+      "decision": "",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-219": {
+      "decision": "",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-220": {
+      "decision": "",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-221": {
+      "decision": "",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-222": {
+      "decision": "",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-223": {
+      "decision": "",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-224": {
+      "decision": "",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-225": {
+      "decision": "",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-226": {
+      "decision": "",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-227": {
+      "decision": "",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-228": {
+      "decision": "",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-229": {
+      "decision": "",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-230": {
+      "decision": "",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-231": {
+      "decision": "",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-232": {
+      "decision": "",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-233": {
+      "decision": "",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-234": {
+      "decision": "",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-235": {
+      "decision": "",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-236": {
+      "decision": "",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-237": {
+      "decision": "",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-238": {
+      "decision": "",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-239": {
+      "decision": "",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-240": {
+      "decision": "",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-241": {
+      "decision": "",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-242": {
+      "decision": "",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-243": {
+      "decision": "",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-244": {
+      "decision": "",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-245": {
+      "decision": "",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-246": {
+      "decision": "",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-247": {
+      "decision": "",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-248": {
+      "decision": "",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-249": {
+      "decision": "",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-250": {
+      "decision": "",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-251": {
+      "decision": "",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-252": {
+      "decision": "",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-253": {
+      "decision": "",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-254": {
+      "decision": "",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-255": {
+      "decision": "",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-256": {
+      "decision": "",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-257": {
+      "decision": "",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-258": {
+      "decision": "",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-259": {
+      "decision": "",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-260": {
+      "decision": "",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-261": {
+      "decision": "",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-262": {
+      "decision": "",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-263": {
+      "decision": "",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-264": {
+      "decision": "",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-265": {
+      "decision": "",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-266": {
+      "decision": "",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-267": {
+      "decision": "",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-268": {
+      "decision": "",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-269": {
+      "decision": "",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-270": {
+      "decision": "",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-271": {
+      "decision": "",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-272": {
+      "decision": "",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-273": {
+      "decision": "",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-274": {
+      "decision": "",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-275": {
+      "decision": "",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-276": {
+      "decision": "",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-277": {
+      "decision": "",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-278": {
+      "decision": "",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-279": {
+      "decision": "",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-280": {
+      "decision": "",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-281": {
+      "decision": "",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-282": {
+      "decision": "",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-283": {
+      "decision": "",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-284": {
+      "decision": "",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-285": {
+      "decision": "",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-286": {
+      "decision": "",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-287": {
+      "decision": "",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-288": {
+      "decision": "",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-289": {
+      "decision": "",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-290": {
+      "decision": "",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-291": {
+      "decision": "",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-292": {
+      "decision": "",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-293": {
+      "decision": "",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-294": {
+      "decision": "",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    },
+    "task-295": {
+      "decision": "",
+      "newOwner": "",
+      "notes": "",
+      "assignable": false,
+      "paid": false
+    }
+  }
+}

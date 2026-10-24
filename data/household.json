@@ -1,0 +1,3823 @@
+{
+ "version": 37,
+ "initialized": true,
+ "updatedAt": "2026-10-24T18:32:28.106Z",
+ "tasks": {
+  "task-1": {
+   "decision": "keep",
+   "newOwner": "Kimberly, Michael, Brighton, Oliver, Ephraim",
+   "notes": "",
+   "assignable": false,
+   "paid": false,
+   "aiNote": "",
+   "aiDone": false,
+   "startOn": "",
+   "cadence": "",
+   "ownerSet": true
+  },
+  "task-2": {
+   "decision": "keep",
+   "newOwner": "Kimberly, Brighton",
+   "notes": "",
+   "assignable": false,
+   "paid": false,
+   "aiNote": "AI, make a new entry in category for bringing down laundry to be done and to put up their clean laundry. Owner should be Oliver and Ephraim. Remove Brighton",
+   "aiDone": true,
+   "startOn": "",
+   "cadence": "",
+   "ownerSet": true
+  },
+  "task-3": {
+   "decision": "keep",
+   "newOwner": "Kimberly, Michael, Brighton, Oliver, Ephraim",
+   "notes": "",
+   "assignable": false,
+   "paid": false,
+   "aiNote": "AI - this will need subtasks. Make a section where this will link to the list of items. Lets start with an item list containing items [deodorant, showers, washing hair, brushing teeth, cutting nails, changing clothes (especially underwear])",
+   "aiDone": true,
+   "startOn": "",
+   "cadence": "",
+   "ownerSet": true
+  },
+  "task-4": {
+   "decision": "keep",
+   "newOwner": "Kimberly",
+   "notes": "",
+   "assignable": false,
+   "paid": false,
+   "aiNote": "",
+   "aiDone": false,
+   "startOn": "",
+   "cadence": "",
+   "ownerSet": true
+  },
+  "task-5": {
+   "decision": "keep",
+   "newOwner": "Oliver, Ephraim",
+   "notes": "",
+   "assignable": false,
+   "paid": false,
+   "aiNote": "AI, change this to be Eph and Oliver ensuring laundry goes in their laundry basket",
+   "aiDone": true,
+   "startOn": "",
+   "cadence": "",
+   "ownerSet": true
+  },
+  "task-6": {
+   "decision": "keep",
+   "newOwner": "Kimberly, Michael, Brighton, Oliver, Ephraim",
+   "notes": "",
+   "assignable": false,
+   "paid": false,
+   "aiNote": "",
+   "aiDone": false,
+   "startOn": "",
+   "cadence": "",
+   "ownerSet": true
+  },
+  "task-7": {
+   "decision": "keep",
+   "newOwner": "Kimberly, Michael, Brighton",
+   "notes": "",
+   "assignable": false,
+   "paid": false,
+   "aiNote": "",
+   "aiDone": false,
+   "startOn": "",
+   "cadence": "",
+   "ownerSet": true
+  },
+  "task-8": {
+   "decision": "remove",
+   "newOwner": "",
+   "notes": "",
+   "assignable": false,
+   "paid": false
+  },
+  "task-9": {
+   "decision": "keep",
+   "newOwner": "Kimberly",
+   "notes": "",
+   "assignable": false,
+   "paid": false,
+   "aiNote": "",
+   "aiDone": false,
+   "startOn": "",
+   "cadence": "",
+   "ownerSet": true
+  },
+  "task-10": {
+   "decision": "keep",
+   "newOwner": "Everyone",
+   "notes": "We need a system to be able to allocate this. ",
+   "assignable": false,
+   "paid": false,
+   "aiNote": "",
+   "aiDone": false,
+   "startOn": "",
+   "cadence": "",
+   "ownerSet": true
+  },
+  "task-11": {
+   "decision": "keep",
+   "newOwner": "Kimberly",
+   "notes": "",
+   "assignable": false,
+   "paid": false,
+   "aiNote": "",
+   "aiDone": false,
+   "startOn": "",
+   "cadence": "",
+   "ownerSet": true
+  },
+  "task-12": {
+   "decision": "keep",
+   "newOwner": "Michael",
+   "notes": "",
+   "assignable": false,
+   "paid": false,
+   "aiNote": "",
+   "aiDone": false,
+   "startOn": "",
+   "cadence": "",
+   "ownerSet": true
+  },
+  "task-13": {
+   "decision": "keep",
+   "newOwner": "Kimberly",
+   "notes": "",
+   "assignable": false,
+   "paid": false,
+   "aiNote": "AI -change this to monitoring and purchasing new filter and related tasks",
+   "aiDone": true,
+   "startOn": "",
+   "cadence": "",
+   "ownerSet": true
+  },
+  "task-14": {
+   "decision": "keep",
+   "newOwner": "Michael",
+   "notes": "",
+   "assignable": false,
+   "paid": false,
+   "aiNote": "",
+   "aiDone": false,
+   "startOn": "",
+   "cadence": "",
+   "ownerSet": true
+  },
+  "task-15": {
+   "decision": "keep",
+   "newOwner": "Kimberly",
+   "notes": "",
+   "assignable": false,
+   "paid": false,
+   "aiNote": "",
+   "aiDone": false,
+   "startOn": "",
+   "cadence": "",
+   "ownerSet": true
+  },
+  "task-16": {
+   "decision": "keep",
+   "newOwner": "Oliver",
+   "notes": "",
+   "assignable": false,
+   "paid": false,
+   "aiNote": "",
+   "aiDone": false,
+   "startOn": "",
+   "cadence": "",
+   "ownerSet": true
+  },
+  "task-17": {
+   "decision": "keep",
+   "newOwner": "Michael",
+   "notes": "",
+   "assignable": false,
+   "paid": false,
+   "aiNote": "",
+   "aiDone": false,
+   "startOn": "",
+   "cadence": "",
+   "ownerSet": true
+  },
+  "task-18": {
+   "decision": "",
+   "newOwner": "Brighton",
+   "notes": "",
+   "assignable": true,
+   "paid": false,
+   "aiNote": "",
+   "aiDone": false,
+   "startOn": "",
+   "cadence": "",
+   "ownerSet": true
+  },
+  "task-19": {
+   "decision": "keep",
+   "newOwner": "Oliver",
+   "notes": "",
+   "assignable": true,
+   "paid": true,
+   "aiNote": "",
+   "aiDone": false,
+   "startOn": "",
+   "cadence": "",
+   "ownerSet": true
+  },
+  "task-20": {
+   "decision": "keep",
+   "newOwner": "",
+   "notes": "",
+   "assignable": false,
+   "paid": false,
+   "aiNote": "AI - Add this to the nightly kitchen counter task",
+   "aiDone": true
+  },
+  "task-21": {
+   "decision": "keep",
+   "newOwner": "Kimberly",
+   "notes": "",
+   "assignable": false,
+   "paid": false,
+   "aiNote": "",
+   "aiDone": false,
+   "startOn": "",
+   "cadence": "",
+   "ownerSet": true
+  },
+  "task-22": {
+   "decision": "",
+   "newOwner": "Ephraim",
+   "notes": "",
+   "assignable": true,
+   "paid": true,
+   "aiNote": "",
+   "aiDone": false,
+   "startOn": "",
+   "cadence": "",
+   "title": "",
+   "effort": 0,
+   "ownerSet": true
+  },
+  "task-23": {
+   "decision": "keep",
+   "newOwner": "Oliver, Ephraim",
+   "notes": "",
+   "assignable": true,
+   "paid": true,
+   "aiNote": "AI: Make this actionable on Sunday and Wednesday",
+   "aiDone": true,
+   "startOn": "",
+   "cadence": "",
+   "ownerSet": true
+  },
+  "task-24": {
+   "decision": "keep",
+   "newOwner": "Brighton",
+   "notes": "",
+   "assignable": true,
+   "paid": false,
+   "aiNote": "",
+   "aiDone": false,
+   "startOn": "",
+   "cadence": "",
+   "ownerSet": true
+  },
+  "task-25": {
+   "decision": "keep",
+   "newOwner": "Kimberly",
+   "notes": "",
+   "assignable": false,
+   "paid": false,
+   "aiNote": "",
+   "aiDone": false,
+   "startOn": "",
+   "cadence": "",
+   "ownerSet": true
+  },
+  "task-26": {
+   "decision": "keep",
+   "newOwner": "Michael",
+   "notes": "",
+   "assignable": false,
+   "paid": false,
+   "aiNote": "AI: this should be changed to quarterly",
+   "aiDone": true,
+   "startOn": "",
+   "cadence": "",
+   "ownerSet": true
+  },
+  "task-27": {
+   "decision": "",
+   "newOwner": "Oliver",
+   "notes": "",
+   "assignable": true,
+   "paid": true,
+   "aiNote": "AI: dust top of refrigerator",
+   "aiDone": true,
+   "startOn": "",
+   "cadence": "",
+   "ownerSet": true
+  },
+  "task-28": {
+   "decision": "keep",
+   "newOwner": "",
+   "notes": "",
+   "assignable": true,
+   "paid": true,
+   "aiNote": "AI: lump this in with 'Top of refrigerator item as one 'refrigerator dusting' and update it's description",
+   "aiDone": true
+  },
+  "task-29": {
+   "decision": "",
+   "newOwner": "Oliver",
+   "notes": "",
+   "assignable": true,
+   "paid": true,
+   "aiNote": "",
+   "aiDone": false,
+   "startOn": "",
+   "cadence": "",
+   "title": "",
+   "effort": 0,
+   "ownerSet": true
+  },
+  "task-30": {
+   "decision": "keep",
+   "newOwner": "Kimberly",
+   "notes": "",
+   "assignable": false,
+   "paid": false,
+   "aiNote": "",
+   "aiDone": false,
+   "startOn": "",
+   "cadence": "",
+   "ownerSet": true
+  },
+  "task-31": {
+   "decision": "keep",
+   "newOwner": "Michael",
+   "notes": "",
+   "assignable": false,
+   "paid": false,
+   "aiNote": "",
+   "aiDone": false,
+   "startOn": "",
+   "cadence": "",
+   "ownerSet": true
+  },
+  "task-32": {
+   "decision": "keep",
+   "newOwner": "Oliver",
+   "notes": "",
+   "assignable": true,
+   "paid": true,
+   "aiNote": "",
+   "aiDone": false,
+   "startOn": "",
+   "cadence": "",
+   "ownerSet": true
+  },
+  "task-33": {
+   "decision": "keep",
+   "newOwner": "Kimberly",
+   "notes": "",
+   "assignable": false,
+   "paid": false,
+   "aiNote": "",
+   "aiDone": false,
+   "startOn": "",
+   "cadence": "",
+   "ownerSet": true
+  },
+  "task-34": {
+   "decision": "keep",
+   "newOwner": "Ephraim",
+   "notes": "",
+   "assignable": true,
+   "paid": true,
+   "aiNote": "",
+   "aiDone": false,
+   "startOn": "",
+   "cadence": "",
+   "ownerSet": true
+  },
+  "task-35": {
+   "decision": "keep",
+   "newOwner": "Oliver",
+   "notes": "",
+   "assignable": true,
+   "paid": true,
+   "aiNote": "",
+   "aiDone": false,
+   "startOn": "",
+   "cadence": "",
+   "ownerSet": true
+  },
+  "task-36": {
+   "decision": "keep",
+   "newOwner": "Oliver",
+   "notes": "",
+   "assignable": true,
+   "paid": true,
+   "aiNote": "",
+   "aiDone": false,
+   "startOn": "",
+   "cadence": "",
+   "ownerSet": true
+  },
+  "task-37": {
+   "decision": "keep",
+   "newOwner": "Ephraim",
+   "notes": "",
+   "assignable": true,
+   "paid": true,
+   "aiNote": "",
+   "aiDone": false,
+   "startOn": "",
+   "cadence": "",
+   "ownerSet": true
+  },
+  "task-38": {
+   "decision": "keep",
+   "newOwner": "Oliver",
+   "notes": "",
+   "assignable": true,
+   "paid": true,
+   "aiNote": "",
+   "aiDone": false,
+   "startOn": "",
+   "cadence": "",
+   "ownerSet": true
+  },
+  "task-39": {
+   "decision": "keep",
+   "newOwner": "Ephraim",
+   "notes": "",
+   "assignable": true,
+   "paid": true,
+   "aiNote": "",
+   "aiDone": false,
+   "startOn": "",
+   "cadence": "",
+   "ownerSet": true
+  },
+  "task-40": {
+   "decision": "keep",
+   "newOwner": "Oliver",
+   "notes": "",
+   "assignable": true,
+   "paid": true,
+   "aiNote": "",
+   "aiDone": false,
+   "startOn": "",
+   "cadence": "",
+   "ownerSet": true
+  },
+  "task-41": {
+   "decision": "keep",
+   "newOwner": "Ephraim",
+   "notes": "",
+   "assignable": true,
+   "paid": true,
+   "aiNote": "",
+   "aiDone": false,
+   "startOn": "",
+   "cadence": "",
+   "ownerSet": true
+  },
+  "task-42": {
+   "decision": "keep",
+   "newOwner": "Kimberly",
+   "notes": "",
+   "assignable": false,
+   "paid": false,
+   "aiNote": "",
+   "aiDone": false,
+   "startOn": "",
+   "cadence": "",
+   "ownerSet": true
+  },
+  "task-43": {
+   "decision": "keep",
+   "newOwner": "Michael",
+   "notes": "",
+   "assignable": true,
+   "paid": false,
+   "aiNote": "",
+   "aiDone": false,
+   "startOn": "",
+   "cadence": "",
+   "ownerSet": true
+  },
+  "task-44": {
+   "decision": "keep",
+   "newOwner": "Ephraim",
+   "notes": "",
+   "assignable": false,
+   "paid": false,
+   "aiNote": "AI: relable this task to \"Wipe down  Table and Bench\"",
+   "aiDone": true,
+   "startOn": "",
+   "cadence": "",
+   "ownerSet": true
+  },
+  "task-45": {
+   "decision": "keep",
+   "newOwner": "Michael",
+   "notes": "",
+   "assignable": false,
+   "paid": false,
+   "aiNote": "",
+   "aiDone": false,
+   "startOn": "",
+   "cadence": "",
+   "ownerSet": true
+  },
+  "task-46": {
+   "decision": "keep",
+   "newOwner": "Ephraim",
+   "notes": "",
+   "assignable": true,
+   "paid": true,
+   "aiNote": "",
+   "aiDone": false,
+   "startOn": "",
+   "cadence": "",
+   "ownerSet": true
+  },
+  "task-47": {
+   "decision": "keep",
+   "newOwner": "Ephraim",
+   "notes": "",
+   "assignable": true,
+   "paid": true,
+   "aiNote": "",
+   "aiDone": false,
+   "startOn": "",
+   "cadence": "",
+   "ownerSet": true
+  },
+  "task-48": {
+   "decision": "keep",
+   "newOwner": "Kimberly",
+   "notes": "",
+   "assignable": false,
+   "paid": false,
+   "aiNote": "",
+   "aiDone": false,
+   "startOn": "",
+   "cadence": "",
+   "ownerSet": true
+  },
+  "task-49": {
+   "decision": "keep",
+   "newOwner": "Michael",
+   "notes": "",
+   "assignable": false,
+   "paid": false,
+   "aiNote": "",
+   "aiDone": false,
+   "startOn": "",
+   "cadence": "",
+   "ownerSet": true
+  },
+  "task-50": {
+   "decision": "keep",
+   "newOwner": "Ephraim",
+   "notes": "",
+   "assignable": true,
+   "paid": true,
+   "aiNote": "",
+   "aiDone": false,
+   "startOn": "",
+   "cadence": "",
+   "ownerSet": true
+  },
+  "task-51": {
+   "decision": "keep",
+   "newOwner": "Oliver",
+   "notes": "",
+   "assignable": true,
+   "paid": true,
+   "aiNote": "AI note: Add 'dusting' to item name",
+   "aiDone": true,
+   "startOn": "",
+   "cadence": "",
+   "ownerSet": true
+  },
+  "task-52": {
+   "decision": "keep",
+   "newOwner": "Ephraim",
+   "notes": "",
+   "assignable": true,
+   "paid": true,
+   "aiNote": "",
+   "aiDone": false,
+   "startOn": "",
+   "cadence": "",
+   "ownerSet": true
+  },
+  "task-53": {
+   "decision": "keep",
+   "newOwner": "Oliver",
+   "notes": "",
+   "assignable": true,
+   "paid": true,
+   "aiNote": "",
+   "aiDone": false,
+   "startOn": "",
+   "cadence": "",
+   "ownerSet": true
+  },
+  "task-54": {
+   "decision": "keep",
+   "newOwner": "Ephraim",
+   "notes": "",
+   "assignable": true,
+   "paid": true,
+   "aiNote": "",
+   "aiDone": false,
+   "startOn": "",
+   "cadence": "",
+   "ownerSet": true
+  },
+  "task-55": {
+   "decision": "keep",
+   "newOwner": "Ephraim",
+   "notes": "",
+   "assignable": true,
+   "paid": true,
+   "aiNote": "AI: Change frequency to once a month",
+   "aiDone": true,
+   "startOn": "",
+   "cadence": "",
+   "ownerSet": true
+  },
+  "task-56": {
+   "decision": "keep",
+   "newOwner": "Kimberly",
+   "notes": "",
+   "assignable": false,
+   "paid": false,
+   "aiNote": "",
+   "aiDone": false,
+   "startOn": "",
+   "cadence": "",
+   "ownerSet": true
+  },
+  "task-57": {
+   "decision": "keep",
+   "newOwner": "Kimberly",
+   "notes": "",
+   "assignable": false,
+   "paid": false,
+   "aiNote": "",
+   "aiDone": false,
+   "startOn": "",
+   "cadence": "",
+   "ownerSet": true
+  },
+  "task-58": {
+   "decision": "remove",
+   "newOwner": "",
+   "notes": "",
+   "assignable": false,
+   "paid": false
+  },
+  "task-59": {
+   "decision": "keep",
+   "newOwner": "Brighton",
+   "notes": "",
+   "assignable": false,
+   "paid": false,
+   "aiNote": "",
+   "aiDone": false,
+   "startOn": "",
+   "cadence": "",
+   "ownerSet": true
+  },
+  "task-60": {
+   "decision": "keep",
+   "newOwner": "Michael",
+   "notes": "",
+   "assignable": true,
+   "paid": false,
+   "aiNote": "AI: change this to just as needed. If it is not already a tag, make one.",
+   "aiDone": true,
+   "startOn": "",
+   "cadence": "",
+   "ownerSet": true
+  },
+  "task-61": {
+   "decision": "keep",
+   "newOwner": "Oliver",
+   "notes": "",
+   "assignable": true,
+   "paid": true,
+   "aiNote": "AI: update this to say \"Dusting Bookshelves\"",
+   "aiDone": true,
+   "startOn": "",
+   "cadence": "",
+   "ownerSet": true
+  },
+  "task-62": {
+   "decision": "keep",
+   "newOwner": "Ephraim",
+   "notes": "",
+   "assignable": true,
+   "paid": true,
+   "aiNote": "AI: update this to say \"Dusting Entertainment Center\"",
+   "aiDone": true,
+   "startOn": "",
+   "cadence": "",
+   "ownerSet": true
+  },
+  "task-63": {
+   "decision": "keep",
+   "newOwner": "Oliver",
+   "notes": "",
+   "assignable": true,
+   "paid": true,
+   "aiNote": "AI: update this to say \"Dusting Surfaces/objects\"\n\nSurface objects are things like robot vaccum, vase, other decorations, printer, etc",
+   "aiDone": true,
+   "startOn": "",
+   "cadence": "",
+   "ownerSet": true
+  },
+  "task-64": {
+   "decision": "keep",
+   "newOwner": "Oliver",
+   "notes": "",
+   "assignable": false,
+   "paid": false,
+   "aiNote": "",
+   "aiDone": false,
+   "startOn": "",
+   "cadence": "",
+   "ownerSet": true
+  },
+  "task-65": {
+   "decision": "keep",
+   "newOwner": "Kimberly",
+   "notes": "",
+   "assignable": false,
+   "paid": false,
+   "aiNote": "",
+   "aiDone": false,
+   "startOn": "",
+   "cadence": "",
+   "ownerSet": true
+  },
+  "task-66": {
+   "decision": "keep",
+   "newOwner": "Ephraim",
+   "notes": "",
+   "assignable": true,
+   "paid": true,
+   "aiNote": "",
+   "aiDone": false,
+   "startOn": "",
+   "cadence": "",
+   "ownerSet": true
+  },
+  "task-67": {
+   "decision": "keep",
+   "newOwner": "Kimberly",
+   "notes": "",
+   "assignable": false,
+   "paid": false,
+   "aiNote": "",
+   "aiDone": false,
+   "startOn": "",
+   "cadence": "",
+   "ownerSet": true
+  },
+  "task-68": {
+   "decision": "keep",
+   "newOwner": "Kimberly",
+   "notes": "",
+   "assignable": false,
+   "paid": false,
+   "aiNote": "",
+   "aiDone": false,
+   "startOn": "",
+   "cadence": "",
+   "ownerSet": true
+  },
+  "task-69": {
+   "decision": "keep",
+   "newOwner": "Kimberly",
+   "notes": "",
+   "assignable": false,
+   "paid": false,
+   "aiNote": "",
+   "aiDone": false,
+   "startOn": "",
+   "cadence": "",
+   "ownerSet": true
+  },
+  "task-70": {
+   "decision": "keep",
+   "newOwner": "Oliver",
+   "notes": "Dust and clean",
+   "assignable": true,
+   "paid": true,
+   "aiNote": "",
+   "aiDone": false,
+   "startOn": "",
+   "cadence": "",
+   "ownerSet": true
+  },
+  "task-71": {
+   "decision": "remove",
+   "newOwner": "",
+   "notes": "",
+   "assignable": false,
+   "paid": false
+  },
+  "task-72": {
+   "decision": "keep",
+   "newOwner": "Kimberly",
+   "notes": "",
+   "assignable": false,
+   "paid": false,
+   "aiNote": "",
+   "aiDone": false,
+   "startOn": "",
+   "cadence": "",
+   "ownerSet": true
+  },
+  "task-73": {
+   "decision": "keep",
+   "newOwner": "Ephraim",
+   "notes": "",
+   "assignable": true,
+   "paid": true,
+   "aiNote": "",
+   "aiDone": false,
+   "startOn": "",
+   "cadence": "",
+   "ownerSet": true
+  },
+  "task-74": {
+   "decision": "keep",
+   "newOwner": "Kimberly",
+   "notes": "",
+   "assignable": false,
+   "paid": false,
+   "aiNote": "",
+   "aiDone": false,
+   "startOn": "",
+   "cadence": "",
+   "ownerSet": true
+  },
+  "task-75": {
+   "decision": "keep",
+   "newOwner": "Oliver",
+   "notes": "",
+   "assignable": true,
+   "paid": true,
+   "aiNote": "",
+   "aiDone": false,
+   "startOn": "",
+   "cadence": "",
+   "ownerSet": true
+  },
+  "task-76": {
+   "decision": "keep",
+   "newOwner": "Ephraim",
+   "notes": "",
+   "assignable": true,
+   "paid": true,
+   "aiNote": "",
+   "aiDone": false,
+   "startOn": "",
+   "cadence": "",
+   "ownerSet": true
+  },
+  "task-77": {
+   "decision": "keep",
+   "newOwner": "Kimberly",
+   "notes": "",
+   "assignable": false,
+   "paid": false,
+   "aiNote": "",
+   "aiDone": false,
+   "startOn": "",
+   "cadence": "",
+   "ownerSet": true
+  },
+  "task-78": {
+   "decision": "keep",
+   "newOwner": "Kimberly",
+   "notes": "",
+   "assignable": false,
+   "paid": false,
+   "aiNote": "AI:  change title to \"Wipe/clean Back Door\"",
+   "aiDone": true,
+   "startOn": "",
+   "cadence": "",
+   "ownerSet": true
+  },
+  "task-79": {
+   "decision": "keep",
+   "newOwner": "Ephraim",
+   "notes": "",
+   "assignable": true,
+   "paid": true,
+   "aiNote": "AI: Change to \"wipe Fireplace Area\"",
+   "aiDone": true,
+   "startOn": "",
+   "cadence": "",
+   "ownerSet": true
+  },
+  "task-80": {
+   "decision": "keep",
+   "newOwner": "Ephraim",
+   "notes": "",
+   "assignable": true,
+   "paid": true,
+   "aiNote": "AI: Change to \"wipe/clean front door\"",
+   "aiDone": true,
+   "startOn": "",
+   "cadence": "",
+   "title": "",
+   "effort": 0,
+   "ownerSet": true
+  },
+  "task-81": {
+   "decision": "keep",
+   "newOwner": "Oliver",
+   "notes": "",
+   "assignable": true,
+   "paid": true,
+   "aiNote": "",
+   "aiDone": false,
+   "startOn": "",
+   "cadence": "",
+   "ownerSet": true
+  },
+  "task-82": {
+   "decision": "keep",
+   "newOwner": "Ephraim",
+   "notes": "",
+   "assignable": true,
+   "paid": true,
+   "aiNote": "",
+   "aiDone": false,
+   "startOn": "",
+   "cadence": "",
+   "ownerSet": true
+  },
+  "task-83": {
+   "decision": "keep",
+   "newOwner": "Oliver",
+   "notes": "",
+   "assignable": true,
+   "paid": true,
+   "aiNote": "",
+   "aiDone": false,
+   "startOn": "",
+   "cadence": "",
+   "ownerSet": true
+  },
+  "task-84": {
+   "decision": "keep",
+   "newOwner": "Ephraim",
+   "notes": "",
+   "assignable": true,
+   "paid": true,
+   "aiNote": "",
+   "aiDone": false,
+   "startOn": "",
+   "cadence": "",
+   "ownerSet": true
+  },
+  "task-85": {
+   "decision": "keep",
+   "newOwner": "Kimberly",
+   "notes": "Frontdoor and water mat",
+   "assignable": false,
+   "paid": false,
+   "aiNote": "",
+   "aiDone": false,
+   "startOn": "",
+   "cadence": "",
+   "ownerSet": true
+  },
+  "task-86": {
+   "decision": "keep",
+   "newOwner": "Ephraim",
+   "notes": "",
+   "assignable": true,
+   "paid": true,
+   "aiNote": "",
+   "aiDone": false,
+   "startOn": "",
+   "cadence": "",
+   "ownerSet": true
+  },
+  "task-87": {
+   "decision": "keep",
+   "newOwner": "Oliver",
+   "notes": "",
+   "assignable": true,
+   "paid": true,
+   "aiNote": "",
+   "aiDone": false,
+   "startOn": "",
+   "cadence": "",
+   "ownerSet": true
+  },
+  "task-88": {
+   "decision": "keep",
+   "newOwner": "Oliver",
+   "notes": "",
+   "assignable": true,
+   "paid": true,
+   "aiNote": "",
+   "aiDone": false,
+   "startOn": "",
+   "cadence": "",
+   "ownerSet": true
+  },
+  "task-89": {
+   "decision": "keep",
+   "newOwner": "Kimberly",
+   "notes": "",
+   "assignable": false,
+   "paid": false,
+   "aiNote": "AI: Change to \"Main rug, wash\" and also change this to quarterly",
+   "aiDone": true,
+   "startOn": "",
+   "cadence": "",
+   "ownerSet": true
+  },
+  "task-90": {
+   "decision": "keep",
+   "newOwner": "Michael",
+   "notes": "",
+   "assignable": false,
+   "paid": false,
+   "aiNote": "",
+   "aiDone": false,
+   "startOn": "",
+   "cadence": "",
+   "ownerSet": true
+  },
+  "task-91": {
+   "decision": "keep",
+   "newOwner": "Kimberly",
+   "notes": "",
+   "assignable": false,
+   "paid": false,
+   "aiNote": "",
+   "aiDone": false,
+   "startOn": "",
+   "cadence": "",
+   "ownerSet": true
+  },
+  "task-92": {
+   "decision": "remove",
+   "newOwner": "",
+   "notes": "",
+   "assignable": false,
+   "paid": false
+  },
+  "task-93": {
+   "decision": "keep",
+   "newOwner": "Kimberly",
+   "notes": "",
+   "assignable": false,
+   "paid": false,
+   "aiNote": "",
+   "aiDone": false,
+   "startOn": "",
+   "cadence": "",
+   "ownerSet": true
+  },
+  "task-94": {
+   "decision": "remove",
+   "newOwner": "",
+   "notes": "",
+   "assignable": false,
+   "paid": false
+  },
+  "task-95": {
+   "decision": "keep",
+   "newOwner": "Kimberly",
+   "notes": "",
+   "assignable": false,
+   "paid": false,
+   "aiNote": "",
+   "aiDone": false,
+   "startOn": "",
+   "cadence": "",
+   "ownerSet": true
+  },
+  "task-96": {
+   "decision": "remove",
+   "newOwner": "",
+   "notes": "",
+   "assignable": false,
+   "paid": false,
+   "aiNote": "",
+   "aiDone": false
+  },
+  "task-97": {
+   "decision": "keep",
+   "newOwner": "Kimberly",
+   "notes": "",
+   "assignable": false,
+   "paid": false,
+   "aiNote": "",
+   "aiDone": false,
+   "startOn": "",
+   "cadence": "",
+   "ownerSet": true
+  },
+  "task-98": {
+   "decision": "keep",
+   "newOwner": "Brighton",
+   "notes": "",
+   "assignable": true,
+   "paid": false,
+   "aiNote": "AI: Make this task actionable on Sunday and Wednesday",
+   "aiDone": true,
+   "startOn": "",
+   "cadence": "",
+   "ownerSet": true
+  },
+  "task-99": {
+   "decision": "keep",
+   "newOwner": "Oliver",
+   "notes": "",
+   "assignable": true,
+   "paid": true,
+   "aiNote": "",
+   "aiDone": false,
+   "startOn": "",
+   "cadence": "",
+   "ownerSet": true
+  },
+  "task-100": {
+   "decision": "remove",
+   "newOwner": "",
+   "notes": "",
+   "assignable": false,
+   "paid": false
+  },
+  "task-101": {
+   "decision": "keep",
+   "newOwner": "Ephraim",
+   "notes": "",
+   "assignable": true,
+   "paid": true,
+   "aiNote": "",
+   "aiDone": false,
+   "startOn": "",
+   "cadence": "",
+   "ownerSet": true
+  },
+  "task-102": {
+   "decision": "keep",
+   "newOwner": "Kimberly",
+   "notes": "",
+   "assignable": false,
+   "paid": false,
+   "aiNote": "",
+   "aiDone": false,
+   "startOn": "",
+   "cadence": "",
+   "ownerSet": true
+  },
+  "task-103": {
+   "decision": "keep",
+   "newOwner": "Kimberly",
+   "notes": "",
+   "assignable": false,
+   "paid": false,
+   "aiNote": "AI: change to quarterly cadence",
+   "aiDone": true,
+   "startOn": "",
+   "cadence": "",
+   "ownerSet": true
+  },
+  "task-104": {
+   "decision": "keep",
+   "newOwner": "Kimberly",
+   "notes": "",
+   "assignable": false,
+   "paid": false,
+   "aiNote": "",
+   "aiDone": false,
+   "startOn": "",
+   "cadence": "",
+   "ownerSet": true
+  },
+  "task-105": {
+   "decision": "keep",
+   "newOwner": "Kimberly",
+   "notes": "",
+   "assignable": false,
+   "paid": false,
+   "aiNote": "AI: Change to quarterly",
+   "aiDone": true,
+   "startOn": "",
+   "cadence": "",
+   "ownerSet": true
+  },
+  "task-106": {
+   "decision": "keep",
+   "newOwner": "Kimberly",
+   "notes": "",
+   "assignable": false,
+   "paid": false,
+   "aiNote": "",
+   "aiDone": false,
+   "startOn": "",
+   "cadence": "",
+   "ownerSet": true
+  },
+  "task-107": {
+   "decision": "keep",
+   "newOwner": "Oliver",
+   "notes": "",
+   "assignable": true,
+   "paid": true,
+   "aiNote": "",
+   "aiDone": false,
+   "startOn": "",
+   "cadence": "",
+   "ownerSet": true
+  },
+  "task-108": {
+   "decision": "keep",
+   "newOwner": "Ephraim",
+   "notes": "",
+   "assignable": true,
+   "paid": true,
+   "aiNote": "",
+   "aiDone": false,
+   "startOn": "",
+   "cadence": "",
+   "ownerSet": true
+  },
+  "task-109": {
+   "decision": "keep",
+   "newOwner": "Kimberly",
+   "notes": "",
+   "assignable": false,
+   "paid": false,
+   "aiNote": "",
+   "aiDone": false,
+   "startOn": "",
+   "cadence": "",
+   "ownerSet": true
+  },
+  "task-110": {
+   "decision": "keep",
+   "newOwner": "Kimberly",
+   "notes": "",
+   "assignable": false,
+   "paid": false,
+   "aiNote": "",
+   "aiDone": false,
+   "startOn": "",
+   "cadence": "",
+   "ownerSet": true
+  },
+  "task-111": {
+   "decision": "keep",
+   "newOwner": "Oliver",
+   "notes": "",
+   "assignable": true,
+   "paid": false,
+   "aiNote": "AI: Change to quarterly",
+   "aiDone": true,
+   "startOn": "",
+   "cadence": "",
+   "ownerSet": true
+  },
+  "task-112": {
+   "decision": "keep",
+   "newOwner": "Oliver",
+   "notes": "",
+   "assignable": true,
+   "paid": true,
+   "aiNote": "",
+   "aiDone": false,
+   "startOn": "",
+   "cadence": "",
+   "ownerSet": true
+  },
+  "task-113": {
+   "decision": "keep",
+   "newOwner": "Kimberly",
+   "notes": "",
+   "assignable": false,
+   "paid": false,
+   "aiNote": "AI: change to Quarterly",
+   "aiDone": true,
+   "startOn": "",
+   "cadence": "",
+   "ownerSet": true
+  },
+  "task-114": {
+   "decision": "keep",
+   "newOwner": "Oliver",
+   "notes": "",
+   "assignable": true,
+   "paid": true,
+   "aiNote": "",
+   "aiDone": false,
+   "startOn": "",
+   "cadence": "",
+   "ownerSet": true
+  },
+  "task-115": {
+   "decision": "keep",
+   "newOwner": "Oliver",
+   "notes": "",
+   "assignable": true,
+   "paid": true,
+   "aiNote": "",
+   "aiDone": false,
+   "startOn": "",
+   "cadence": "",
+   "ownerSet": true
+  },
+  "task-116": {
+   "decision": "keep",
+   "newOwner": "Michael",
+   "notes": "",
+   "assignable": false,
+   "paid": false,
+   "aiNote": "",
+   "aiDone": false,
+   "startOn": "",
+   "cadence": "",
+   "ownerSet": true
+  },
+  "task-117": {
+   "decision": "keep",
+   "newOwner": "Oliver",
+   "notes": "",
+   "assignable": true,
+   "paid": true,
+   "aiNote": "",
+   "aiDone": false,
+   "startOn": "",
+   "cadence": "",
+   "ownerSet": true
+  },
+  "task-118": {
+   "decision": "keep",
+   "newOwner": "Ephraim",
+   "notes": "",
+   "assignable": true,
+   "paid": true,
+   "aiNote": "AI: change to quarterly",
+   "aiDone": true,
+   "startOn": "",
+   "cadence": "",
+   "ownerSet": true
+  },
+  "task-119": {
+   "decision": "keep",
+   "newOwner": "Ephraim",
+   "notes": "",
+   "assignable": true,
+   "paid": true,
+   "aiNote": "",
+   "aiDone": false,
+   "startOn": "",
+   "cadence": "",
+   "ownerSet": true
+  },
+  "task-120": {
+   "decision": "keep",
+   "newOwner": "Oliver",
+   "notes": "",
+   "assignable": true,
+   "paid": true,
+   "aiNote": "",
+   "aiDone": false,
+   "startOn": "",
+   "cadence": "",
+   "ownerSet": true
+  },
+  "task-121": {
+   "decision": "keep",
+   "newOwner": "Kimberly",
+   "notes": "",
+   "assignable": false,
+   "paid": false,
+   "aiNote": "",
+   "aiDone": false,
+   "startOn": "",
+   "cadence": "",
+   "ownerSet": true
+  },
+  "task-122": {
+   "decision": "keep",
+   "newOwner": "Kimberly",
+   "notes": "",
+   "assignable": false,
+   "paid": false,
+   "aiNote": "",
+   "aiDone": false,
+   "startOn": "",
+   "cadence": "",
+   "ownerSet": true
+  },
+  "task-123": {
+   "decision": "keep",
+   "newOwner": "Oliver",
+   "notes": "",
+   "assignable": true,
+   "paid": true,
+   "aiNote": "",
+   "aiDone": false,
+   "startOn": "",
+   "cadence": "",
+   "ownerSet": true
+  },
+  "task-124": {
+   "decision": "keep",
+   "newOwner": "Kimberly",
+   "notes": "",
+   "assignable": false,
+   "paid": false,
+   "aiNote": "AI: change to quarterly",
+   "aiDone": true,
+   "startOn": "",
+   "cadence": "",
+   "ownerSet": true
+  },
+  "task-125": {
+   "decision": "keep",
+   "newOwner": "Kimberly",
+   "notes": "",
+   "assignable": false,
+   "paid": false,
+   "aiNote": "",
+   "aiDone": false,
+   "startOn": "",
+   "cadence": "",
+   "ownerSet": true
+  },
+  "task-126": {
+   "decision": "keep",
+   "newOwner": "Kimberly",
+   "notes": "",
+   "assignable": false,
+   "paid": false,
+   "aiNote": "",
+   "aiDone": false,
+   "startOn": "",
+   "cadence": "",
+   "ownerSet": true
+  },
+  "task-127": {
+   "decision": "keep",
+   "newOwner": "Kimberly",
+   "notes": "",
+   "assignable": false,
+   "paid": false,
+   "aiNote": "",
+   "aiDone": false,
+   "startOn": "",
+   "cadence": "",
+   "ownerSet": true
+  },
+  "task-128": {
+   "decision": "keep",
+   "newOwner": "Kimberly",
+   "notes": "",
+   "assignable": false,
+   "paid": false,
+   "aiNote": "",
+   "aiDone": false,
+   "startOn": "",
+   "cadence": "",
+   "ownerSet": true
+  },
+  "task-129": {
+   "decision": "keep",
+   "newOwner": "Kimberly",
+   "notes": "",
+   "assignable": false,
+   "paid": false,
+   "aiNote": "",
+   "aiDone": false,
+   "startOn": "",
+   "cadence": "",
+   "ownerSet": true
+  },
+  "task-130": {
+   "decision": "keep",
+   "newOwner": "Kimberly",
+   "notes": "",
+   "assignable": false,
+   "paid": false,
+   "aiNote": "",
+   "aiDone": false,
+   "startOn": "",
+   "cadence": "",
+   "ownerSet": true
+  },
+  "task-131": {
+   "decision": "keep",
+   "newOwner": "Kimberly",
+   "notes": "",
+   "assignable": false,
+   "paid": false,
+   "aiNote": "",
+   "aiDone": false,
+   "startOn": "",
+   "cadence": "",
+   "ownerSet": true
+  },
+  "task-132": {
+   "decision": "keep",
+   "newOwner": "Kimberly",
+   "notes": "",
+   "assignable": false,
+   "paid": false,
+   "aiNote": "",
+   "aiDone": false,
+   "startOn": "",
+   "cadence": "",
+   "ownerSet": true
+  },
+  "task-133": {
+   "decision": "keep",
+   "newOwner": "Kimberly",
+   "notes": "",
+   "assignable": false,
+   "paid": false,
+   "aiNote": "",
+   "aiDone": false,
+   "startOn": "",
+   "cadence": "",
+   "ownerSet": true
+  },
+  "task-134": {
+   "decision": "keep",
+   "newOwner": "Kimberly",
+   "notes": "",
+   "assignable": false,
+   "paid": false,
+   "aiNote": "",
+   "aiDone": false,
+   "startOn": "",
+   "cadence": "",
+   "ownerSet": true
+  },
+  "task-135": {
+   "decision": "keep",
+   "newOwner": "Kimberly",
+   "notes": "",
+   "assignable": false,
+   "paid": false,
+   "aiNote": "",
+   "aiDone": false,
+   "startOn": "",
+   "cadence": "",
+   "ownerSet": true
+  },
+  "task-136": {
+   "decision": "keep",
+   "newOwner": "Kimberly",
+   "notes": "",
+   "assignable": false,
+   "paid": false,
+   "aiNote": "",
+   "aiDone": false,
+   "startOn": "",
+   "cadence": "",
+   "ownerSet": true
+  },
+  "task-137": {
+   "decision": "keep",
+   "newOwner": "Kimberly",
+   "notes": "",
+   "assignable": false,
+   "paid": false,
+   "aiNote": "",
+   "aiDone": false,
+   "startOn": "",
+   "cadence": "",
+   "ownerSet": true
+  },
+  "task-138": {
+   "decision": "keep",
+   "newOwner": "Kimberly",
+   "notes": "",
+   "assignable": false,
+   "paid": false,
+   "aiNote": "",
+   "aiDone": false,
+   "startOn": "",
+   "cadence": "",
+   "ownerSet": true
+  },
+  "task-139": {
+   "decision": "keep",
+   "newOwner": "Kimberly",
+   "notes": "",
+   "assignable": false,
+   "paid": false,
+   "aiNote": "",
+   "aiDone": false,
+   "startOn": "",
+   "cadence": "",
+   "ownerSet": true
+  },
+  "task-140": {
+   "decision": "keep",
+   "newOwner": "Kimberly",
+   "notes": "",
+   "assignable": false,
+   "paid": false,
+   "aiNote": "",
+   "aiDone": false,
+   "startOn": "",
+   "cadence": "",
+   "ownerSet": true
+  },
+  "task-141": {
+   "decision": "keep",
+   "newOwner": "Kimberly",
+   "notes": "",
+   "assignable": false,
+   "paid": false,
+   "aiNote": "",
+   "aiDone": false,
+   "startOn": "",
+   "cadence": "",
+   "ownerSet": true
+  },
+  "task-142": {
+   "decision": "keep",
+   "newOwner": "Kimberly",
+   "notes": "",
+   "assignable": false,
+   "paid": false,
+   "aiNote": "",
+   "aiDone": false,
+   "startOn": "",
+   "cadence": "",
+   "ownerSet": true
+  },
+  "task-143": {
+   "decision": "keep",
+   "newOwner": "Kimberly",
+   "notes": "",
+   "assignable": false,
+   "paid": false,
+   "aiNote": "",
+   "aiDone": false,
+   "startOn": "",
+   "cadence": "",
+   "ownerSet": true
+  },
+  "task-144": {
+   "decision": "keep",
+   "newOwner": "Ephraim",
+   "notes": "",
+   "assignable": true,
+   "paid": true,
+   "aiNote": "",
+   "aiDone": false,
+   "startOn": "",
+   "cadence": "",
+   "ownerSet": true
+  },
+  "task-145": {
+   "decision": "keep",
+   "newOwner": "Oliver",
+   "notes": "",
+   "assignable": false,
+   "paid": false,
+   "aiNote": "",
+   "aiDone": false,
+   "startOn": "",
+   "cadence": "",
+   "ownerSet": true
+  },
+  "task-146": {
+   "decision": "keep",
+   "newOwner": "Michael",
+   "notes": "",
+   "assignable": false,
+   "paid": false,
+   "aiNote": "",
+   "aiDone": false,
+   "startOn": "",
+   "cadence": "",
+   "ownerSet": true
+  },
+  "task-147": {
+   "decision": "keep",
+   "newOwner": "Oliver",
+   "notes": "",
+   "assignable": false,
+   "paid": false,
+   "aiNote": "",
+   "aiDone": false,
+   "startOn": "",
+   "cadence": "",
+   "ownerSet": true
+  },
+  "task-148": {
+   "decision": "keep",
+   "newOwner": "Ephraim",
+   "notes": "",
+   "assignable": true,
+   "paid": true,
+   "aiNote": "",
+   "aiDone": false,
+   "startOn": "",
+   "cadence": "",
+   "ownerSet": true
+  },
+  "task-149": {
+   "decision": "keep",
+   "newOwner": "Ephraim",
+   "notes": "",
+   "assignable": true,
+   "paid": true,
+   "aiNote": "",
+   "aiDone": false,
+   "startOn": "",
+   "cadence": "",
+   "ownerSet": true
+  },
+  "task-150": {
+   "decision": "keep",
+   "newOwner": "Brighton",
+   "notes": "",
+   "assignable": true,
+   "paid": true,
+   "aiNote": "",
+   "aiDone": false,
+   "startOn": "",
+   "cadence": "",
+   "ownerSet": true
+  },
+  "task-151": {
+   "decision": "keep",
+   "newOwner": "Ephraim",
+   "notes": "",
+   "assignable": true,
+   "paid": true,
+   "aiNote": "",
+   "aiDone": false,
+   "startOn": "",
+   "cadence": "",
+   "ownerSet": true
+  },
+  "task-152": {
+   "decision": "keep",
+   "newOwner": "Oliver",
+   "notes": "",
+   "assignable": true,
+   "paid": true,
+   "aiNote": "",
+   "aiDone": false,
+   "startOn": "",
+   "cadence": "",
+   "ownerSet": true
+  },
+  "task-153": {
+   "decision": "keep",
+   "newOwner": "Ephraim",
+   "notes": "",
+   "assignable": true,
+   "paid": true,
+   "aiNote": "",
+   "aiDone": false,
+   "startOn": "",
+   "cadence": "",
+   "ownerSet": true
+  },
+  "task-154": {
+   "decision": "keep",
+   "newOwner": "Oliver",
+   "notes": "",
+   "assignable": true,
+   "paid": true,
+   "aiNote": "",
+   "aiDone": false,
+   "startOn": "",
+   "cadence": "",
+   "ownerSet": true
+  },
+  "task-155": {
+   "decision": "keep",
+   "newOwner": "Brighton",
+   "notes": "",
+   "assignable": true,
+   "paid": false,
+   "aiNote": "",
+   "aiDone": false,
+   "startOn": "",
+   "cadence": "",
+   "ownerSet": true
+  },
+  "task-156": {
+   "decision": "keep",
+   "newOwner": "Brighton",
+   "notes": "",
+   "assignable": true,
+   "paid": false,
+   "aiNote": "",
+   "aiDone": false,
+   "startOn": "",
+   "cadence": "",
+   "ownerSet": true
+  },
+  "task-157": {
+   "decision": "keep",
+   "newOwner": "",
+   "notes": "",
+   "assignable": true,
+   "paid": false
+  },
+  "task-158": {
+   "decision": "keep",
+   "newOwner": "",
+   "notes": "",
+   "assignable": true,
+   "paid": false
+  },
+  "task-159": {
+   "decision": "keep",
+   "newOwner": "",
+   "notes": "",
+   "assignable": true,
+   "paid": false
+  },
+  "task-160": {
+   "decision": "keep",
+   "newOwner": "",
+   "notes": "",
+   "assignable": true,
+   "paid": false
+  },
+  "task-161": {
+   "decision": "keep",
+   "newOwner": "",
+   "notes": "",
+   "assignable": true,
+   "paid": false
+  },
+  "task-162": {
+   "decision": "keep",
+   "newOwner": "Kimberly",
+   "notes": "",
+   "assignable": false,
+   "paid": false,
+   "aiNote": "",
+   "aiDone": false,
+   "startOn": "",
+   "cadence": "",
+   "ownerSet": true
+  },
+  "task-163": {
+   "decision": "keep",
+   "newOwner": "",
+   "notes": "",
+   "assignable": true,
+   "paid": false
+  },
+  "task-164": {
+   "decision": "keep",
+   "newOwner": "",
+   "notes": "",
+   "assignable": true,
+   "paid": false
+  },
+  "task-165": {
+   "decision": "keep",
+   "newOwner": "Kimberly",
+   "notes": "",
+   "assignable": false,
+   "paid": false,
+   "aiNote": "",
+   "aiDone": false,
+   "startOn": "",
+   "cadence": "",
+   "ownerSet": true
+  },
+  "task-166": {
+   "decision": "keep",
+   "newOwner": "Ephraim",
+   "notes": "",
+   "assignable": false,
+   "paid": false,
+   "aiNote": "",
+   "aiDone": false,
+   "startOn": "",
+   "cadence": "",
+   "ownerSet": true
+  },
+  "task-167": {
+   "decision": "keep",
+   "newOwner": "Ephraim",
+   "notes": "",
+   "assignable": false,
+   "paid": false,
+   "aiNote": "",
+   "aiDone": false,
+   "startOn": "",
+   "cadence": "",
+   "ownerSet": true
+  },
+  "task-168": {
+   "decision": "keep",
+   "newOwner": "Ephraim",
+   "notes": "",
+   "assignable": false,
+   "paid": false,
+   "aiNote": "",
+   "aiDone": false,
+   "startOn": "",
+   "cadence": "",
+   "ownerSet": true
+  },
+  "task-169": {
+   "decision": "keep",
+   "newOwner": "Ephraim",
+   "notes": "",
+   "assignable": false,
+   "paid": false,
+   "aiNote": "",
+   "aiDone": false,
+   "startOn": "",
+   "cadence": "",
+   "ownerSet": true
+  },
+  "task-170": {
+   "decision": "keep",
+   "newOwner": "",
+   "notes": "",
+   "assignable": true,
+   "paid": true
+  },
+  "task-171": {
+   "decision": "remove",
+   "newOwner": "",
+   "notes": "",
+   "assignable": false,
+   "paid": false
+  },
+  "task-172": {
+   "decision": "keep",
+   "newOwner": "Kimberly",
+   "notes": "",
+   "assignable": false,
+   "paid": false,
+   "aiNote": "",
+   "aiDone": false,
+   "startOn": "",
+   "cadence": "",
+   "ownerSet": true
+  },
+  "task-173": {
+   "decision": "keep",
+   "newOwner": "Kimberly",
+   "notes": "",
+   "assignable": false,
+   "paid": false,
+   "aiNote": "AI: change to once a week",
+   "aiDone": true,
+   "startOn": "",
+   "cadence": "",
+   "ownerSet": true
+  },
+  "task-174": {
+   "decision": "keep",
+   "newOwner": "Kimberly",
+   "notes": "",
+   "assignable": false,
+   "paid": false,
+   "aiNote": "",
+   "aiDone": false,
+   "startOn": "",
+   "cadence": "",
+   "ownerSet": true
+  },
+  "task-175": {
+   "decision": "keep",
+   "newOwner": "Michael",
+   "notes": "",
+   "assignable": true,
+   "paid": false,
+   "aiNote": "",
+   "aiDone": false,
+   "startOn": "",
+   "cadence": "",
+   "ownerSet": true
+  },
+  "task-176": {
+   "decision": "keep",
+   "newOwner": "Michael",
+   "notes": "",
+   "assignable": true,
+   "paid": false,
+   "aiNote": "",
+   "aiDone": false,
+   "startOn": "",
+   "cadence": "",
+   "ownerSet": true
+  },
+  "task-177": {
+   "decision": "keep",
+   "newOwner": "Michael",
+   "notes": "",
+   "assignable": true,
+   "paid": false,
+   "aiNote": "",
+   "aiDone": false,
+   "startOn": "",
+   "cadence": "",
+   "ownerSet": true
+  },
+  "task-178": {
+   "decision": "keep",
+   "newOwner": "Michael",
+   "notes": "",
+   "assignable": true,
+   "paid": false,
+   "aiNote": "",
+   "aiDone": false,
+   "startOn": "",
+   "cadence": "",
+   "ownerSet": true
+  },
+  "task-179": {
+   "decision": "keep",
+   "newOwner": "Kimberly",
+   "notes": "",
+   "assignable": false,
+   "paid": false,
+   "aiNote": "",
+   "aiDone": false,
+   "startOn": "",
+   "cadence": "",
+   "ownerSet": true
+  },
+  "task-180": {
+   "decision": "keep",
+   "newOwner": "Michael",
+   "notes": "",
+   "assignable": true,
+   "paid": false,
+   "aiNote": "",
+   "aiDone": false,
+   "startOn": "",
+   "cadence": "",
+   "ownerSet": true
+  },
+  "task-181": {
+   "decision": "keep",
+   "newOwner": "Kimberly, Michael",
+   "notes": "",
+   "assignable": false,
+   "paid": false,
+   "aiNote": "",
+   "aiDone": false,
+   "startOn": "",
+   "cadence": "",
+   "ownerSet": true
+  },
+  "task-182": {
+   "decision": "keep",
+   "newOwner": "Michael",
+   "notes": "",
+   "assignable": true,
+   "paid": false,
+   "aiNote": "",
+   "aiDone": false,
+   "startOn": "",
+   "cadence": "",
+   "ownerSet": true
+  },
+  "task-183": {
+   "decision": "keep",
+   "newOwner": "Kimberly",
+   "notes": "",
+   "assignable": false,
+   "paid": false,
+   "aiNote": "",
+   "aiDone": false,
+   "startOn": "",
+   "cadence": "",
+   "ownerSet": true
+  },
+  "task-184": {
+   "decision": "keep",
+   "newOwner": "Michael",
+   "notes": "",
+   "assignable": true,
+   "paid": false,
+   "aiNote": "",
+   "aiDone": false,
+   "startOn": "",
+   "cadence": "",
+   "ownerSet": true
+  },
+  "task-185": {
+   "decision": "keep",
+   "newOwner": "Michael",
+   "notes": "",
+   "assignable": true,
+   "paid": false,
+   "aiNote": "",
+   "aiDone": false,
+   "startOn": "",
+   "cadence": "",
+   "ownerSet": true
+  },
+  "task-186": {
+   "decision": "keep",
+   "newOwner": "Michael",
+   "notes": "",
+   "assignable": true,
+   "paid": false,
+   "aiNote": "",
+   "aiDone": false,
+   "startOn": "",
+   "cadence": "",
+   "ownerSet": true
+  },
+  "task-187": {
+   "decision": "keep",
+   "newOwner": "Michael",
+   "notes": "",
+   "assignable": true,
+   "paid": false,
+   "aiNote": "",
+   "aiDone": false,
+   "startOn": "",
+   "cadence": "",
+   "ownerSet": true
+  },
+  "task-188": {
+   "decision": "keep",
+   "newOwner": "Michael",
+   "notes": "",
+   "assignable": true,
+   "paid": false,
+   "aiNote": "",
+   "aiDone": false,
+   "startOn": "",
+   "cadence": "",
+   "ownerSet": true
+  },
+  "task-189": {
+   "decision": "keep",
+   "newOwner": "Kimberly",
+   "notes": "",
+   "assignable": false,
+   "paid": false,
+   "aiNote": "",
+   "aiDone": false,
+   "startOn": "",
+   "cadence": "",
+   "ownerSet": true
+  },
+  "task-190": {
+   "decision": "keep",
+   "newOwner": "Michael",
+   "notes": "",
+   "assignable": true,
+   "paid": false,
+   "aiNote": "",
+   "aiDone": false,
+   "startOn": "",
+   "cadence": "",
+   "ownerSet": true
+  },
+  "task-191": {
+   "decision": "remove",
+   "newOwner": "",
+   "notes": "",
+   "assignable": false,
+   "paid": false
+  },
+  "task-192": {
+   "decision": "remove",
+   "newOwner": "",
+   "notes": "",
+   "assignable": false,
+   "paid": false
+  },
+  "task-193": {
+   "decision": "keep",
+   "newOwner": "Michael",
+   "notes": "",
+   "assignable": true,
+   "paid": false,
+   "aiNote": "",
+   "aiDone": false,
+   "startOn": "",
+   "cadence": "",
+   "ownerSet": true
+  },
+  "task-194": {
+   "decision": "keep",
+   "newOwner": "Michael",
+   "notes": "",
+   "assignable": true,
+   "paid": false,
+   "aiNote": "",
+   "aiDone": false,
+   "startOn": "",
+   "cadence": "",
+   "ownerSet": true
+  },
+  "task-195": {
+   "decision": "keep",
+   "newOwner": "Michael",
+   "notes": "",
+   "assignable": true,
+   "paid": false,
+   "aiNote": "",
+   "aiDone": false,
+   "startOn": "",
+   "cadence": "",
+   "ownerSet": true
+  },
+  "task-196": {
+   "decision": "keep",
+   "newOwner": "Michael",
+   "notes": "",
+   "assignable": true,
+   "paid": false,
+   "aiNote": "",
+   "aiDone": false,
+   "startOn": "",
+   "cadence": "",
+   "ownerSet": true
+  },
+  "task-197": {
+   "decision": "keep",
+   "newOwner": "Kimberly",
+   "notes": "",
+   "assignable": false,
+   "paid": false,
+   "aiNote": "",
+   "aiDone": false,
+   "startOn": "",
+   "cadence": "",
+   "ownerSet": true
+  },
+  "task-198": {
+   "decision": "keep",
+   "newOwner": "Michael",
+   "notes": "",
+   "assignable": true,
+   "paid": false,
+   "aiNote": "",
+   "aiDone": false,
+   "startOn": "",
+   "cadence": "",
+   "ownerSet": true
+  },
+  "task-199": {
+   "decision": "keep",
+   "newOwner": "Michael",
+   "notes": "",
+   "assignable": true,
+   "paid": false,
+   "aiNote": "",
+   "aiDone": false,
+   "startOn": "",
+   "cadence": "",
+   "ownerSet": true
+  },
+  "task-200": {
+   "decision": "keep",
+   "newOwner": "Michael",
+   "notes": "",
+   "assignable": true,
+   "paid": false,
+   "aiNote": "",
+   "aiDone": false,
+   "startOn": "",
+   "cadence": "",
+   "ownerSet": true
+  },
+  "task-201": {
+   "decision": "keep",
+   "newOwner": "Michael",
+   "notes": "",
+   "assignable": true,
+   "paid": false,
+   "aiNote": "",
+   "aiDone": false,
+   "startOn": "",
+   "cadence": "",
+   "ownerSet": true
+  },
+  "task-202": {
+   "decision": "keep",
+   "newOwner": "Kimberly",
+   "notes": "",
+   "assignable": false,
+   "paid": false,
+   "aiNote": "AI: change to once a week",
+   "aiDone": true,
+   "startOn": "",
+   "cadence": "",
+   "ownerSet": true
+  },
+  "task-203": {
+   "decision": "keep",
+   "newOwner": "Kimberly",
+   "notes": "",
+   "assignable": false,
+   "paid": false,
+   "aiNote": "",
+   "aiDone": false,
+   "startOn": "",
+   "cadence": "",
+   "ownerSet": true
+  },
+  "task-204": {
+   "decision": "keep",
+   "newOwner": "Michael",
+   "notes": "",
+   "assignable": false,
+   "paid": false,
+   "aiNote": "",
+   "aiDone": false,
+   "startOn": "",
+   "cadence": "",
+   "ownerSet": true
+  },
+  "task-205": {
+   "decision": "keep",
+   "newOwner": "Michael",
+   "notes": "",
+   "assignable": false,
+   "paid": false,
+   "aiNote": "AI: change all for this master bathroom to every other week.",
+   "aiDone": true,
+   "startOn": "",
+   "cadence": "",
+   "ownerSet": true
+  },
+  "task-206": {
+   "decision": "keep",
+   "newOwner": "Michael",
+   "notes": "",
+   "assignable": false,
+   "paid": false,
+   "aiNote": "AI: change description to use soft scrub and automatic scrubber brush, rinse, then use attitude spray and leave. Throw away/clean up items as needed.",
+   "aiDone": true,
+   "startOn": "",
+   "cadence": "",
+   "ownerSet": true
+  },
+  "task-207": {
+   "decision": "keep",
+   "newOwner": "Kimberly",
+   "notes": "",
+   "assignable": false,
+   "paid": false,
+   "aiNote": "AI: This one stays weekly",
+   "aiDone": true,
+   "startOn": "",
+   "cadence": "",
+   "ownerSet": true
+  },
+  "task-208": {
+   "decision": "keep",
+   "newOwner": "Michael",
+   "notes": "",
+   "assignable": false,
+   "paid": false,
+   "aiNote": "",
+   "aiDone": false,
+   "startOn": "",
+   "cadence": "",
+   "ownerSet": true
+  },
+  "task-209": {
+   "decision": "keep",
+   "newOwner": "Kimberly",
+   "notes": "",
+   "assignable": false,
+   "paid": false,
+   "aiNote": "",
+   "aiDone": false,
+   "startOn": "",
+   "cadence": "",
+   "ownerSet": true
+  },
+  "task-210": {
+   "decision": "keep",
+   "newOwner": "Kimberly",
+   "notes": "",
+   "assignable": false,
+   "paid": false,
+   "aiNote": "AI: Make note that Michael should let Kimberly know when things are getting low",
+   "aiDone": true,
+   "startOn": "",
+   "cadence": "",
+   "ownerSet": true
+  },
+  "task-211": {
+   "decision": "keep",
+   "newOwner": "Michael",
+   "notes": "",
+   "assignable": false,
+   "paid": false,
+   "aiNote": "",
+   "aiDone": false,
+   "startOn": "",
+   "cadence": "",
+   "ownerSet": true
+  },
+  "task-212": {
+   "decision": "",
+   "newOwner": "Michael",
+   "notes": "",
+   "assignable": true,
+   "paid": false,
+   "aiNote": "",
+   "aiDone": false,
+   "startOn": "",
+   "cadence": "",
+   "ownerSet": true
+  },
+  "task-213": {
+   "decision": "keep",
+   "newOwner": "Michael",
+   "notes": "",
+   "assignable": true,
+   "paid": false,
+   "aiNote": "",
+   "aiDone": false,
+   "startOn": "",
+   "cadence": "",
+   "ownerSet": true
+  },
+  "task-214": {
+   "decision": "keep",
+   "newOwner": "Kimberly",
+   "notes": "",
+   "assignable": false,
+   "paid": false,
+   "aiNote": "",
+   "aiDone": false,
+   "startOn": "",
+   "cadence": "",
+   "ownerSet": true
+  },
+  "task-215": {
+   "decision": "keep",
+   "newOwner": "Michael",
+   "notes": "",
+   "assignable": false,
+   "paid": false,
+   "aiNote": "",
+   "aiDone": false,
+   "startOn": "",
+   "cadence": "",
+   "ownerSet": true
+  },
+  "task-216": {
+   "decision": "keep",
+   "newOwner": "Kimberly",
+   "notes": "",
+   "assignable": false,
+   "paid": false,
+   "aiNote": "",
+   "aiDone": false,
+   "startOn": "",
+   "cadence": "",
+   "ownerSet": true
+  },
+  "task-217": {
+   "decision": "keep",
+   "newOwner": "Michael",
+   "notes": "",
+   "assignable": true,
+   "paid": false,
+   "aiNote": "",
+   "aiDone": false,
+   "startOn": "",
+   "cadence": "",
+   "ownerSet": true
+  },
+  "task-218": {
+   "decision": "keep",
+   "newOwner": "Michael",
+   "notes": "",
+   "assignable": true,
+   "paid": false,
+   "aiNote": "",
+   "aiDone": false,
+   "startOn": "",
+   "cadence": "",
+   "ownerSet": true
+  },
+  "task-219": {
+   "decision": "keep",
+   "newOwner": "Michael",
+   "notes": "",
+   "assignable": true,
+   "paid": false,
+   "aiNote": "",
+   "aiDone": false,
+   "startOn": "",
+   "cadence": "",
+   "ownerSet": true
+  },
+  "task-220": {
+   "decision": "keep",
+   "newOwner": "Michael",
+   "notes": "",
+   "assignable": false,
+   "paid": false,
+   "aiNote": "",
+   "aiDone": false,
+   "startOn": "",
+   "cadence": "",
+   "ownerSet": true
+  },
+  "task-221": {
+   "decision": "keep",
+   "newOwner": "Michael",
+   "notes": "",
+   "assignable": false,
+   "paid": false,
+   "aiNote": "",
+   "aiDone": false,
+   "startOn": "",
+   "cadence": "",
+   "ownerSet": true
+  },
+  "task-222": {
+   "decision": "keep",
+   "newOwner": "Michael",
+   "notes": "",
+   "assignable": false,
+   "paid": false,
+   "aiNote": "",
+   "aiDone": false,
+   "startOn": "",
+   "cadence": "",
+   "ownerSet": true
+  },
+  "task-223": {
+   "decision": "keep",
+   "newOwner": "Kimberly, Brighton, Oliver, Ephraim",
+   "notes": "",
+   "assignable": false,
+   "paid": false,
+   "aiNote": "AI: Remove Brighton completely",
+   "aiDone": true,
+   "startOn": "",
+   "cadence": "",
+   "ownerSet": true
+  },
+  "task-224": {
+   "decision": "keep",
+   "newOwner": "Oliver, Ephraim",
+   "notes": "",
+   "assignable": false,
+   "paid": false,
+   "aiNote": "",
+   "aiDone": false,
+   "startOn": "",
+   "cadence": "",
+   "ownerSet": true
+  },
+  "task-225": {
+   "decision": "keep",
+   "newOwner": "Brighton, Oliver, Ephraim",
+   "notes": "",
+   "assignable": false,
+   "paid": false,
+   "aiNote": "AI: Change to biweekly",
+   "aiDone": true,
+   "startOn": "",
+   "cadence": "",
+   "ownerSet": true
+  },
+  "task-226": {
+   "decision": "keep",
+   "newOwner": "Oliver, Ephraim",
+   "notes": "",
+   "assignable": false,
+   "paid": false,
+   "aiNote": "",
+   "aiDone": false,
+   "startOn": "",
+   "cadence": "",
+   "ownerSet": true
+  },
+  "task-227": {
+   "decision": "keep",
+   "newOwner": "Kimberly, Oliver, Ephraim",
+   "notes": "",
+   "assignable": false,
+   "paid": false,
+   "aiNote": "AI: Oliver and Ephraim bring bedding to Kimberly, Kimberly washes and dries, Oliver and Ephraim bring bedding back up and put ON their beds the same day",
+   "aiDone": true,
+   "startOn": "",
+   "cadence": "",
+   "ownerSet": true
+  },
+  "task-228": {
+   "decision": "keep",
+   "newOwner": "Oliver, Ephraim",
+   "notes": "",
+   "assignable": true,
+   "paid": true,
+   "aiNote": "",
+   "aiDone": false,
+   "startOn": "",
+   "cadence": "",
+   "ownerSet": true
+  },
+  "task-229": {
+   "decision": "remove",
+   "newOwner": "",
+   "notes": "",
+   "assignable": false,
+   "paid": false
+  },
+  "task-230": {
+   "decision": "keep",
+   "newOwner": "Oliver, Ephraim",
+   "notes": "",
+   "assignable": false,
+   "paid": false,
+   "aiNote": "AI: Change to Oliver and Ephraim respectively",
+   "aiDone": true,
+   "startOn": "",
+   "cadence": "",
+   "ownerSet": true
+  },
+  "task-231": {
+   "decision": "keep",
+   "newOwner": "Kimberly",
+   "notes": "",
+   "assignable": false,
+   "paid": false,
+   "aiNote": "AI: Add that the children should notify Kimberly when running low on items",
+   "aiDone": true,
+   "startOn": "",
+   "cadence": "",
+   "ownerSet": true
+  },
+  "task-232": {
+   "decision": "keep",
+   "newOwner": "Oliver, Ephraim",
+   "notes": "",
+   "assignable": true,
+   "paid": true,
+   "aiNote": "",
+   "aiDone": false,
+   "startOn": "",
+   "cadence": "",
+   "ownerSet": true
+  },
+  "task-233": {
+   "decision": "keep",
+   "newOwner": "Kimberly, Brighton, Oliver, Ephraim",
+   "notes": "",
+   "assignable": false,
+   "paid": false,
+   "aiNote": "",
+   "aiDone": false,
+   "startOn": "",
+   "cadence": "",
+   "ownerSet": true
+  },
+  "task-234": {
+   "decision": "keep",
+   "newOwner": "Oliver, Ephraim",
+   "notes": "",
+   "assignable": false,
+   "paid": false,
+   "aiNote": "AI: Assign to Oliver and Ephraim",
+   "aiDone": true,
+   "startOn": "",
+   "cadence": "",
+   "ownerSet": true
+  },
+  "task-235": {
+   "decision": "keep",
+   "newOwner": "Oliver, Ephraim",
+   "notes": "",
+   "assignable": false,
+   "paid": false,
+   "aiNote": "AI: Assign to Oliver and Ephraim",
+   "aiDone": true,
+   "startOn": "",
+   "cadence": "",
+   "ownerSet": true
+  },
+  "task-236": {
+   "decision": "keep",
+   "newOwner": "Oliver, Ephraim",
+   "notes": "",
+   "assignable": false,
+   "paid": false,
+   "aiNote": "AI: Assign to Oliver and Ephraim",
+   "aiDone": true,
+   "startOn": "",
+   "cadence": "",
+   "ownerSet": true
+  },
+  "task-237": {
+   "decision": "keep",
+   "newOwner": "Oliver, Ephraim",
+   "notes": "",
+   "assignable": false,
+   "paid": false,
+   "aiNote": "AI: Assign to Oliver and Ephraim",
+   "aiDone": true,
+   "startOn": "",
+   "cadence": "",
+   "ownerSet": true
+  },
+  "task-238": {
+   "decision": "remove",
+   "newOwner": "",
+   "notes": "",
+   "assignable": false,
+   "paid": false
+  },
+  "task-239": {
+   "decision": "keep",
+   "newOwner": "Oliver, Ephraim",
+   "notes": "",
+   "assignable": true,
+   "paid": true,
+   "aiNote": "",
+   "aiDone": false,
+   "startOn": "",
+   "cadence": "",
+   "ownerSet": true
+  },
+  "task-240": {
+   "decision": "keep",
+   "newOwner": "Oliver, Ephraim",
+   "notes": "",
+   "assignable": false,
+   "paid": true,
+   "aiNote": "AI: Change owners to EPhraim and Oliver",
+   "aiDone": true,
+   "startOn": "",
+   "cadence": "",
+   "ownerSet": true
+  },
+  "task-241": {
+   "decision": "keep",
+   "newOwner": "Oliver, Ephraim",
+   "notes": "",
+   "assignable": true,
+   "paid": true,
+   "aiNote": "",
+   "aiDone": false,
+   "startOn": "",
+   "cadence": "",
+   "ownerSet": true
+  },
+  "task-242": {
+   "decision": "keep",
+   "newOwner": "Michael",
+   "notes": "",
+   "assignable": false,
+   "paid": false,
+   "aiNote": "",
+   "aiDone": false,
+   "startOn": "",
+   "cadence": "",
+   "ownerSet": true
+  },
+  "task-243": {
+   "decision": "keep",
+   "newOwner": "Person responsible / person who discovers an urgent mess",
+   "notes": "",
+   "assignable": false,
+   "paid": false,
+   "aiNote": "AI: Incentivize this using one-off award system",
+   "aiDone": true,
+   "startOn": "",
+   "cadence": "",
+   "ownerSet": true
+  },
+  "task-244": {
+   "decision": "keep",
+   "newOwner": "Kimberly",
+   "notes": "",
+   "assignable": false,
+   "paid": false,
+   "aiNote": "",
+   "aiDone": false,
+   "startOn": "",
+   "cadence": "",
+   "ownerSet": true
+  },
+  "task-245": {
+   "decision": "keep",
+   "newOwner": "Kimberly, Michael",
+   "notes": "",
+   "assignable": false,
+   "paid": false,
+   "aiNote": "AI: make this on Tue",
+   "aiDone": true,
+   "startOn": "",
+   "cadence": "",
+   "ownerSet": true
+  },
+  "task-246": {
+   "decision": "keep",
+   "newOwner": "Ephraim",
+   "notes": "",
+   "assignable": true,
+   "paid": true,
+   "aiNote": "",
+   "aiDone": false,
+   "startOn": "",
+   "cadence": "",
+   "ownerSet": true
+  },
+  "task-247": {
+   "decision": "remove",
+   "newOwner": "Oliver",
+   "notes": "",
+   "assignable": false,
+   "paid": false
+  },
+  "task-248": {
+   "decision": "keep",
+   "newOwner": "Kimberly",
+   "notes": "",
+   "assignable": false,
+   "paid": false,
+   "aiNote": "",
+   "aiDone": false,
+   "startOn": "",
+   "cadence": "",
+   "ownerSet": true
+  },
+  "task-249": {
+   "decision": "keep",
+   "newOwner": "Kimberly, Brighton",
+   "notes": "",
+   "assignable": false,
+   "paid": false,
+   "aiNote": "AI: Add Brighton and Kimberly as owners",
+   "aiDone": true,
+   "startOn": "",
+   "cadence": "",
+   "ownerSet": true
+  },
+  "task-250": {
+   "decision": "keep",
+   "newOwner": "Ephraim",
+   "notes": "",
+   "assignable": true,
+   "paid": true,
+   "aiNote": "",
+   "aiDone": false,
+   "startOn": "",
+   "cadence": "",
+   "ownerSet": true
+  },
+  "task-251": {
+   "decision": "remove",
+   "newOwner": "",
+   "notes": "",
+   "assignable": false,
+   "paid": false
+  },
+  "task-252": {
+   "decision": "remove",
+   "newOwner": "",
+   "notes": "",
+   "assignable": false,
+   "paid": false
+  },
+  "task-253": {
+   "decision": "keep",
+   "newOwner": "Oliver",
+   "notes": "",
+   "assignable": true,
+   "paid": true,
+   "aiNote": "",
+   "aiDone": false,
+   "startOn": "",
+   "cadence": "",
+   "ownerSet": true
+  },
+  "task-254": {
+   "decision": "keep",
+   "newOwner": "Kimberly",
+   "notes": "",
+   "assignable": false,
+   "paid": false,
+   "aiNote": "",
+   "aiDone": false,
+   "startOn": "",
+   "cadence": "",
+   "ownerSet": true
+  },
+  "task-255": {
+   "decision": "keep",
+   "newOwner": "Kimberly",
+   "notes": "",
+   "assignable": false,
+   "paid": false,
+   "aiNote": "AI: Add to \"soft skills\" section: that other household members should let Kimberly know when low on items or an item is needed",
+   "aiDone": true,
+   "startOn": "",
+   "cadence": "",
+   "ownerSet": true
+  },
+  "task-256": {
+   "decision": "keep",
+   "newOwner": "Kimberly, Michael",
+   "notes": "",
+   "assignable": false,
+   "paid": false,
+   "aiNote": "",
+   "aiDone": false,
+   "startOn": "",
+   "cadence": "",
+   "ownerSet": true
+  },
+  "task-257": {
+   "decision": "keep",
+   "newOwner": "Kimberly",
+   "notes": "",
+   "assignable": false,
+   "paid": false,
+   "aiNote": "AI: This is still Kimberly's but Add \"soft skill\" for Michael to only follow up and not review",
+   "aiDone": true,
+   "startOn": "",
+   "cadence": "",
+   "ownerSet": true
+  },
+  "task-258": {
+   "decision": "keep",
+   "newOwner": "Kimberly",
+   "notes": "",
+   "assignable": false,
+   "paid": false,
+   "aiNote": "",
+   "aiDone": false,
+   "startOn": "",
+   "cadence": "",
+   "ownerSet": true
+  },
+  "task-259": {
+   "decision": "keep",
+   "newOwner": "Kimberly",
+   "notes": "",
+   "assignable": false,
+   "paid": false,
+   "aiNote": "AI: Add that other household members should be doing this as well for things they use. #softskill",
+   "aiDone": true,
+   "startOn": "",
+   "cadence": "",
+   "ownerSet": true
+  },
+  "task-260": {
+   "decision": "keep",
+   "newOwner": "Kimberly",
+   "notes": "",
+   "assignable": false,
+   "paid": false,
+   "aiNote": "",
+   "aiDone": false,
+   "startOn": "",
+   "cadence": "",
+   "ownerSet": true
+  },
+  "task-261": {
+   "decision": "keep",
+   "newOwner": "Kimberly",
+   "notes": "",
+   "assignable": false,
+   "paid": false,
+   "aiNote": "",
+   "aiDone": false,
+   "startOn": "",
+   "cadence": "",
+   "ownerSet": true
+  },
+  "task-262": {
+   "decision": "keep",
+   "newOwner": "Kimberly",
+   "notes": "",
+   "assignable": false,
+   "paid": false,
+   "aiNote": "",
+   "aiDone": false,
+   "startOn": "",
+   "cadence": "",
+   "ownerSet": true
+  },
+  "task-263": {
+   "decision": "keep",
+   "newOwner": "Kimberly",
+   "notes": "",
+   "assignable": false,
+   "paid": false,
+   "aiNote": "",
+   "aiDone": false,
+   "startOn": "",
+   "cadence": "",
+   "ownerSet": true
+  },
+  "task-264": {
+   "decision": "keep",
+   "newOwner": "Kimberly, Michael",
+   "notes": "",
+   "assignable": false,
+   "paid": false,
+   "aiNote": "AI: Add Michael and Kimberly",
+   "aiDone": true,
+   "startOn": "",
+   "cadence": "",
+   "ownerSet": true
+  },
+  "task-265": {
+   "decision": "keep",
+   "newOwner": "Kimberly",
+   "notes": "",
+   "assignable": false,
+   "paid": false,
+   "aiNote": "AI: Change description to planning and preparing for Back to Hogwarts and all orientation/set up for Prisma",
+   "aiDone": true,
+   "startOn": "",
+   "cadence": "",
+   "ownerSet": true
+  },
+  "task-266": {
+   "decision": "keep",
+   "newOwner": "Kimberly",
+   "notes": "",
+   "assignable": false,
+   "paid": false,
+   "aiNote": "",
+   "aiDone": false,
+   "startOn": "",
+   "cadence": "",
+   "ownerSet": true
+  },
+  "task-267": {
+   "decision": "keep",
+   "newOwner": "Kimberly",
+   "notes": "",
+   "assignable": false,
+   "paid": false,
+   "aiNote": "",
+   "aiDone": false,
+   "startOn": "",
+   "cadence": "",
+   "ownerSet": true
+  },
+  "task-268": {
+   "decision": "keep",
+   "newOwner": "Kimberly",
+   "notes": "",
+   "assignable": false,
+   "paid": false,
+   "aiNote": "",
+   "aiDone": false,
+   "startOn": "",
+   "cadence": "",
+   "ownerSet": true
+  },
+  "task-269": {
+   "decision": "keep",
+   "newOwner": "Kimberly, Michael",
+   "notes": "",
+   "assignable": false,
+   "paid": false,
+   "aiNote": "AI: Add Michael does his mom and dad, Kimberly everyone else",
+   "aiDone": true,
+   "startOn": "",
+   "cadence": "",
+   "ownerSet": true
+  },
+  "task-270": {
+   "decision": "keep",
+   "newOwner": "Kimberly",
+   "notes": "Add: Brighton and Kimberly as owners and also add Ephraim because he has a pet now as well",
+   "assignable": false,
+   "paid": false,
+   "aiNote": "",
+   "aiDone": false,
+   "startOn": "",
+   "cadence": "",
+   "ownerSet": true
+  },
+  "task-271": {
+   "decision": "keep",
+   "newOwner": "Kimberly, Brighton",
+   "notes": "",
+   "assignable": false,
+   "paid": false,
+   "aiNote": "AI: Add Brighton as an owner as well as Kimberly",
+   "aiDone": true,
+   "startOn": "",
+   "cadence": "",
+   "ownerSet": true
+  },
+  "task-272": {
+   "decision": "remove",
+   "newOwner": "",
+   "notes": "",
+   "assignable": false,
+   "paid": false
+  },
+  "task-273": {
+   "decision": "keep",
+   "newOwner": "Kimberly, Michael",
+   "notes": "",
+   "assignable": false,
+   "paid": false,
+   "aiNote": "",
+   "aiDone": false,
+   "startOn": "",
+   "cadence": "",
+   "ownerSet": true
+  },
+  "task-274": {
+   "decision": "keep",
+   "newOwner": "Kimberly, Michael",
+   "notes": "",
+   "assignable": false,
+   "paid": false,
+   "aiNote": "",
+   "aiDone": false,
+   "startOn": "",
+   "cadence": "",
+   "ownerSet": true
+  },
+  "task-275": {
+   "decision": "keep",
+   "newOwner": "Kimberly",
+   "notes": "",
+   "assignable": false,
+   "paid": false,
+   "aiNote": "",
+   "aiDone": false,
+   "startOn": "",
+   "cadence": "",
+   "ownerSet": true
+  },
+  "task-276": {
+   "decision": "keep",
+   "newOwner": "Michael",
+   "notes": "",
+   "assignable": false,
+   "paid": false,
+   "aiNote": "",
+   "aiDone": false,
+   "startOn": "",
+   "cadence": "",
+   "ownerSet": true
+  },
+  "task-277": {
+   "decision": "keep",
+   "newOwner": "Michael",
+   "notes": "",
+   "assignable": false,
+   "paid": false,
+   "aiNote": "",
+   "aiDone": false,
+   "startOn": "",
+   "cadence": "",
+   "ownerSet": true
+  },
+  "task-278": {
+   "decision": "keep",
+   "newOwner": "Michael",
+   "notes": "",
+   "assignable": false,
+   "paid": false,
+   "aiNote": "",
+   "aiDone": false,
+   "startOn": "",
+   "cadence": "",
+   "ownerSet": true
+  },
+  "task-279": {
+   "decision": "keep",
+   "newOwner": "Michael",
+   "notes": "",
+   "assignable": false,
+   "paid": false,
+   "aiNote": "",
+   "aiDone": false,
+   "startOn": "",
+   "cadence": "",
+   "ownerSet": true
+  },
+  "task-280": {
+   "decision": "keep",
+   "newOwner": "Kimberly",
+   "notes": "",
+   "assignable": false,
+   "paid": false,
+   "aiNote": "",
+   "aiDone": false,
+   "startOn": "",
+   "cadence": "",
+   "ownerSet": true
+  },
+  "task-281": {
+   "decision": "keep",
+   "newOwner": "Michael",
+   "notes": "",
+   "assignable": false,
+   "paid": false,
+   "aiNote": "",
+   "aiDone": false,
+   "startOn": "",
+   "cadence": "",
+   "ownerSet": true
+  },
+  "task-282": {
+   "decision": "keep",
+   "newOwner": "Michael",
+   "notes": "",
+   "assignable": false,
+   "paid": false,
+   "aiNote": "",
+   "aiDone": false,
+   "startOn": "",
+   "cadence": "",
+   "ownerSet": true
+  },
+  "task-283": {
+   "decision": "keep",
+   "newOwner": "Kimberly",
+   "notes": "",
+   "assignable": false,
+   "paid": false,
+   "aiNote": "",
+   "aiDone": false,
+   "startOn": "",
+   "cadence": "",
+   "ownerSet": true
+  },
+  "task-284": {
+   "decision": "keep",
+   "newOwner": "Michael",
+   "notes": "",
+   "assignable": false,
+   "paid": false,
+   "aiNote": "",
+   "aiDone": false,
+   "startOn": "",
+   "cadence": "",
+   "ownerSet": true
+  },
+  "task-285": {
+   "decision": "remove",
+   "newOwner": "",
+   "notes": "",
+   "assignable": false,
+   "paid": false
+  },
+  "task-286": {
+   "decision": "remove",
+   "newOwner": "",
+   "notes": "",
+   "assignable": false,
+   "paid": false
+  },
+  "task-287": {
+   "decision": "remove",
+   "newOwner": "",
+   "notes": "",
+   "assignable": false,
+   "paid": false
+  },
+  "task-288": {
+   "decision": "keep",
+   "newOwner": "Michael",
+   "notes": "",
+   "assignable": false,
+   "paid": false,
+   "aiNote": "",
+   "aiDone": false,
+   "startOn": "",
+   "cadence": "",
+   "ownerSet": true
+  },
+  "task-289": {
+   "decision": "keep",
+   "newOwner": "Brighton",
+   "notes": "",
+   "assignable": true,
+   "paid": false,
+   "aiNote": "",
+   "aiDone": false,
+   "startOn": "",
+   "cadence": "",
+   "ownerSet": true
+  },
+  "task-290": {
+   "decision": "remove",
+   "newOwner": "",
+   "notes": "",
+   "assignable": false,
+   "paid": false
+  },
+  "task-291": {
+   "decision": "",
+   "newOwner": "Ephraim",
+   "notes": "",
+   "assignable": true,
+   "paid": true,
+   "aiNote": "",
+   "aiDone": false,
+   "startOn": "",
+   "cadence": "",
+   "ownerSet": true
+  },
+  "task-292": {
+   "decision": "keep",
+   "newOwner": "Kimberly",
+   "notes": "",
+   "assignable": false,
+   "paid": false,
+   "aiNote": "",
+   "aiDone": false,
+   "startOn": "",
+   "cadence": "",
+   "ownerSet": true
+  },
+  "task-293": {
+   "decision": "remove",
+   "newOwner": "",
+   "notes": "",
+   "assignable": false,
+   "paid": false
+  },
+  "task-294": {
+   "decision": "remove",
+   "newOwner": "",
+   "notes": "",
+   "assignable": false,
+   "paid": false
+  },
+  "task-295": {
+   "decision": "remove",
+   "newOwner": "",
+   "notes": "",
+   "assignable": false,
+   "paid": false
+  },
+  "task-296": {
+   "decision": "",
+   "newOwner": "Oliver, Ephraim",
+   "notes": "",
+   "assignable": false,
+   "paid": false,
+   "aiNote": "",
+   "aiDone": false,
+   "startOn": "",
+   "cadence": "",
+   "ownerSet": true
+  },
+  "task-299": {
+   "decision": "",
+   "newOwner": "Brighton, Oliver, Ephraim",
+   "notes": "",
+   "assignable": false,
+   "paid": false,
+   "aiNote": "This should be done every other day and appear on calendar as such",
+   "aiDone": true,
+   "startOn": "",
+   "cadence": "",
+   "ownerSet": true
+  },
+  "task-298": {
+   "decision": "",
+   "newOwner": "Ephraim",
+   "notes": "",
+   "assignable": false,
+   "paid": false,
+   "aiNote": "",
+   "aiDone": false,
+   "startOn": "",
+   "cadence": "",
+   "ownerSet": true
+  },
+  "task-300": {
+   "decision": "",
+   "newOwner": "Oliver, Ephraim",
+   "notes": "",
+   "assignable": false,
+   "paid": false,
+   "aiNote": "",
+   "aiDone": false,
+   "startOn": "",
+   "cadence": "",
+   "ownerSet": true
+  }
+ },
+ "extras": {
+  "customTasks": [],
+  "parents": {},
+  "standing": {},
+  "standalone": {},
+  "softSkills": [
+   {
+    "id": "skill-tell-kim-when-low",
+    "title": "Tell Kim when something is low or needed",
+    "description": "When you notice something running low, or something the household needs, let Kimberly know so it gets on the list.",
+    "fromTask": "task-255"
+   },
+   {
+    "id": "skill-school-follow-up",
+    "title": "Follow up on school; don't re-review",
+    "description": "Kimberly does the weekly school review. Michael follows up on what she finds rather than reviewing it again.",
+    "fromTask": "task-257"
+   },
+   {
+    "id": "skill-own-supplies",
+    "title": "Keep an eye on supplies for the things you use",
+    "description": "Check the supplies for the things you use and flag what's running out, so the household inventory check isn't Kimberly's job alone.",
+    "fromTask": "task-259"
+   }
+  ],
+  "skillOwners": {
+   "skill-tell-kim-when-low": [
+    "Michael",
+    "Brighton",
+    "Oliver",
+    "Ephraim"
+   ],
+   "skill-school-follow-up": [
+    "Michael"
+   ],
+   "skill-own-supplies": [
+    "Michael",
+    "Brighton",
+    "Oliver",
+    "Ephraim"
+   ]
+  },
+  "awardTypes": [
+   {
+    "id": "award-spill",
+    "title": "Cleaned up a spill, stain, or pet mess",
+    "points": 5,
+    "description": "Handled a mess right away, especially one you didn't make.",
+    "taskId": "task-243"
+   },
+   {
+    "id": "award-not-yours",
+    "title": "Did a job that wasn't yours, unasked",
+    "points": 5,
+    "description": "Saw something that needed doing and just did it.",
+    "taskId": null
+   },
+   {
+    "id": "award-helped",
+    "title": "Helped someone finish their job",
+    "points": 5,
+    "description": "Pitched in so someone else could get done.",
+    "taskId": null
+   },
+   {
+    "id": "award-heads-up",
+    "title": "Gave a heads-up before something ran out or broke",
+    "points": 5,
+    "description": "Noticed early and told someone who could fix it.",
+    "taskId": null
+   }
+  ],
+  "awardLog": [],
+  "autoPools": {
+   "chores": [
+    "Kimberly",
+    "Ephraim"
+   ]
+  },
+  "calendar": {
+   "pins": {
+    "task-260": {
+     "0": "2026-10-13"
+    },
+    "task-151": {
+     "0": "2026-10-24"
+    }
+   },
+   "moves": {
+    "task-23": {
+     "0|2026-10-21": "2026-10-28"
+    }
+   }
+  },
+  "completions": {
+   "task-299|0|2026-10-18": {
+    "by": "Ephraim",
+    "at": "2026-10-18T19:54:41.644Z",
+    "on": "2026-10-18",
+    "title": "DLY: Shower"
+   }
+  },
+  "users": {
+   "admins": [
+    "Michael",
+    "Kimberly"
+   ],
+   "lastLogin": {
+    "Michael": "2026-10-18T00:42:04.813Z",
+    "Kimberly": "2026-10-18T17:53:00.276Z",
+    "Brighton": "2026-10-18T19:54:44.968Z",
+    "Oliver": "2026-10-18T19:53:57.201Z",
+    "Ephraim": "2026-10-18T19:54:00.617Z"
+   },
+   "accounts": {
+    "Michael": {
+     "changedAt": "2026-10-18T20:00:41.808Z"
+    },
+    "Kimberly": {
+     "changedAt": "2026-10-18T20:01:15.485Z"
+    }
+   }
+  },
+  "oneOffs": [],
+  "maturity": {
+   "sections": [
+    {
+     "id": "maturity-section-1",
+     "title": "Household Expectations & Teenage Independence",
+     "cards": [
+      {
+       "id": "brighton-dog-care",
+       "title": "Full Ownership of Dog Care & Ending the Mental Burden",
+       "people": [
+        "Brighton"
+       ],
+       "items": [
+        {
+         "label": "",
+         "text": "Proactive Daily Routine",
+         "subitems": [
+          {
+           "label": "",
+           "text": "Pinto walk once a day"
+          },
+          {
+           "label": "",
+           "text": "Feed at night before we eat (Parents feel bad if too late)"
+          },
+          {
+           "label": "",
+           "text": "Communicate if need us to help with walk/feed"
+          },
+          {
+           "label": "",
+           "text": "Take initiative to call, schedule, and follow through on her appointment(s)"
+          },
+          {
+           "label": "",
+           "text": "Take care of her meds (worm/flea etc)"
+          },
+          {
+           "label": "",
+           "text": "Actively handle the cleanup when she makes a mess (including heat cycle)"
+          }
+         ]
+        }
+       ],
+       "chores": []
+      },
+      {
+       "id": "nighttime-routine",
+       "title": "Nighttime Routine",
+       "people": [
+        "Oliver",
+        "Ephraim"
+       ],
+       "items": [
+        {
+         "label": "Two times",
+         "text": "",
+         "subitems": [
+          {
+           "label": "Internet cut-off = 12",
+           "text": "30am"
+          },
+          {
+           "label": "In room for the night = 1",
+           "text": "30am"
+          }
+         ]
+        },
+        {
+         "label": "",
+         "text": "Time Guidelines",
+         "subitems": [
+          {
+           "label": "",
+           "text": "Parents don't need to initiate any tasks or enforce in room"
+          },
+          {
+           "label": "",
+           "text": "All night tasks done before internet cut-off"
+          },
+          {
+           "label": "",
+           "text": "No food/couch/leisure after"
+          }
+         ]
+        },
+        {
+         "label": "Tasks",
+         "text": "",
+         "subitems": [
+          {
+           "label": "",
+           "text": "Teeth brushing"
+          },
+          {
+           "label": "",
+           "text": "Home manual updated"
+          }
+         ]
+        }
+       ],
+       "chores": []
+      },
+      {
+       "id": "ephraim-prisma",
+       "title": "Prisma School Ownership",
+       "people": [
+        "Ephraim"
+       ],
+       "items": [
+        {
+         "label": "",
+         "text": "Prisma",
+         "subitems": [
+          {
+           "label": "",
+           "text": "DAILY Log in and actively check emails and messages without mom having to find first"
+          },
+          {
+           "label": "",
+           "text": "No outings if behind in school unless communicate with Mom/Dad"
+          }
+         ]
+        }
+       ],
+       "chores": [
+        "task-298"
+       ]
+      },
+      {
+       "id": "outings-and-food",
+       "title": "Clear Permission for Outings & Honoring Food Boundaries",
+       "people": [
+        "Brighton",
+        "Ephraim"
+       ],
+       "items": [
+        {
+         "label": "",
+         "text": "Outings",
+         "subitems": [
+          {
+           "label": "",
+           "text": "Check with Mom and Dad before going anywhere"
+          },
+          {
+           "label": "",
+           "text": "Check with Mom/Dad if going to eat anything outside of normal diet"
+          }
+         ]
+        },
+        {
+         "label": "",
+         "text": "We work hard to buy/make healthy meals"
+        }
+       ],
+       "chores": []
+      },
+      {
+       "id": "bedroom-standards",
+       "title": "Bedroom Upkeep",
+       "people": [
+        "Oliver",
+        "Ephraim"
+       ],
+       "items": [
+        {
+         "label": "",
+         "text": "Daily Upkeep",
+         "subitems": [
+          {
+           "label": "",
+           "text": "All laundry in drawers or laundry basket."
+          },
+          {
+           "label": "",
+           "text": "All used dishes downstairs"
+          },
+          {
+           "label": "",
+           "text": "Empty bedroom trash cans whenever they are full."
+          }
+         ]
+        },
+        {
+         "label": "",
+         "text": "Weekly Deep Clean",
+         "subitems": [
+          {
+           "label": "",
+           "text": "Complete the thorough weekly reset of the bedroom, going beyond surface clutter to dust surfaces, wipe down needed areas, and vacuum floors."
+          }
+         ]
+        }
+       ],
+       "chores": [
+        "task-300"
+       ]
+      },
+      {
+       "id": "household-contribution",
+       "title": "SeeDo",
+       "people": [
+        "Brighton",
+        "Oliver",
+        "Ephraim"
+       ],
+       "items": [
+        {
+         "label": "",
+         "text": "You see, you do"
+        },
+        {
+         "label": "",
+         "text": "This is super helpful and not required, just appreciated!!!!!"
+        }
+       ],
+       "chores": []
+      },
+      {
+       "id": "hygiene-self-care",
+       "title": "Personal Hygiene & Self-Care Standards: Baseline Ownership",
+       "people": [
+        "Oliver",
+        "Ephraim"
+       ],
+       "items": [
+        {
+         "label": "",
+         "text": "If sweaty, when done with excercise",
+         "subitems": [
+          {
+           "label": "",
+           "text": "change or shower"
+          },
+          {
+           "label": "",
+           "text": "put on deodorant if no shower"
+          }
+         ]
+        }
+       ],
+       "chores": [
+        "task-299"
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  "applied": [
+   "review-updates-2026-10",
+   "starter-skills-and-awards-2026-10",
+   "ai-notes-own-field-2026-10",
+   "maturity-marks-2026-10"
+  ]
+ }
+}

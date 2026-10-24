@@ -1,7 +1,7 @@
-# Exported backups written by the app's "Save file" button.
-# The canonical restore snapshot in restore/ is tracked deliberately.
+# Exported backups written by the app's "Save file" button. The ones kept in
+# restore/ are tracked deliberately.
 house-manual-review-*.json
-!restore/house-manual-review-2026-09-19.json
+!restore/house-manual-review-*.json
 
 # Phase 2 (Next.js) artifacts
 node_modules/
@@ -25,5 +25,8 @@ dist/local-config.js
 # Local Claude Code preview config.
 .claude/
 
-# The home server's shared data, sign-ins and backups (server/server.js).
-data/
+# The home server's sign-ins (server/server.js). Its shared data and backups in
+# data/ are tracked.
+data/accounts.json
+data/sessions.json
+data/**/*.tmp

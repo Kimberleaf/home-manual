@@ -41,7 +41,8 @@ To keep it available:
 
 ### The shared data
 
-Everything lives in `data/` on the house computer (git ignores it):
+Everything lives in `data/` on the house computer. Git tracks `household.json`
+and `backups/`; it ignores `accounts.json` and `sessions.json`:
 
 | File | What it is |
 | --- | --- |
@@ -95,8 +96,8 @@ device.
 chore assignments from the Oct 4, 11:08 AM backup (before any auto-assign).
 Restoring it puts every chore's owner back to that point and keeps everything
 else (chores marked done, sign-ins, calendar moves, awards). The tracked baseline is
-`house-manual-review-2026-09-19.json`; the later dated files are your own exports
-(git ignores them).
+`house-manual-review-2026-09-19.json`; the later dated files are your own exports,
+tracked too.
 
 ## What's here
 
@@ -106,7 +107,7 @@ else (chores marked done, sign-ins, calendar moves, awards). The tracked baselin
 | `restore/` | Your data snapshot, extracted verbatim from the backup document. |
 | `.openai/hosting.json` | Original hosting config, kept for provenance only. |
 | `server/server.js` | The home server: serves the app to the home network and keeps the shared data. |
-| `data/` | The shared data, sign-ins and backups (on the house computer only; git ignores it). |
+| `data/` | The shared data and backups (tracked), and sign-ins (`accounts.json`, `sessions.json`; git ignores them). |
 | `serve.ps1` | A browser-only static server, for running without the home server. |
 | `start-house-manual.ps1` | What the desktop shortcut runs. |
 | `start-house-manual.cmd` | Same thing, for double-clicking from Explorer. |
